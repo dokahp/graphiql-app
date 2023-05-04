@@ -4,6 +4,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import App from './App';
 import './index.css';
+import './App.css';
+import './css/header.css';
+import './css/footer.css';
 import { setupStore } from './store/store';
 
 const store = setupStore();

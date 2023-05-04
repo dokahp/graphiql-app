@@ -1,0 +1,23 @@
+:root {
+  --pure-black: #000;
+  --pure-white: #fff;
+  --main-text-color: #1b243f;
+  --main-bg: linear-gradient(
+    158deg,
+    rgba(219, 219, 219, 1) 0%,
+    rgba(242, 242, 242, 1) 50%,
+    rgba(221, 218, 208, 1) 100%
+  );
+}
+
+html {
+  background: var(--main-bg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+}
