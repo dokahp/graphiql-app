@@ -3,9 +3,11 @@ module.exports = {
   extends: [
     'airbnb',
     'airbnb-typescript',
+    'airbnb/hooks',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
+    'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
