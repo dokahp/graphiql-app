@@ -40,7 +40,15 @@ module.exports = {
         ignorePropertyModificationsFor: ['state'],
       },
     ],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        optionalDependencies: false,
+        peerDependencies: false,
+        devDependencies: true,
+        packageDir: __dirname,
+      },
+    ],
     'no-underscore-dangle': 'off',
-    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
   },
 };
