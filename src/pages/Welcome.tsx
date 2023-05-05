@@ -1,5 +1,6 @@
 import { Button } from '@mui/material';
 import React from 'react';
+import DocContainer from '../components/DocContainer/DocContainer';
 
 function Welcome() {
   return (
@@ -11,6 +12,7 @@ function Welcome() {
       <Button sx={{ m: 2 }} variant="contained" href="signin">
         Sign In
       </Button>
+      <DocContainer />
     </main>
   );
 }

@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
-// import Iapi from './apiTypes';
+import schemaType from './schemaType';
 export const dataAPI = createApi({
   reducerPath: 'dataAPI',
   baseQuery: fetchBaseQuery({
@@ -37,7 +37,7 @@ export const dataAPI = createApi({
     }),
   }),
   endpoints: (build) => ({
-    fetchAllData: build.query<any, void>({
+    fetchAllData: build.query<schemaType, void>({
       query: () => ' ',
     }),
   }),
