@@ -13,11 +13,14 @@ import Container from '@mui/material/Container';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
+import { useTranslation } from 'react-i18next';
 
 const pages = ['Project', 'Course', 'Developers'];
 const settings = ['Profile', 'Account', 'Dashboard'];
 
 export default function Header() {
+  const { t } = useTranslation();
+
   const [position, setPosition] = useState<'static' | undefined | 'sticky'>(
     'static'
   );
@@ -113,11 +116,10 @@ export default function Header() {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {t(page)}
               </Button>
             ))}
           </Box>
-
           <Box sx={{ flexGrow: 0, gap: '20px', display: 'flex' }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -125,7 +127,7 @@ export default function Header() {
               </IconButton>
             </Tooltip>
             <Button variant="outlined" color="error" sx={{ padding: '0 15px' }}>
-              Sign Out
+              {t('Sign Out')}
             </Button>
             <SwitchLang />
             <Menu

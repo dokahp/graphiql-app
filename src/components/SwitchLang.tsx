@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
+import { useTranslation } from 'react-i18next';
 
 export default function SwitchLang() {
-  return <MaterialUISwitch sx={{ m: 1 }} defaultChecked />;
+  const [lang, setLang] = useState('en');
+  const { i18n } = useTranslation();
+
+  const changeLanguageHandler = (lang: string) => {
+    setLang(lang);
+    i18n.changeLanguage(lang);
+  };
+
+  const toggleLang = () => {
+    const newLang = lang === 'en' ? 'uk' : 'en';
+    changeLanguageHandler(newLang);
+  };
+
+  return <MaterialUISwitch sx={{ m: 1 }} defaultChecked onClick={toggleLang} />;
 }
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
@@ -18,7 +32,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
       color: '#fff',
       transform: 'translateX(22px)',
       '& .MuiSwitch-thumb:before': {
-        content: '"?"',
+        content: '"UK"',
       },
       '& + .MuiSwitch-track': {
         opacity: 1,

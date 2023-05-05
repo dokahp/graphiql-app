@@ -5,9 +5,9 @@ import { Provider } from 'react-redux';
 import App from './App';
 import './index.css';
 import './App.css';
-import './css/header.css';
 import './css/footer.css';
 import { setupStore } from './store/store';
+import './i18n';
 
 const store = setupStore();
 
