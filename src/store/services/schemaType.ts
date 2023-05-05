@@ -1,5 +1,5 @@
 export default interface IDataAPI {
-  data: ISchema;
+  data: { __schema: ISchema };
 }
 
 interface ISchema {
