@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SwitchLang from './SwitchLang';
 import Avatar from '@mui/material/Avatar';
 import { Button } from '@mui/material';
@@ -18,12 +18,25 @@ const pages = ['Project', 'Course', 'Developers'];
 const settings = ['Profile', 'Account', 'Dashboard'];
 
 export default function Header() {
+  const [position, setPosition] = useState<'static' | undefined | 'sticky'>(
+    'static'
+  );
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
+
+  useEffect(() => {
+    const getPosition = () =>
+      setPosition(window.scrollY > 100 ? 'sticky' : 'static');
+    window.addEventListener('scroll', getPosition);
+
+    return () => {
+      window.removeEventListener('scroll', getPosition);
+    };
+  }, []);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -41,7 +54,17 @@ export default function Header() {
   };
 
   return (
-    <AppBar position="fixed">
+    <AppBar
+      position={position}
+      sx={
+        position === 'sticky'
+          ? {
+              background: 'transparent',
+              backdropFilter: 'blur(5px)',
+            }
+          : {}
+      }
+    >
       <Container maxWidth="lg" sx={{ padding: '5px 0' }}>
         <Toolbar disableGutters>
           <CodeRoundedIcon

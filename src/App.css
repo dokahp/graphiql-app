@@ -17,7 +17,9 @@ html {
 }
 
 body {
-  max-width: 1200px;
   margin: 0 auto;
-  padding: 40px;
+}
+
+main {
+  height: 200vh;
 }
