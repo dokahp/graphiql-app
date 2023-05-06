@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { dataAPI } from '../../store/services/APIservice';
-import DocTreeView from '../DocThree/DocThree';
+import DocThreeAsync from '../DocThree/DocThree.async';
 
 const DocumentationContainer = () => {
-  const { data: data, isLoading } = dataAPI.useFetchAllDataQuery();
+  const { data: data, isLoading, error } = dataAPI.useFetchAllDataQuery();
   return (
     <div>
-      {isLoading ? (
-        <h1>Loading</h1>
+      {error ? (
+        <h1>Error</h1>
       ) : (
-        <DocTreeView
-          types={data?.data.__schema.types || []}
-          name={data?.data.__schema.queryType.name || ''}
-        />
+        <Suspense fallback={<h1>Loading...</h1>}>
+          {!isLoading ? (
+            <DocThreeAsync
+              types={data?.data.__schema.types || []}
+              name={data?.data.__schema.queryType.name || ''}
+            />
+          ) : null}
+        </Suspense>
       )}
     </div>
   );

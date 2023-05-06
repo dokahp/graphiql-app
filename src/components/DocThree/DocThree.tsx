@@ -1,5 +1,4 @@
 import { IType } from '../../store/services/schemaType';
-
 import * as React from 'react';
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 import { alpha, styled } from '@mui/material/styles';
@@ -74,19 +73,6 @@ const StyledTreeItem = styled((props: TreeItemProps) => (
     borderLeft: `1px dashed ${alpha(theme.palette.text.primary, 0.4)}`,
   },
 }));
-
-const findArg = (types: Array<IType>, arg: string = '', name: string = '') => {
-  if (arg === 'code') return 'ID';
-  const ans = types.find((item) => {
-    return item.name
-      .toLocaleLowerCase()
-      .includes(name.slice(0, name.length - 1) + 'filter');
-  });
-  if (ans) return ans.name;
-  return '';
-};
-
-const findType = (types: Array<IType>, type: string) => {};
 
 const DocTreeView: React.FC<{
   types: Array<IType>;
