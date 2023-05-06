@@ -2,7 +2,7 @@ export default interface IDataAPI {
   data: { __schema: ISchema };
 }
 
-interface ISchema {
+export interface ISchema {
   mutationType: null;
   queryType: { name: string; __typename: string };
   subscriptionType: null;
@@ -10,21 +10,21 @@ interface ISchema {
   __typename: string;
 }
 
-interface IType {
+export interface IType {
   name: string;
   description: null | string;
   fields: Array<IField> | null;
   __typename: string;
 }
 
-interface IField {
+export interface IField {
   name: string;
   description: string | null;
   args: Array<IArg> | null;
   __typename: string;
 }
 
-interface IArg {
+export interface IArg {
   description: null | string;
   name: string;
   __typename: string;
