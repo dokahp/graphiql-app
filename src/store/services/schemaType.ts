@@ -13,7 +13,7 @@ export interface ISchema {
 export interface IType {
   name: string;
   description: null | string;
-  fields: Array<IField> | null;
+  fields: Array<IField>;
   __typename: string;
 }
 

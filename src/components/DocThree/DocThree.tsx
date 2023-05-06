@@ -75,7 +75,24 @@ const StyledTreeItem = styled((props: TreeItemProps) => (
   },
 }));
 
-const DocTreeView: React.FC<{ types: Array<IType> }> = ({ types }) => {
+const findArg = (types: Array<IType>, arg: string = '', name: string = '') => {
+  if (arg === 'code') return 'ID';
+  const ans = types.find((item) => {
+    return item.name
+      .toLocaleLowerCase()
+      .includes(name.slice(0, name.length - 1) + 'filter');
+  });
+  if (ans) return ans.name;
+  return '';
+};
+
+const findType = (types: Array<IType>, type: string) => {};
+
+const DocTreeView: React.FC<{
+  types: Array<IType>;
+  name: string;
+}> = ({ types, name }) => {
+  console.log(types);
   return (
     <TreeView
       aria-label="customized"
@@ -83,21 +100,886 @@ const DocTreeView: React.FC<{ types: Array<IType> }> = ({ types }) => {
       defaultCollapseIcon={<MinusSquare />}
       defaultExpandIcon={<PlusSquare />}
       defaultEndIcon={<CloseSquare />}
-      sx={{ height: 264, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
+      sx={{ height: 500, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
     >
-      <StyledTreeItem nodeId="1" label="Main">
-        <StyledTreeItem nodeId="2" label="Hello" />
-        <StyledTreeItem nodeId="3" label="Subtree with children">
-          <StyledTreeItem nodeId="6" label="Hello" />
-          <StyledTreeItem nodeId="7" label="Sub-subtree with children">
-            <StyledTreeItem nodeId="9" label="Child 1" />
-            <StyledTreeItem nodeId="10" label="Child 2" />
-            <StyledTreeItem nodeId="11" label="Child 3" />
+      <StyledTreeItem nodeId="0" label={name}>
+        <StyledTreeItem nodeId={'1'} label={types[10].fields[0].name}>
+          <StyledTreeItem nodeId={'1.1'} label={`type -> ${types[1].name}`}>
+            <StyledTreeItem nodeId={'1.1.1'} label={`code:${types[6].name}!`}>
+              <StyledTreeItem
+                nodeId={'1.1.1.1'}
+                label={types[6].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'1.1.2'}
+              label={`Countries:[${types[3].name}!]!`}
+            >
+              <StyledTreeItem
+                nodeId={'1.1.2.1'}
+                label={`find for the  field "Country" in the root element`}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem nodeId={'1.1.3'} label={`name:${types[12].name}`}>
+              <StyledTreeItem
+                nodeId={'1.1.3.1'}
+                label={types[12].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
           </StyledTreeItem>
-          <StyledTreeItem nodeId="8" label="Hello" />
+          <StyledTreeItem
+            nodeId={'1.2'}
+            label={`argument -> code:${types[6].name}`}
+          >
+            <StyledTreeItem
+              nodeId={'1.2.1'}
+              label={types[6].description}
+            ></StyledTreeItem>
+          </StyledTreeItem>
         </StyledTreeItem>
-        <StyledTreeItem nodeId="4" label="World" />
-        <StyledTreeItem nodeId="5" label="Something something" />
+        <StyledTreeItem nodeId={'2'} label={types[10].fields[1].name}>
+          <StyledTreeItem nodeId={'2.1'} label={`type -> [${types[1].name}!]!`}>
+            <StyledTreeItem nodeId={'2.1.1'} label={`code:${types[6].name}!`}>
+              <StyledTreeItem
+                nodeId={'2.1.1.1'}
+                label={types[6].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'2.1.2'}
+              label={`Countries:[${types[3].name}!]!`}
+            >
+              <StyledTreeItem
+                nodeId={'2.1.2.1'}
+                label={`find for the  field "Country" in the root element`}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem nodeId={'2.1.3'} label={`name:${types[12].name}`}>
+              <StyledTreeItem
+                nodeId={'2.1.3.1'}
+                label={types[12].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+          </StyledTreeItem>
+          <StyledTreeItem
+            nodeId={'2.2'}
+            label={`filter: ${types[2].name} = {}`}
+          >
+            <StyledTreeItem nodeId={'2.2.1'} label={`code: ${types[13].name}`}>
+              <StyledTreeItem nodeId={'2.2.1.1'} label={`eq:${types[12].name}`}>
+                <StyledTreeItem
+                  nodeId={'2.2.1.1.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem
+                nodeId={'2.2.1.2'}
+                label={`in:[${types[12].name}!]`}
+              >
+                <StyledTreeItem
+                  nodeId={'2.2.1.2.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem nodeId={'2.2.1.3'} label={`ne:${types[12].name}`}>
+                <StyledTreeItem
+                  nodeId={'2.2.1.3.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem
+                nodeId={'2.2.1.4'}
+                label={`nin:[${types[12].name}!]`}
+              >
+                <StyledTreeItem
+                  nodeId={'2.2.1.4.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem
+                nodeId={'2.2.1.5'}
+                label={`regex:${types[12].name}`}
+              >
+                <StyledTreeItem
+                  nodeId={'2.2.1.5.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+            </StyledTreeItem>
+          </StyledTreeItem>
+        </StyledTreeItem>
+        <StyledTreeItem nodeId={'3'} label={types[10].fields[2].name}>
+          <StyledTreeItem
+            nodeId={'3.1'}
+            label={`type -> [${types[10].fields[3].name}!]!`}
+          >
+            <StyledTreeItem
+              nodeId={'3.1.1'}
+              label={`${types[3].fields[0].name}: String!`}
+            >
+              <StyledTreeItem
+                nodeId={'3.1.1.1'}
+                label={types[12].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'3.1.2'}
+              label={`${types[3].fields[1].name}: String`}
+            >
+              <StyledTreeItem
+                nodeId={'3.1.2.1'}
+                label={types[12].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'3.1.3'}
+              label={`${types[3].fields[2].name}: ID!`}
+            >
+              <StyledTreeItem
+                nodeId={'3.1.3.1'}
+                label={types[6].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'3.1.4'}
+              label={`${types[3].fields[3].name}: Continent!`}
+            >
+              <StyledTreeItem
+                nodeId={'3.1.4.1'}
+                label={`find for the  field "Continent" in the root element`}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'3.1.5'}
+              label={`${types[3].fields[4].name}: [String!]!`}
+            >
+              <StyledTreeItem
+                nodeId={'3.1.5.1'}
+                label={types[12].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'3.1.6'}
+              label={`${types[3].fields[5].name}: String`}
+            >
+              <StyledTreeItem
+                nodeId={'3.1.6.1'}
+                label={types[12].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'3.1.7'}
+              label={`${types[3].fields[6].name}: String!`}
+            >
+              <StyledTreeItem
+                nodeId={'3.1.7.1'}
+                label={types[12].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'3.1.8'}
+              label={`${types[3].fields[7].name}: String!`}
+            >
+              <StyledTreeItem
+                nodeId={'3.1.8.1'}
+                label={types[12].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'3.1.9'}
+              label={`${types[3].fields[8].name}: [Language!]!`}
+            >
+              <StyledTreeItem
+                nodeId={'3.1.9.1'}
+                label={`${types[8].fields[0].name}: ${types[6].name}!`}
+              >
+                <StyledTreeItem
+                  nodeId={'3.1.9.1.1'}
+                  label={types[6].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem
+                nodeId={'3.1.9.2'}
+                label={`${types[8].fields[1].name}: ${types[12].name}!`}
+              >
+                <StyledTreeItem
+                  nodeId={'3.1.9.2.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem
+                nodeId={'3.1.9.3'}
+                label={`${types[8].fields[2].name}: ${types[12].name}!`}
+              >
+                <StyledTreeItem
+                  nodeId={'3.1.9.3.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem
+                nodeId={'3.1.9.4'}
+                label={`${types[8].fields[1].name}: ${types[0].name}!`}
+              >
+                <StyledTreeItem
+                  nodeId={'3.1.9.4.1'}
+                  label={types[0].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'3.1.10'}
+              label={`${types[3].fields[9].name}(lang:String): String!`}
+            >
+              <StyledTreeItem
+                nodeId={'3.1.10.1'}
+                label={`type -> ${types[12].name}`}
+              >
+                <StyledTreeItem
+                  nodeId={'3.1.10.1.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem
+                nodeId={'3.1.10.2'}
+                label={`argument -> lang:${types[12].name}`}
+              >
+                <StyledTreeItem
+                  nodeId={'3.1.10.2.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'3.1.11'}
+              label={`${types[3].fields[10].name}: String!`}
+            >
+              <StyledTreeItem
+                nodeId={'3.1.11.1'}
+                label={types[12].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'3.1.12'}
+              label={`${types[3].fields[11].name}: String!`}
+            >
+              <StyledTreeItem
+                nodeId={'3.1.12.1'}
+                label={types[12].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'3.1.13'}
+              label={`${types[3].fields[12].name}: [String!]!`}
+            >
+              <StyledTreeItem
+                nodeId={'3.1.13.1'}
+                label={types[12].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'3.1.14'}
+              label={`${types[3].fields[13].name}: [State!]!`}
+            >
+              <StyledTreeItem
+                nodeId={'3.1.14.1'}
+                label={`code: ${types[12].name}`}
+              >
+                <StyledTreeItem
+                  nodeId={'3.1.14.1.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem
+                nodeId={'3.1.14.2'}
+                label={`country:${types[3].name}!`}
+              >
+                <StyledTreeItem
+                  nodeId={'3.1.14.2.1'}
+                  label={`find for the  field "Country" in the root element`}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem
+                nodeId={'3.1.14.3'}
+                label={`name: ${types[12].name}!`}
+              >
+                <StyledTreeItem
+                  nodeId={'3.1.14.3.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'3.1.15'}
+              label={`${types[3].fields[14].name}: [Subdivision!]!`}
+            >
+              <StyledTreeItem
+                nodeId={'3.1.15.1'}
+                label={`code: ${types[6].name}`}
+              >
+                <StyledTreeItem
+                  nodeId={'3.1.15.1.1'}
+                  label={types[6].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem
+                nodeId={'3.1.15.2'}
+                label={`emoji: ${types[12].name}`}
+              >
+                <StyledTreeItem
+                  nodeId={'3.1.15.2.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem
+                nodeId={'3.1.15.3'}
+                label={`name: ${types[12].name}!`}
+              >
+                <StyledTreeItem
+                  nodeId={'3.1.15.3.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+            </StyledTreeItem>
+          </StyledTreeItem>
+          <StyledTreeItem
+            nodeId={'3.2'}
+            label={`filter -> ${types[4].name} = {}`}
+          >
+            <StyledTreeItem
+              nodeId={'3.2.2'}
+              label={`arg -> filter:${types[4].name} = {}`}
+            >
+              <StyledTreeItem
+                nodeId={'3.2.2.1'}
+                label={`code:${types[13].name}`}
+              >
+                <StyledTreeItem
+                  nodeId={'3.2.2.1.1'}
+                  label={`eq:${types[12].name}`}
+                >
+                  {' '}
+                  <StyledTreeItem
+                    nodeId={'3.2.2.1.1.1'}
+                    label={types[12].description}
+                  ></StyledTreeItem>
+                </StyledTreeItem>
+                <StyledTreeItem
+                  nodeId={'3.2.2.1.2'}
+                  label={`in:[${types[12].name}!]`}
+                >
+                  <StyledTreeItem
+                    nodeId={'3.2.2.1.2.1'}
+                    label={types[12].description}
+                  ></StyledTreeItem>
+                </StyledTreeItem>
+                <StyledTreeItem
+                  nodeId={'3.2.2.1.3'}
+                  label={`ne:${types[12].name}`}
+                >
+                  <StyledTreeItem
+                    nodeId={'3.2.2.1.3.1'}
+                    label={types[12].description}
+                  ></StyledTreeItem>
+                </StyledTreeItem>
+                <StyledTreeItem
+                  nodeId={'3.2.2.1.4'}
+                  label={`nin:[${types[12].name}!]`}
+                >
+                  <StyledTreeItem
+                    nodeId={'3.2.2.1.4.1'}
+                    label={types[12].description}
+                  ></StyledTreeItem>
+                </StyledTreeItem>
+                <StyledTreeItem
+                  nodeId={'3.2.2.1.5'}
+                  label={`regex:${types[12].name}`}
+                >
+                  <StyledTreeItem
+                    nodeId={'3.2.2.1.5.1'}
+                    label={types[12].description}
+                  ></StyledTreeItem>
+                </StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem
+                nodeId={'3.2.2.2'}
+                label={`continent:${types[13].name}`}
+              >
+                <StyledTreeItem
+                  nodeId={'3.2.2.2.1'}
+                  label={`eq:${types[12].name}`}
+                >
+                  {' '}
+                  <StyledTreeItem
+                    nodeId={'3.2.2.2.1.1'}
+                    label={types[12].description}
+                  ></StyledTreeItem>
+                </StyledTreeItem>
+                <StyledTreeItem
+                  nodeId={'3.2.2.2.2'}
+                  label={`in:[${types[12].name}!]`}
+                >
+                  <StyledTreeItem
+                    nodeId={'3.2.2.2.2.1'}
+                    label={types[12].description}
+                  ></StyledTreeItem>
+                </StyledTreeItem>
+                <StyledTreeItem
+                  nodeId={'3.2.2.2.3'}
+                  label={`ne:${types[12].name}`}
+                >
+                  <StyledTreeItem
+                    nodeId={'3.2.2.2.3.1'}
+                    label={types[12].description}
+                  ></StyledTreeItem>
+                </StyledTreeItem>
+                <StyledTreeItem
+                  nodeId={'3.2.2.2.4'}
+                  label={`nin:[${types[12].name}!]`}
+                >
+                  <StyledTreeItem
+                    nodeId={'3.2.2.2.4.1'}
+                    label={types[12].description}
+                  ></StyledTreeItem>
+                </StyledTreeItem>
+                <StyledTreeItem
+                  nodeId={'3.2.2.2.5'}
+                  label={`regex:${types[12].name}`}
+                >
+                  <StyledTreeItem
+                    nodeId={'3.2.2.2.5.1'}
+                    label={types[12].description}
+                  ></StyledTreeItem>
+                </StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem
+                nodeId={'3.2.2.3'}
+                label={`currency:${types[13].name}`}
+              >
+                <StyledTreeItem
+                  nodeId={'3.2.2.3.1'}
+                  label={`eq:${types[12].name}`}
+                >
+                  {' '}
+                  <StyledTreeItem
+                    nodeId={'3.2.2.3.1.1'}
+                    label={types[12].description}
+                  ></StyledTreeItem>
+                </StyledTreeItem>
+                <StyledTreeItem
+                  nodeId={'3.2.2.3.2'}
+                  label={`in:[${types[12].name}!]`}
+                >
+                  <StyledTreeItem
+                    nodeId={'3.2.2.3.2.1'}
+                    label={types[12].description}
+                  ></StyledTreeItem>
+                </StyledTreeItem>
+                <StyledTreeItem
+                  nodeId={'3.2.2.3.3'}
+                  label={`ne:${types[12].name}`}
+                >
+                  <StyledTreeItem
+                    nodeId={'3.2.2.3.3.1'}
+                    label={types[12].description}
+                  ></StyledTreeItem>
+                </StyledTreeItem>
+                <StyledTreeItem
+                  nodeId={'3.2.2.3.4'}
+                  label={`nin:[${types[12].name}!]`}
+                >
+                  <StyledTreeItem
+                    nodeId={'3.2.2.3.4.1'}
+                    label={types[12].description}
+                  ></StyledTreeItem>
+                </StyledTreeItem>
+                <StyledTreeItem
+                  nodeId={'3.2.2.3.5'}
+                  label={`regex:${types[12].name}`}
+                >
+                  <StyledTreeItem
+                    nodeId={'3.2.2.3.5.1'}
+                    label={types[12].description}
+                  ></StyledTreeItem>
+                </StyledTreeItem>
+              </StyledTreeItem>
+            </StyledTreeItem>
+          </StyledTreeItem>
+        </StyledTreeItem>
+        <StyledTreeItem nodeId={'4'} label={types[10].fields[3].name}>
+          <StyledTreeItem nodeId={'4.1'} label={`type -> ${types[3].name}`}>
+            <StyledTreeItem
+              nodeId={'4.1.1'}
+              label={`${types[3].fields[0].name}: String!`}
+            >
+              <StyledTreeItem
+                nodeId={'4.1.1.1'}
+                label={types[12].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'4.1.2'}
+              label={`${types[3].fields[1].name}: String`}
+            >
+              <StyledTreeItem
+                nodeId={'4.1.2.1'}
+                label={types[12].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'4.1.3'}
+              label={`${types[3].fields[2].name}: ID!`}
+            >
+              <StyledTreeItem
+                nodeId={'4.1.3.1'}
+                label={types[6].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'4.1.4'}
+              label={`${types[3].fields[3].name}: Continent!`}
+            >
+              <StyledTreeItem
+                nodeId={'4.1.4.1'}
+                label={`find for the  field "Continent" in the root element`}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'4.1.5'}
+              label={`${types[3].fields[4].name}: [String!]!`}
+            >
+              <StyledTreeItem
+                nodeId={'4.1.5.1'}
+                label={types[12].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'4.1.6'}
+              label={`${types[3].fields[5].name}: String`}
+            >
+              <StyledTreeItem
+                nodeId={'4.1.6.1'}
+                label={types[12].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'4.1.7'}
+              label={`${types[3].fields[6].name}: String!`}
+            >
+              <StyledTreeItem
+                nodeId={'4.1.7.1'}
+                label={types[12].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'4.1.8'}
+              label={`${types[3].fields[7].name}: String!`}
+            >
+              <StyledTreeItem
+                nodeId={'4.1.8.1'}
+                label={types[12].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'4.1.9'}
+              label={`${types[3].fields[8].name}: [Language!]!`}
+            >
+              <StyledTreeItem
+                nodeId={'4.1.9.1'}
+                label={`${types[8].fields[0].name}: ${types[6].name}!`}
+              >
+                <StyledTreeItem
+                  nodeId={'4.1.9.1.1'}
+                  label={types[6].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem
+                nodeId={'4.1.9.2'}
+                label={`${types[8].fields[1].name}: ${types[12].name}!`}
+              >
+                <StyledTreeItem
+                  nodeId={'4.1.9.2.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem
+                nodeId={'4.1.9.3'}
+                label={`${types[8].fields[2].name}: ${types[12].name}!`}
+              >
+                <StyledTreeItem
+                  nodeId={'4.1.9.3.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem
+                nodeId={'4.1.9.4'}
+                label={`${types[8].fields[1].name}: ${types[0].name}!`}
+              >
+                <StyledTreeItem
+                  nodeId={'4.1.9.4.1'}
+                  label={types[0].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'4.1.10'}
+              label={`${types[3].fields[9].name}(lang:String): String!`}
+            >
+              <StyledTreeItem
+                nodeId={'4.1.10.1'}
+                label={`type -> ${types[12].name}`}
+              >
+                <StyledTreeItem
+                  nodeId={'4.1.10.1.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem
+                nodeId={'4.1.10.2'}
+                label={`argument -> lang:${types[12].name}`}
+              >
+                <StyledTreeItem
+                  nodeId={'4.1.10.2.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'4.1.11'}
+              label={`${types[3].fields[10].name}: String!`}
+            >
+              <StyledTreeItem
+                nodeId={'4.1.11.1'}
+                label={types[12].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'4.1.12'}
+              label={`${types[3].fields[11].name}: String!`}
+            >
+              <StyledTreeItem
+                nodeId={'4.1.12.1'}
+                label={types[12].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'4.1.13'}
+              label={`${types[3].fields[12].name}: [String!]!`}
+            >
+              <StyledTreeItem
+                nodeId={'4.1.13.1'}
+                label={types[12].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'4.1.14'}
+              label={`${types[3].fields[13].name}: [State!]!`}
+            >
+              <StyledTreeItem
+                nodeId={'4.1.14.1'}
+                label={`code: ${types[12].name}`}
+              >
+                <StyledTreeItem
+                  nodeId={'4.1.14.1.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem
+                nodeId={'4.1.14.2'}
+                label={`country:${types[3].name}!`}
+              >
+                <StyledTreeItem
+                  nodeId={'4.1.14.2.1'}
+                  label={`find for the  field "Country" in the root element`}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem
+                nodeId={'4.1.14.3'}
+                label={`name: ${types[12].name}!`}
+              >
+                <StyledTreeItem
+                  nodeId={'4.1.14.3.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'4.1.15'}
+              label={`${types[3].fields[14].name}: [Subdivision!]!`}
+            >
+              <StyledTreeItem
+                nodeId={'4.1.15.1'}
+                label={`code: ${types[6].name}`}
+              >
+                <StyledTreeItem
+                  nodeId={'4.1.15.1.1'}
+                  label={types[6].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem
+                nodeId={'4.1.15.2'}
+                label={`emoji: ${types[12].name}`}
+              >
+                <StyledTreeItem
+                  nodeId={'4.1.15.2.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem
+                nodeId={'4.1.15.3'}
+                label={`name: ${types[12].name}!`}
+              >
+                <StyledTreeItem
+                  nodeId={'4.1.15.3.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+            </StyledTreeItem>
+          </StyledTreeItem>
+          <StyledTreeItem
+            nodeId={'4.2'}
+            label={`argument -> code:${types[6].name}`}
+          >
+            <StyledTreeItem
+              nodeId={'4.2.1'}
+              label={types[6].description}
+            ></StyledTreeItem>
+          </StyledTreeItem>
+        </StyledTreeItem>
+        <StyledTreeItem nodeId={'5'} label={types[10].fields[4].name}>
+          <StyledTreeItem nodeId={'5.1'} label={`type -> ${types[8].name}`}>
+            <StyledTreeItem
+              nodeId={'5.1.1'}
+              label={`${types[8].fields[0].name}: ${types[6].name}!`}
+            >
+              <StyledTreeItem
+                nodeId={'5.1.1.1'}
+                label={types[6].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'5.1.2'}
+              label={`${types[8].fields[1].name}: ${types[12].name}!`}
+            >
+              <StyledTreeItem
+                nodeId={'5.1.2.1'}
+                label={types[12].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'5.1.3'}
+              label={`${types[8].fields[2].name}: ${types[12].name}!`}
+            >
+              <StyledTreeItem
+                nodeId={'5.1.3.1'}
+                label={types[12].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'5.1.4'}
+              label={`${types[8].fields[1].name}: ${types[0].name}!`}
+            >
+              <StyledTreeItem
+                nodeId={'5.1.4.1'}
+                label={types[0].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+          </StyledTreeItem>
+          <StyledTreeItem
+            nodeId={'5.2'}
+            label={`argument -> code:${types[6].name}`}
+          >
+            <StyledTreeItem
+              nodeId={'5.2.1'}
+              label={types[6].description}
+            ></StyledTreeItem>
+          </StyledTreeItem>
+        </StyledTreeItem>
+        <StyledTreeItem nodeId={'6'} label={types[10].fields[5].name}>
+          <StyledTreeItem nodeId={'6.1'} label={`type -> [${types[8].name}!]!`}>
+            <StyledTreeItem
+              nodeId={'6.1.1'}
+              label={`${types[8].fields[0].name}: ${types[6].name}!`}
+            >
+              <StyledTreeItem
+                nodeId={'6.1.1.1'}
+                label={types[6].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'6.1.2'}
+              label={`${types[8].fields[1].name}: ${types[12].name}!`}
+            >
+              <StyledTreeItem
+                nodeId={'6.1.2.1'}
+                label={types[12].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'6.1.3'}
+              label={`${types[8].fields[2].name}: ${types[12].name}!`}
+            >
+              <StyledTreeItem
+                nodeId={'6.1.3.1'}
+                label={types[12].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+            <StyledTreeItem
+              nodeId={'6.1.4'}
+              label={`${types[8].fields[1].name}: ${types[0].name}!`}
+            >
+              <StyledTreeItem
+                nodeId={'6.1.4.1'}
+                label={types[0].description}
+              ></StyledTreeItem>
+            </StyledTreeItem>
+          </StyledTreeItem>
+          <StyledTreeItem
+            nodeId={'6.2'}
+            label={`arg -> filter:${types[9].name} = {}`}
+          >
+            <StyledTreeItem nodeId={'6.2.1'} label={`code:${types[13].name}`}>
+              <StyledTreeItem nodeId={'6.2.1.1'} label={`eq:${types[12].name}`}>
+                <StyledTreeItem
+                  nodeId={'6.2.1.1.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem
+                nodeId={'6.2.1.2'}
+                label={`in:[${types[12].name}!]`}
+              >
+                <StyledTreeItem
+                  nodeId={'6.2.1.2.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem nodeId={'6.2.1.3'} label={`ne:${types[12].name}`}>
+                <StyledTreeItem
+                  nodeId={'6.2.1.3.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem
+                nodeId={'6.2.1.4'}
+                label={`nin:[${types[12].name}!]`}
+              >
+                <StyledTreeItem
+                  nodeId={'6.2.1.4.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+              <StyledTreeItem
+                nodeId={'6.2.1.5'}
+                label={`regex:${types[12].name}`}
+              >
+                <StyledTreeItem
+                  nodeId={'6.2.1.5.1'}
+                  label={types[12].description}
+                ></StyledTreeItem>
+              </StyledTreeItem>
+            </StyledTreeItem>
+          </StyledTreeItem>
+        </StyledTreeItem>
       </StyledTreeItem>
     </TreeView>
   );
