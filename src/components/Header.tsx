@@ -14,11 +14,13 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import { useTranslation } from 'react-i18next';
+import { theme } from '../theme';
 
 const pages = ['Project', 'Course', 'Developers'];
 const settings = ['Profile', 'Account', 'Dashboard'];
 
 export default function Header() {
+  const color = theme.palette;
   const { t } = useTranslation();
 
   const [position, setPosition] = useState<'static' | undefined | 'sticky'>(
@@ -33,7 +35,7 @@ export default function Header() {
 
   useEffect(() => {
     const getPosition = () =>
-      setPosition(window.scrollY > 100 ? 'sticky' : 'static');
+      setPosition(window.scrollY > 50 ? 'sticky' : 'static');
     window.addEventListener('scroll', getPosition);
 
     return () => {
@@ -64,24 +66,28 @@ export default function Header() {
           ? {
               background: 'transparent',
               backdropFilter: 'blur(5px)',
+              color: color.primary.dark,
+              animation: 'slideDown 0.35s ease-out',
             }
           : {}
       }
     >
-      <Container maxWidth="lg" sx={{ padding: '5px 0' }}>
-        <Toolbar disableGutters>
+      <Container maxWidth="lg" sx={{ padding: { xs: '0 12px', md: '0 40px' } }}>
+        <Toolbar disableGutters sx={{ alignItems: 'stretch' }}>
           <CodeRoundedIcon
-            sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
+            sx={{
+              display: { xs: 'none', md: 'flex' },
+              mr: 1,
+              alignSelf: 'center',
+            }}
           />
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: 'flex', md: 'none' },
+            }}
+          >
+            <IconButton onClick={handleOpenNavMenu} color="inherit">
               <MenuIcon />
             </IconButton>
             <Menu
@@ -109,24 +115,39 @@ export default function Header() {
               ))}
             </Menu>
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: 'none', md: 'flex', alignItems: 'stretch' },
+            }}
+          >
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ color: 'inherit', display: 'block' }}
               >
                 {t(page)}
               </Button>
             ))}
           </Box>
-          <Box sx={{ flexGrow: 0, gap: '20px', display: 'flex' }}>
+          <Box
+            sx={{
+              gap: { xs: '5px', md: '20px' },
+              flexGrow: 0,
+              display: 'flex',
+            }}
+          >
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar src="/broken-image.jpg" />
               </IconButton>
             </Tooltip>
-            <Button variant="outlined" color="error" sx={{ padding: '0 15px' }}>
+            <Button
+              variant="text"
+              className="sing_out_btn"
+              sx={{ padding: '0 15px', color: color.secondary.main }}
+            >
               {t('Sign Out')}
             </Button>
             <SwitchLang />

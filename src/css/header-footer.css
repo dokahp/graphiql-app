@@ -1,0 +1,27 @@
+.sing_out_btn:hover {
+  scale: 1.1;
+  transition: all 150ms ease-in;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* footer ................ 
+............................*/
+footer {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--bg-footer);
+}
+
+footer p {
+  color: var(--main-text-color);
+}

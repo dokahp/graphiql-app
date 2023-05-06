@@ -17,7 +17,13 @@ export default function SwitchLang() {
     changeLanguageHandler(newLang);
   };
 
-  return <MaterialUISwitch sx={{ m: 1 }} defaultChecked onClick={toggleLang} />;
+  return (
+    <MaterialUISwitch
+      sx={{ m: 1, alignSelf: 'center' }}
+      defaultChecked
+      onClick={toggleLang}
+    />
+  );
 }
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
@@ -36,12 +42,16 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
       },
       '& + .MuiSwitch-track': {
         opacity: 1,
-        backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
+        backgroundColor:
+          theme.palette.mode === 'dark'
+            ? '#8796A5'
+            : theme.palette.primary.light,
       },
     },
   },
   '& .MuiSwitch-thumb': {
-    backgroundColor: theme.palette.mode === 'dark' ? '#003892' : '#001e3c',
+    backgroundColor:
+      theme.palette.mode === 'dark' ? '#003892' : theme.palette.primary.dark,
     width: 32,
     height: 32,
     '&:before': {
@@ -54,7 +64,8 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   },
   '& .MuiSwitch-track': {
     opacity: 1,
-    backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
+    backgroundColor:
+      theme.palette.mode === 'dark' ? '#8796A5' : theme.palette.primary.light,
     borderRadius: 20 / 2,
   },
 }));
