@@ -2,12 +2,10 @@
   --pure-black: #000;
   --pure-white: #fff;
   --main-text-color: #1b243f;
-  --main-bg: linear-gradient(
-    158deg,
-    rgba(219, 219, 219, 1) 0%,
-    rgba(242, 242, 242, 1) 50%,
-    rgba(221, 218, 208, 1) 100%
-  );
+  --main-bg: linear-gradient(158deg,
+      rgba(219, 219, 219, 1) 0%,
+      rgba(242, 242, 242, 1) 50%,
+      rgba(221, 218, 208, 1) 100%);
 }
 
 html {
@@ -18,8 +16,4 @@ html {
 
 body {
   margin: 0 auto;
-}
-
-main {
-  height: 200vh;
 }
