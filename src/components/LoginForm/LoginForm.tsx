@@ -10,8 +10,17 @@ import React, { SyntheticEvent, useState } from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+
+interface FormValues {
+  email: string;
+  password: string;
+}
 
 function LoginForm() {
+  const loginForm = useForm<FormValues>();
+  const { register, handleSubmit, formState, reset } = loginForm;
+  const { errors } = formState;
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => {
@@ -21,8 +30,14 @@ function LoginForm() {
   const handleMouseDownPassword = (event: SyntheticEvent) => {
     event?.preventDefault();
   };
+
+  const onSubmit = (data: FormValues) => {
+    console.log('Email:', data.email, 'Password:', data.password);
+    reset();
+  };
+
   return (
-    <>
+    <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <Stack
         direction="row"
         justifyContent="space-between"
@@ -49,6 +64,15 @@ function LoginForm() {
         label="Email"
         variant="outlined"
         fullWidth
+        error={!!errors.email}
+        helperText={errors.email?.message}
+        {...register('email', {
+          required: 'Email is required',
+          pattern: {
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+            message: 'Email not valid',
+          },
+        })}
       />
       <TextField
         type={showPassword ? 'text' : 'password'}
@@ -57,6 +81,11 @@ function LoginForm() {
         variant="outlined"
         fullWidth
         margin="normal"
+        error={!!errors.password}
+        helperText={errors.password?.message}
+        {...register('password', {
+          required: 'Password is required',
+        })}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
@@ -82,7 +111,7 @@ function LoginForm() {
       >
         Login
       </Button>
-    </>
+    </form>
   );
 }
 
