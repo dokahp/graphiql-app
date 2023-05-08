@@ -10,6 +10,7 @@ import { setupStore } from './store/store';
 import './i18n';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './theme';
+import './firebase';
 
 const store = setupStore();
 

@@ -34,8 +34,10 @@ function LoginForm() {
   };
 
   const onSubmit = (data: FormValues) => {
-    console.log('Email:', data.email, 'Password:', data.password);
-    reset();
+    // console.log('Email:', data.email, 'Password:', data.password);
+    if (data) {
+      reset();
+    }
   };
 
   return (
