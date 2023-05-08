@@ -34,7 +34,7 @@ function App() {
 
   return (
     <Routes>
-      <Route element={<Layout />}>
+      <Route element={<Layout isAuthorized={isAuthorized} />}>
         <Route path="/" element={<Welcome isAuthorized={isAuthorized} />} />
         <Route
           path="/graphql"

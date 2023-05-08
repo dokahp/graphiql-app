@@ -4,10 +4,14 @@ import { ToastContainer } from 'react-toastify';
 import Footer from '../Footer';
 import Header from '../Header';
 
-function Layout() {
+interface LayoutProps {
+  isAuthorized: boolean | undefined;
+}
+
+function Layout({ isAuthorized }: LayoutProps) {
   return (
     <>
-      <Header />
+      <Header isAuthorized={isAuthorized} />
       <Outlet />
       <ToastContainer
         position="bottom-center"

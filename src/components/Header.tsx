@@ -19,9 +19,12 @@ import SwitchLang from './SwitchLang';
 import { theme } from '../theme';
 
 const pages = ['Project', 'Course', 'Developers'];
-const settings = ['Profile', 'Account', 'Dashboard'];
 
-export default function Header() {
+interface HeaderProps {
+  isAuthorized: boolean | undefined;
+}
+
+export default function Header({ isAuthorized }: HeaderProps) {
   const color = theme.palette;
   const { t } = useTranslation();
 
@@ -56,10 +59,6 @@ export default function Header() {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
   const handleSignOut = () => {
     const auth = getAuth();
     signOut(auth)
@@ -89,6 +88,10 @@ export default function Header() {
           });
         }
       });
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
   };
 
   return (
@@ -164,6 +167,7 @@ export default function Header() {
               </Button>
             ))}
           </Box>
+
           <Box
             sx={{
               gap: { xs: '5px', md: '20px' },
@@ -171,42 +175,37 @@ export default function Header() {
               display: 'flex',
             }}
           >
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar src="/broken-image.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Button
-              variant="text"
-              className="sing_out_btn"
-              sx={{ padding: '0 15px', color: color.secondary.main }}
-              onClick={handleSignOut}
-            >
-              {t('Sign Out')}
-            </Button>
+            {isAuthorized && (
+              <>
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar src="/broken-image.jpg" />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: '45px' }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  <MenuItem key="logout" onClick={handleSignOut}>
+                    <Typography textAlign="center">Log out</Typography>
+                  </MenuItem>
+                </Menu>
+              </>
+            )}
+
             <SwitchLang />
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
           </Box>
         </Toolbar>
       </Container>
