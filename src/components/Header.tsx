@@ -16,8 +16,6 @@ import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import { useTranslation } from 'react-i18next';
 import SwitchLang from './SwitchLang';
 import { theme } from '../theme';
-import { useAppDispatch } from '../hooks/redux';
-import { authSlice } from '../store/reducers/authSlice';
 
 const pages = ['Project', 'Course', 'Developers'];
 const settings = ['Profile', 'Account', 'Dashboard'];
@@ -35,8 +33,6 @@ export default function Header() {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
-  const { setIsUserAuth } = authSlice.actions;
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const getPosition = () =>
@@ -66,9 +62,7 @@ export default function Header() {
   const handleSignOut = () => {
     const auth = getAuth();
     signOut(auth)
-      .then(() => {
-        dispatch(setIsUserAuth(false));
-      })
+      .then(() => {})
       .catch((error) => {
         console.log(error);
       });

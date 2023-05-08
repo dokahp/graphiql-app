@@ -14,10 +14,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import graphql_logo from '../../assets/GraphQL_Logo.png';
-
 import './loginForm.css';
-import { useAppDispatch } from '../../hooks/redux';
-import { authSlice } from '../../store/reducers/authSlice';
 
 interface FormValues {
   email: string;
@@ -25,9 +22,7 @@ interface FormValues {
 }
 
 function LoginForm() {
-  const { setIsUserAuth } = authSlice.actions;
   const loginForm = useForm<FormValues>();
-  const dispatch = useAppDispatch();
   const { register, handleSubmit, formState, reset } = loginForm;
   const { errors } = formState;
   const [showPassword, setShowPassword] = useState(false);
@@ -51,7 +46,6 @@ function LoginForm() {
         if (user) {
           setAuthError(() => false);
           reset();
-          dispatch(setIsUserAuth(true));
         }
       })
       .catch((error) => {
