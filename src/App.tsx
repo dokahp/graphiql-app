@@ -7,6 +7,7 @@ import NotFound from './pages/NotFound';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
 import Graphql from './pages/GraphQl';
+import 'react-toastify/dist/ReactToastify.css';
 
 function onAuthStateChange(
   callback: React.Dispatch<React.SetStateAction<boolean | undefined>>

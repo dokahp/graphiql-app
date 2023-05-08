@@ -8,6 +8,7 @@ import {
   Typography,
 } from '@mui/material';
 import React, { SyntheticEvent, useState } from 'react';
+import { toast } from 'react-toastify';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -46,6 +47,16 @@ function LoginForm() {
         if (user) {
           setAuthError(() => false);
           reset();
+          toast.success('You have successfully logged in', {
+            position: 'bottom-center',
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'colored',
+          });
         }
       })
       .catch((error) => {

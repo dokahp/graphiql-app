@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { getAuth, signOut } from 'firebase/auth';
 import Avatar from '@mui/material/Avatar';
 import { Button } from '@mui/material';
@@ -62,9 +63,31 @@ export default function Header() {
   const handleSignOut = () => {
     const auth = getAuth();
     signOut(auth)
-      .then(() => {})
+      .then(() => {
+        toast.success('You have successfully logout', {
+          position: 'bottom-center',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+        });
+      })
       .catch((error) => {
-        console.log(error);
+        if (error) {
+          toast.error('Something wen wrong', {
+            position: 'bottom-center',
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'colored',
+          });
+        }
       });
   };
 
