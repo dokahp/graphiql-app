@@ -11,6 +11,8 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import graphql_logo from '../../assets/GraphQL_Logo.png';
+import './loginForm.css';
 
 interface FormValues {
   email: string;
@@ -38,6 +40,7 @@ function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <img className="graphql-logo" src={graphql_logo} alt="graphql-logo" />
       <Stack
         direction="row"
         justifyContent="space-between"
