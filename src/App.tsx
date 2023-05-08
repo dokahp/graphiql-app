@@ -8,29 +8,42 @@ import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
 import Graphql from './pages/GraphQl';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAppDispatch } from './hooks/redux';
+import { authSlice } from './store/reducers/authSlice';
 
 function onAuthStateChange(
-  callback: React.Dispatch<React.SetStateAction<boolean | undefined>>
+  isAuthCallback: React.Dispatch<React.SetStateAction<boolean | undefined>>,
+  setEmailCallback: React.Dispatch<React.SetStateAction<string>>
 ) {
   const auth = getAuth();
   return onAuthStateChanged(auth, (user) => {
     if (user) {
-      callback(true);
+      isAuthCallback(true);
+      if (user.email) {
+        setEmailCallback(user.email);
+      }
     } else {
-      callback(false);
+      isAuthCallback(false);
     }
   });
 }
 
 function App() {
   const [isAuthorized, setIsAuthirized] = useState<boolean>();
+  const [userEmail, setAuthUserEmail] = useState<string>('');
+  const dispatch = useAppDispatch();
+  const { setUserEmail } = authSlice.actions;
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChange(setIsAuthirized);
+    const unsubscribe = onAuthStateChange(setIsAuthirized, setAuthUserEmail);
     return () => {
       unsubscribe();
     };
   }, []);
+
+  useEffect(() => {
+    dispatch(setUserEmail(userEmail));
+  });
 
   return (
     <Routes>

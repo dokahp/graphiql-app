@@ -17,6 +17,7 @@ import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import { useTranslation } from 'react-i18next';
 import SwitchLang from './SwitchLang';
 import { theme } from '../theme';
+import { useAppSelector } from '../hooks/redux';
 
 const pages = ['Project', 'Course', 'Developers'];
 
@@ -27,6 +28,7 @@ interface HeaderProps {
 export default function Header({ isAuthorized }: HeaderProps) {
   const color = theme.palette;
   const { t } = useTranslation();
+  const { email } = useAppSelector((state) => state.authSlice);
 
   const [position, setPosition] = useState<'static' | undefined | 'sticky'>(
     'static'
@@ -179,7 +181,7 @@ export default function Header({ isAuthorized }: HeaderProps) {
               <>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar src="/broken-image.jpg" />
+                    <Avatar />
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -198,8 +200,15 @@ export default function Header({ isAuthorized }: HeaderProps) {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
-                  <MenuItem key="logout" onClick={handleSignOut}>
-                    <Typography textAlign="center">Log out</Typography>
+                  <MenuItem disabled key="email">
+                    <Typography>{email}</Typography>
+                  </MenuItem>
+                  <MenuItem
+                    key="logout"
+                    onClick={handleSignOut}
+                    sx={{ justifyContent: 'flex-end' }}
+                  >
+                    <Typography>Log out</Typography>
                   </MenuItem>
                 </Menu>
               </>
