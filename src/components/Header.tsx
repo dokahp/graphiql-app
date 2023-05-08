@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import SwitchLang from './SwitchLang';
+import { getAuth, signOut } from 'firebase/auth';
 import Avatar from '@mui/material/Avatar';
 import { Button } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
@@ -14,7 +14,10 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import { useTranslation } from 'react-i18next';
+import SwitchLang from './SwitchLang';
 import { theme } from '../theme';
+import { useAppDispatch } from '../hooks/redux';
+import { authSlice } from '../store/reducers/authSlice';
 
 const pages = ['Project', 'Course', 'Developers'];
 const settings = ['Profile', 'Account', 'Dashboard'];
@@ -32,6 +35,8 @@ export default function Header() {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
+  const { setIsUserAuth } = authSlice.actions;
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const getPosition = () =>
@@ -56,6 +61,17 @@ export default function Header() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleSignOut = () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        dispatch(setIsUserAuth(false));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -147,6 +163,7 @@ export default function Header() {
               variant="text"
               className="sing_out_btn"
               sx={{ padding: '0 15px', color: color.secondary.main }}
+              onClick={handleSignOut}
             >
               {t('Sign Out')}
             </Button>

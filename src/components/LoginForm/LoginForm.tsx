@@ -16,6 +16,8 @@ import { useForm } from 'react-hook-form';
 import graphql_logo from '../../assets/GraphQL_Logo.png';
 
 import './loginForm.css';
+import { useAppDispatch } from '../../hooks/redux';
+import { authSlice } from '../../store/reducers/authSlice';
 
 interface FormValues {
   email: string;
@@ -23,7 +25,9 @@ interface FormValues {
 }
 
 function LoginForm() {
+  const { setIsUserAuth } = authSlice.actions;
   const loginForm = useForm<FormValues>();
+  const dispatch = useAppDispatch();
   const { register, handleSubmit, formState, reset } = loginForm;
   const { errors } = formState;
   const [showPassword, setShowPassword] = useState(false);
@@ -44,9 +48,11 @@ function LoginForm() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const { user } = userCredential;
-        console.log(user, 'SUCCESS');
-        setAuthError(() => false);
-        reset();
+        if (user) {
+          setAuthError(() => false);
+          reset();
+          dispatch(setIsUserAuth(true));
+        }
       })
       .catch((error) => {
         setAuthError(true);

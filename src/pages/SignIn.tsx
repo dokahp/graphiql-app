@@ -1,22 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { Navigate } from 'react-router-dom';
 import LoginForm from '../components/LoginForm/LoginForm';
 
 function SignIn() {
-  const [isLogging, setLogging] = useState(false);
-  const auth = getAuth();
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setLogging(() => true);
-    }
-  });
-
-  if (isLogging) {
-    return <Navigate to="/graphql" />;
-  }
-
   return (
     <main>
       <Box
