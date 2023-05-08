@@ -1,4 +1,5 @@
 import {
+  Alert,
   Button,
   IconButton,
   InputAdornment,
@@ -7,11 +8,13 @@ import {
   Typography,
 } from '@mui/material';
 import React, { SyntheticEvent, useState } from 'react';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import graphql_logo from '../../assets/GraphQL_Logo.png';
+
 import './loginForm.css';
 
 interface FormValues {
@@ -24,6 +27,7 @@ function LoginForm() {
   const { register, handleSubmit, formState, reset } = loginForm;
   const { errors } = formState;
   const [showPassword, setShowPassword] = useState(false);
+  const [authError, setAuthError] = useState(false);
 
   const handleClickShowPassword = () => {
     setShowPassword((prev: boolean) => !prev);
@@ -34,10 +38,22 @@ function LoginForm() {
   };
 
   const onSubmit = (data: FormValues) => {
-    // console.log('Email:', data.email, 'Password:', data.password);
-    if (data) {
-      reset();
-    }
+    const { email, password } = data;
+
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const { user } = userCredential;
+        console.log(user, 'SUCCESS');
+        setAuthError(() => false);
+        reset();
+      })
+      .catch((error) => {
+        setAuthError(true);
+        if (error) {
+          reset({ password: '' });
+        }
+      });
   };
 
   return (
@@ -62,6 +78,7 @@ function LoginForm() {
           Don&apos;t have an account?
         </Typography>
       </Stack>
+      {authError && <Alert severity="error">Email or password incorrect</Alert>}
       <TextField
         type="email"
         margin="normal"
