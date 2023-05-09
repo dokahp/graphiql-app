@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { dataAPI } from '../../store/services/APIservice';
-import DocExplorerAsinc from '../DocExplorer.async';
+import DocExplorerAsinc from './DocExplorer.async';
 import { buildClientSchema } from 'graphql';
 
 const DocumentationContainer = () => {

@@ -3,7 +3,7 @@ import { GraphQLSchema, GraphQLFieldMap, GraphQLScalarType } from 'graphql';
 import IDocCompoment from './DocComponent.type';
 import DocComponent from './DocComponent';
 import { Maybe } from 'graphql/jsutils/Maybe';
-import { IField } from '../store/services/schemaType';
+import { IField } from '../../store/services/schemaType';
 
 const convertToArray = (
   obj: GraphQLFieldMap<any, any> //ANY

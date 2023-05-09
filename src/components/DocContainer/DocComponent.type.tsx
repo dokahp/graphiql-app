@@ -1,6 +1,6 @@
 import { GraphQLObjectType } from 'graphql';
 import { Maybe } from 'graphql/jsutils/Maybe';
-import { IField } from '../store/services/schemaType';
+import { IField } from '../../store/services/schemaType';
 
 export default interface IDocCompoment {
   nameComponent: string;

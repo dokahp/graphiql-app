@@ -1,6 +1,6 @@
 import { Maybe } from 'graphql/jsutils/Maybe';
 import React from 'react';
-import { IField } from '../store/services/schemaType';
+import { IField } from '../../store/services/schemaType';
 type TypeCompProps = {
   name: string;
   description: Maybe<string>;

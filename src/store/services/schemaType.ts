@@ -1,7 +1,3 @@
-// export default interface IDataAPI {
-//   data: { __schema: ISchema };
-// }
-
 import { IntrospectionQuery } from 'graphql';
 
 export default interface IDataAPI {
