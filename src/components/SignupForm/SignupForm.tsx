@@ -1,6 +1,8 @@
 import React, { SyntheticEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import {
+  Alert,
   Button,
   IconButton,
   InputAdornment,
@@ -11,6 +13,7 @@ import {
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import graphql_logo from '../../assets/GraphQL_Logo.png';
 
 interface FormValues {
@@ -24,6 +27,7 @@ function SignupForm() {
   const { register, handleSubmit, formState, reset, watch } = signupForm;
   const { errors } = formState;
   const [showPassword, setShowPassword] = useState(false);
+  const [registerError, setRegisterError] = useState(false);
 
   const handleClickShowPassword = () => {
     setShowPassword((prev: boolean) => !prev);
@@ -35,7 +39,32 @@ function SignupForm() {
 
   const onSubmit = (data: FormValues) => {
     const { email, password } = data;
-    console.log(email, password);
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const { user } = userCredential;
+        if (user) {
+          setRegisterError(() => true);
+          reset();
+          toast.success('You have successfully registered', {
+            position: 'bottom-center',
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'colored',
+          });
+        }
+      })
+      .catch((error) => {
+        if (error) {
+          setRegisterError(() => true);
+          reset();
+        }
+      });
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -59,6 +88,9 @@ function SignupForm() {
           Already have an account?
         </Typography>
       </Stack>
+      {registerError && (
+        <Alert severity="error">User with such email already registered</Alert>
+      )}
       <TextField
         type="email"
         margin="normal"
