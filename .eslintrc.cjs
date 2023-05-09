@@ -31,7 +31,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
     'react/react-in-jsx-scope': 0,
     'react/no-array-index-key': 0,
-
+    'import/no-named-as-default': 0,
     'react/jsx-props-no-spreading': 'off',
     'no-param-reassign': [
       'error',
