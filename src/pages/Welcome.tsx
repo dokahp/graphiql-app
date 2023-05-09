@@ -1,5 +1,18 @@
 import { Button } from '@mui/material';
 import React from 'react';
+import { GraphQLClient, gql } from 'graphql-request';
+
+const schemaString = `
+  type Query {
+    user(id: ID!): User
+  }
+  
+  type User {
+    id: ID!
+    name: String!
+    age: Int
+  }
+`;
 
 function Welcome() {
   return (

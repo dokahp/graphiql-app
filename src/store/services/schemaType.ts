@@ -1,5 +1,11 @@
+// export default interface IDataAPI {
+//   data: { __schema: ISchema };
+// }
+
+import { IntrospectionQuery } from 'graphql';
+
 export default interface IDataAPI {
-  data: { __schema: ISchema };
+  data: IntrospectionQuery;
 }
 
 export interface ISchema {
@@ -18,14 +24,17 @@ export interface IType {
 }
 
 export interface IField {
+  args: Array<IArg>;
   name: string;
+  deprecationReason: null;
   description: string | null;
-  args: Array<IArg> | null;
-  __typename: string;
+  extensions: {};
+  type: string;
 }
 
 export interface IArg {
   description: null | string;
+  extensions: {};
   name: string;
-  __typename: string;
+  type: string;
 }
