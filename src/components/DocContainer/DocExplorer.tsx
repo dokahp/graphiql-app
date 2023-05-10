@@ -1,9 +1,15 @@
 import React from 'react';
-import { GraphQLSchema, GraphQLFieldMap, GraphQLScalarType } from 'graphql';
+import {
+  GraphQLSchema,
+  GraphQLFieldMap,
+  GraphQLScalarType,
+  printSchema,
+} from 'graphql';
 import IDocCompoment from './DocComponent.type';
 import DocComponent from './DocComponent';
 import { Maybe } from 'graphql/jsutils/Maybe';
 import { IField } from '../../store/services/schemaType';
+import { Typography } from '@mui/material';
 
 const convertToArray = (
   obj: GraphQLFieldMap<any, any> //ANY
@@ -90,11 +96,13 @@ const DocExplorer: React.FC<{ schema: GraphQLSchema }> = ({ schema }) => {
 
   return (
     <div>
-      <div onClick={() => undo(history[history.length - 1])}>
-        {history.length > 1
-          ? '<' + history[history.length - 1].nameComponent
-          : ''}
-      </div>
+      <Typography variant="h5" component="span">
+        <div onClick={() => undo(history[history.length - 1])}>
+          {history.length > 1
+            ? '< ' + history[history.length - 1].nameComponent
+            : ''}
+        </div>
+      </Typography>
       <DocComponent component={elementDoc} callBack={selectComponent} />
     </div>
   );

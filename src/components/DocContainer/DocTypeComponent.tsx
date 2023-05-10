@@ -1,6 +1,8 @@
 import { Maybe } from 'graphql/jsutils/Maybe';
 import React from 'react';
 import { IField } from '../../store/services/schemaType';
+import { Typography } from '@mui/material';
+import CropFreeIcon from '@mui/icons-material/CropFree';
 type TypeCompProps = {
   name: string;
   description: Maybe<string>;
@@ -21,13 +23,20 @@ const TypeComponent: React.FC<TypeCompProps> = ({
 }) => {
   return (
     <div>
-      <div>{name}</div>
-      <div>{description}</div>
+      <div>
+        <CropFreeIcon fontSize="inherit" />
+        <Typography variant="body1" component="span" fontSize={'14px'}>
+          Fields
+        </Typography>
+      </div>
+      <Typography variant="h5">{name}</Typography>
+      <Typography variant="subtitle2">{description}</Typography>
       <div>
         {fields?.map((field, index) => {
           return (
             <div key={index}>
               <span
+                className="fieldName"
                 onClick={() => {
                   let nameArg = '';
                   let typeArg = '';
@@ -46,10 +55,12 @@ const TypeComponent: React.FC<TypeCompProps> = ({
               {field[1].description && <div>{field[1].description}</div>}
               {field[1].args?.length ? (
                 <span onClick={() => cb('type', field[1].args[0].type)}>
-                  ({field[1].args[0].name}: {field[1].args[0].type})
+                  ({field[1].args[0].name}:{' '}
+                  <span className="fieldType">{field[1].args[0].type}</span>)
                 </span>
               ) : null}
               <span
+                className="fieldType"
                 onClick={() => {
                   cb('type', field[1].type);
                 }}
