@@ -28,9 +28,8 @@ function Graphql({ isAuthorized }: GraphQlProps) {
         alignItems="center"
         minHeight="100vh"
       >
-      <DocContainer />
+        <DocContainer />
       </Box>
-
     </main>
   );
 }

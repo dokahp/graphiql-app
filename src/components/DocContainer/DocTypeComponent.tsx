@@ -1,8 +1,9 @@
 import { Maybe } from 'graphql/jsutils/Maybe';
 import React from 'react';
-import { IField } from '../../store/services/schemaType';
 import { Typography } from '@mui/material';
 import CropFreeIcon from '@mui/icons-material/CropFree';
+import { IField } from '../../store/services/schemaType';
+
 type TypeCompProps = {
   name: string;
   description: Maybe<string>;
@@ -15,17 +16,12 @@ type TypeCompProps = {
   ) => void;
 };
 
-const TypeComponent: React.FC<TypeCompProps> = ({
-  name,
-  description,
-  fields,
-  cb,
-}) => {
+function TypeComponent({ name, description, fields, cb }: TypeCompProps) {
   return (
     <div>
       <div>
         <CropFreeIcon fontSize="inherit" />
-        <Typography variant="body1" component="span" fontSize={'14px'}>
+        <Typography variant="body1" component="span" fontSize="14px">
           Fields
         </Typography>
       </div>
@@ -36,6 +32,7 @@ const TypeComponent: React.FC<TypeCompProps> = ({
           return (
             <div key={index}>
               <span
+                role="presentation"
                 className="fieldName"
                 onClick={() => {
                   let nameArg = '';
@@ -45,8 +42,8 @@ const TypeComponent: React.FC<TypeCompProps> = ({
                     typeArg = fields[index][1].args[0].type;
                   }
                   cb('name', fields[index][0], fields[index][1].type, {
-                    nameArg: nameArg,
-                    typeArg: typeArg,
+                    nameArg,
+                    typeArg,
                   });
                 }}
               >
@@ -54,12 +51,16 @@ const TypeComponent: React.FC<TypeCompProps> = ({
               </span>
               {field[1].description && <div>{field[1].description}</div>}
               {field[1].args?.length ? (
-                <span onClick={() => cb('type', field[1].args[0].type)}>
+                <span
+                  role="presentation"
+                  onClick={() => cb('type', field[1].args[0].type)}
+                >
                   ({field[1].args[0].name}:{' '}
                   <span className="fieldType">{field[1].args[0].type}</span>)
                 </span>
               ) : null}
               <span
+                role="presentation"
                 className="fieldType"
                 onClick={() => {
                   cb('type', field[1].type);
@@ -73,6 +74,6 @@ const TypeComponent: React.FC<TypeCompProps> = ({
       </div>
     </div>
   );
-};
+}
 
 export default TypeComponent;

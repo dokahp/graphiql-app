@@ -1,24 +1,19 @@
 import React from 'react';
-import {
-  GraphQLSchema,
-  GraphQLFieldMap,
-  GraphQLScalarType,
-  printSchema,
-} from 'graphql';
+import { GraphQLSchema, GraphQLFieldMap, GraphQLScalarType } from 'graphql';
+import { Typography } from '@mui/material';
+import { Maybe } from 'graphql/jsutils/Maybe';
 import IDocCompoment from './DocComponent.type';
 import DocComponent from './DocComponent';
-import { Maybe } from 'graphql/jsutils/Maybe';
 import { IField } from '../../store/services/schemaType';
-import { Typography } from '@mui/material';
 
 const convertToArray = (
-  obj: GraphQLFieldMap<any, any> //ANY
+  obj: GraphQLFieldMap<any, any> // ANY
 ): [string, IField][] => {
   const json = JSON.parse(JSON.stringify(obj));
   return Object.entries(json);
 };
 
-const DocExplorer: React.FC<{ schema: GraphQLSchema }> = ({ schema }) => {
+function DocExplorer({ schema }: GraphQLSchema) {
   const rootComponent: IDocCompoment = {
     nameComponent: 'Docs',
     fieldsType: schema.getQueryType(),
@@ -43,20 +38,22 @@ const DocExplorer: React.FC<{ schema: GraphQLSchema }> = ({ schema }) => {
     arg?: { nameArg: string; typeArg: string },
     historyFlag?: boolean
   ) => {
-    historyFlag ? null : history.push(elementDoc);
+    if (!historyFlag) {
+      history.push(elementDoc);
+    }
     const newHistory = [...history];
     let desc: Maybe<string>;
     let fields: GraphQLFieldMap<any, any>;
+    const replacedName = name.replace(/[[\]!]/g, '');
     switch (type) {
-      case 'type':
+      case 'type': {
         let convertFields: [string, IField][] = [];
-        name = name.replace(/[\[\]!]/g, '');
-        if (schema.getType(name) instanceof GraphQLScalarType) {
-          desc = schema.getType(name)?.description
-            ? schema.getType(name)?.description
+        if (schema.getType(replacedName) instanceof GraphQLScalarType) {
+          desc = schema.getType(replacedName)?.description
+            ? schema.getType(replacedName)?.description
             : '';
         } else {
-          fields = schema.getType(name)?.getFields(); ////???
+          fields = schema.getType(replacedName)?.getFields(); // ???
           if (fields) {
             convertFields = convertToArray(fields);
           } else {
@@ -64,22 +61,24 @@ const DocExplorer: React.FC<{ schema: GraphQLSchema }> = ({ schema }) => {
           }
         }
         setElementDoc({
-          nameComponent: name ? name : '',
+          nameComponent: replacedName || '',
           fields: convertFields,
           description: desc,
           type: 'type',
         });
         setHistory(newHistory);
         break;
-      case 'name':
+      }
+      case 'name': {
         setElementDoc({
-          nameComponent: name ? name : '',
-          arg: arg,
-          typeComponent: typeComponent,
+          nameComponent: replacedName || '',
+          arg,
+          typeComponent,
           type: 'name',
         });
         setHistory(newHistory);
         break;
+      }
       default:
         setElementDoc(rootComponent);
     }
@@ -87,7 +86,7 @@ const DocExplorer: React.FC<{ schema: GraphQLSchema }> = ({ schema }) => {
 
   const undo = (component: IDocCompoment) => {
     history.pop();
-    const type = component.type;
+    const { type } = component;
     const name = component.nameComponent;
     const typeComp = component.typeComponent ? component.typeComponent : '';
     const arg = component.arg ? component.arg : undefined;
@@ -97,15 +96,18 @@ const DocExplorer: React.FC<{ schema: GraphQLSchema }> = ({ schema }) => {
   return (
     <div>
       <Typography variant="h5" component="span">
-        <div onClick={() => undo(history[history.length - 1])}>
+        <div
+          role="presentation"
+          onClick={() => undo(history[history.length - 1])}
+        >
           {history.length > 1
-            ? '< ' + history[history.length - 1].nameComponent
+            ? `< ${history[history.length - 1].nameComponent}`
             : ''}
         </div>
       </Typography>
       <DocComponent component={elementDoc} callBack={selectComponent} />
     </div>
   );
-};
+}
 
 export default DocExplorer;

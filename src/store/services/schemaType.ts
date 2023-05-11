@@ -24,13 +24,13 @@ export interface IField {
   name: string;
   deprecationReason: null;
   description: string | null;
-  extensions: {};
+  extensions: object;
   type: string;
 }
 
 export interface IArg {
   description: null | string;
-  extensions: {};
+  extensions: object;
   name: string;
   type: string;
 }
