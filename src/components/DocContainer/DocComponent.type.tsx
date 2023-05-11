@@ -5,7 +5,7 @@ import { IField } from '../../store/services/schemaType';
 export default interface IDocCompoment {
   nameComponent: string;
   typeComponent?: string;
-  fieldsType?: Maybe<GraphQLObjectType<any, any>>; // ANY
+  fieldsType?: Maybe<GraphQLObjectType<unknown, unknown>>; // ANY
   fields?: Array<[string, IField]> | undefined; // ANY
   description?: Maybe<string>;
   arg?: { nameArg: string; typeArg: string };

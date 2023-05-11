@@ -1,5 +1,14 @@
 import React from 'react';
-import { GraphQLSchema, GraphQLFieldMap, GraphQLScalarType } from 'graphql';
+import {
+  IntrospectionQuery,
+  GraphQLFieldMap,
+  GraphQLScalarType,
+  buildClientSchema,
+  GraphQLSchema,
+  GraphQLObjectType,
+  GraphQLInputObjectType,
+  GraphQLInputFieldMap,
+} from 'graphql';
 import { Typography } from '@mui/material';
 import { Maybe } from 'graphql/jsutils/Maybe';
 import IDocCompoment from './DocComponent.type';
@@ -7,13 +16,22 @@ import DocComponent from './DocComponent';
 import { IField } from '../../store/services/schemaType';
 
 const convertToArray = (
-  obj: GraphQLFieldMap<any, any> // ANY
+  obj: GraphQLFieldMap<unknown, unknown> | GraphQLInputFieldMap // ANY
 ): [string, IField][] => {
   const json = JSON.parse(JSON.stringify(obj));
   return Object.entries(json);
 };
 
-function DocExplorer({ schema }: GraphQLSchema) {
+function createSchema(data: IntrospectionQuery): GraphQLSchema {
+  return buildClientSchema(data);
+}
+
+type DocComponentProps = {
+  schemaJSON: IntrospectionQuery;
+};
+
+function DocExplorer({ schemaJSON }: DocComponentProps) {
+  const schema = createSchema(schemaJSON);
   const rootComponent: IDocCompoment = {
     nameComponent: 'Docs',
     fieldsType: schema.getQueryType(),
@@ -43,7 +61,6 @@ function DocExplorer({ schema }: GraphQLSchema) {
     }
     const newHistory = [...history];
     let desc: Maybe<string>;
-    let fields: GraphQLFieldMap<any, any>;
     const replacedName = name.replace(/[[\]!]/g, '');
     switch (type) {
       case 'type': {
@@ -53,9 +70,12 @@ function DocExplorer({ schema }: GraphQLSchema) {
             ? schema.getType(replacedName)?.description
             : '';
         } else {
-          fields = schema.getType(replacedName)?.getFields(); // ???
-          if (fields) {
-            convertFields = convertToArray(fields);
+          const t = schema.getType(replacedName);
+          if (
+            t instanceof GraphQLObjectType ||
+            t instanceof GraphQLInputObjectType
+          ) {
+            convertFields = convertToArray(t.getFields());
           } else {
             convertFields = [];
           }
