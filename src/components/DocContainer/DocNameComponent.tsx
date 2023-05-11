@@ -2,6 +2,7 @@ import React from 'react';
 import { Typography } from '@mui/material';
 import FilterTiltShiftIcon from '@mui/icons-material/FilterTiltShift';
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
+
 type NameCompProps = {
   name: string;
   typeComponent?: string;

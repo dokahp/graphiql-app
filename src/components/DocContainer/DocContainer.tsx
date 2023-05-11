@@ -1,11 +1,11 @@
 import React, { Suspense } from 'react';
-import { dataAPI } from '../../store/services/APIservice';
-import DocExplorerAsinc from './DocExplorer.async';
 import { buildClientSchema } from 'graphql';
 import { Container } from '@mui/material';
+import dataAPI from '../../store/services/APIservice';
+import DocExplorerAsinc from './DocExplorer.async';
 import './documentation.styles.css';
 
-const DocumentationContainer = () => {
+function DocumentationContainer() {
   const { data: ans, error, isLoading } = dataAPI.useFetchAllDataQuery();
 
   return (
@@ -21,6 +21,6 @@ const DocumentationContainer = () => {
       )}
     </Container>
   );
-};
+}
 
 export default DocumentationContainer;

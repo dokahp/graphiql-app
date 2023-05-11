@@ -1,19 +1,6 @@
 import { Box, Button } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-// import { GraphQLClient, gql } from 'graphql-request';
-
-// const schemaString = `
-//   type Query {
-//     user(id: ID!): User
-//   }
-
-//   type User {
-//     id: ID!
-//     name: String!
-//     age: Int
-//   }
-// `;
 
 interface WelcomeProps {
   isAuthorized: boolean | undefined;

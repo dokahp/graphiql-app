@@ -1,24 +1,19 @@
 import React from 'react';
-import {
-  GraphQLSchema,
-  GraphQLFieldMap,
-  GraphQLScalarType,
-  printSchema,
-} from 'graphql';
+import { GraphQLSchema, GraphQLFieldMap, GraphQLScalarType } from 'graphql';
+import { Typography } from '@mui/material';
+import { Maybe } from 'graphql/jsutils/Maybe';
 import IDocCompoment from './DocComponent.type';
 import DocComponent from './DocComponent';
-import { Maybe } from 'graphql/jsutils/Maybe';
 import { IField } from '../../store/services/schemaType';
-import { Typography } from '@mui/material';
 
 const convertToArray = (
-  obj: GraphQLFieldMap<any, any> //ANY
+  obj: GraphQLFieldMap<any, any> // ANY
 ): [string, IField][] => {
   const json = JSON.parse(JSON.stringify(obj));
   return Object.entries(json);
 };
 
-const DocExplorer: React.FC<{ schema: GraphQLSchema }> = ({ schema }) => {
+const DocExplorer: React.FC<{ schema: GraphQLSchema }> = ({ schema }:GraphQLSchema) => {
   const rootComponent: IDocCompoment = {
     nameComponent: 'Docs',
     fieldsType: schema.getQueryType(),

@@ -1,8 +1,9 @@
 import { Maybe } from 'graphql/jsutils/Maybe';
 import React from 'react';
-import { IField } from '../../store/services/schemaType';
 import { Typography } from '@mui/material';
 import CropFreeIcon from '@mui/icons-material/CropFree';
+import { IField } from '../../store/services/schemaType';
+
 type TypeCompProps = {
   name: string;
   description: Maybe<string>;
@@ -15,17 +16,12 @@ type TypeCompProps = {
   ) => void;
 };
 
-const TypeComponent: React.FC<TypeCompProps> = ({
-  name,
-  description,
-  fields,
-  cb,
-}) => {
+function TypeComponent({ name, description, fields, cb }: TypeCompProps) {
   return (
     <div>
       <div>
         <CropFreeIcon fontSize="inherit" />
-        <Typography variant="body1" component="span" fontSize={'14px'}>
+        <Typography variant="body1" component="span" fontSize="14px">
           Fields
         </Typography>
       </div>
@@ -45,8 +41,8 @@ const TypeComponent: React.FC<TypeCompProps> = ({
                     typeArg = fields[index][1].args[0].type;
                   }
                   cb('name', fields[index][0], fields[index][1].type, {
-                    nameArg: nameArg,
-                    typeArg: typeArg,
+                    nameArg,
+                    typeArg,
                   });
                 }}
               >
@@ -73,6 +69,6 @@ const TypeComponent: React.FC<TypeCompProps> = ({
       </div>
     </div>
   );
-};
+}
 
 export default TypeComponent;
