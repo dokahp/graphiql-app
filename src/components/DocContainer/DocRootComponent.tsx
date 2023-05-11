@@ -22,7 +22,10 @@ function RootComponent({ name, description, fieldsType, cb }: RootCompProps) {
           Root type
         </Typography>
       </div>
-      <div onClick={() => cb('type', fieldsType?.name ? fieldsType?.name : '')}>
+      <div
+        role="presentation"
+        onClick={() => cb('type', fieldsType?.name ? fieldsType?.name : '')}
+      >
         <span className="fieldName">query:</span>{' '}
         <span className="fieldType">{fieldsType?.name}</span>
       </div>

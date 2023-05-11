@@ -32,6 +32,7 @@ function TypeComponent({ name, description, fields, cb }: TypeCompProps) {
           return (
             <div key={index}>
               <span
+                role="presentation"
                 className="fieldName"
                 onClick={() => {
                   let nameArg = '';
@@ -50,12 +51,16 @@ function TypeComponent({ name, description, fields, cb }: TypeCompProps) {
               </span>
               {field[1].description && <div>{field[1].description}</div>}
               {field[1].args?.length ? (
-                <span onClick={() => cb('type', field[1].args[0].type)}>
+                <span
+                  role="presentation"
+                  onClick={() => cb('type', field[1].args[0].type)}
+                >
                   ({field[1].args[0].name}:{' '}
                   <span className="fieldType">{field[1].args[0].type}</span>)
                 </span>
               ) : null}
               <span
+                role="presentation"
                 className="fieldType"
                 onClick={() => {
                   cb('type', field[1].type);

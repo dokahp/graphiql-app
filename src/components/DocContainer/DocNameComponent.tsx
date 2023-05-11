@@ -15,25 +15,28 @@ type NameCompProps = {
   ) => void;
 };
 
-const NameComponent: React.FC<NameCompProps> = ({
-  name,
-  typeComponent,
-  arg,
-  cb,
-}) => {
+function NameComponent({ name, typeComponent, arg, cb }: NameCompProps) {
+  const handleFieldTypeClick = () => {
+    if (typeComponent) {
+      return cb('type', typeComponent);
+    }
+    return cb('type', '');
+  };
+
   return (
     <div>
       <Typography variant="h5">{name}</Typography>
       <div>
         <FilterTiltShiftIcon fontSize="inherit" />
-        <Typography variant="body1" component="span" fontSize={'14px'}>
+        <Typography variant="body1" component="span" fontSize="14px">
           Type
         </Typography>
       </div>
 
       <div
         className="fieldType"
-        onClick={() => cb('type', typeComponent ? typeComponent : '')}
+        role="presentation"
+        onClick={handleFieldTypeClick}
       >
         {typeComponent}
       </div>
@@ -41,13 +44,14 @@ const NameComponent: React.FC<NameCompProps> = ({
         <div>
           <div>
             <DonutLargeIcon fontSize="inherit" />
-            <Typography variant="body1" component="span" fontSize={'14px'}>
+            <Typography variant="body1" component="span" fontSize="14px">
               Argument
             </Typography>
           </div>
           <div>
             {arg?.nameArg}:
             <span
+              role="presentation"
               className="fieldType"
               onClick={() => cb('type', arg?.typeArg ? arg?.typeArg : '')}
             >
@@ -58,6 +62,11 @@ const NameComponent: React.FC<NameCompProps> = ({
       ) : null}
     </div>
   );
+}
+
+NameComponent.defaultProps = {
+  typeComponent: '',
+  arg: undefined,
 };
 
 export default NameComponent;
