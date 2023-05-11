@@ -1,9 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
+import { getIntrospectionQuery } from 'graphql';
 import IDataAPI from './schemaType';
-import schemaType from './schemaType';
-import { IntrospectionQuery, getIntrospectionQuery } from 'graphql';
+
 const query = getIntrospectionQuery();
-export const dataAPI = createApi({
+const dataAPI = createApi({
   reducerPath: 'dataAPI',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://countries.trevorblades.com/',
@@ -19,3 +19,5 @@ export const dataAPI = createApi({
     }),
   }),
 });
+
+export default dataAPI;

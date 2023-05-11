@@ -10,7 +10,7 @@ export default function Footer() {
         target="a_blank"
         href="https://github.com/dokahp/graphiql-app"
         underline="hover"
-        color={'--main-text-color'}
+        color="--main-text-color"
       >
         GitHub
       </Link>

@@ -16,7 +16,7 @@ import MenuItem from '@mui/material/MenuItem';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import { useTranslation } from 'react-i18next';
 import SwitchLang from './SwitchLang';
-import { theme } from '../theme';
+import theme from '../theme';
 import { useAppSelector } from '../hooks/redux';
 
 const pages = ['Project', 'Course', 'Developers'];
