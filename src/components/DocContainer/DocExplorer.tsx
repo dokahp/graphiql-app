@@ -15,8 +15,12 @@ import IDocCompoment from './DocComponent.type';
 import DocComponent from './DocComponent';
 import { IField } from '../../store/services/schemaType';
 
+type DocComponentProps = {
+  schemaJSON: IntrospectionQuery;
+};
+
 const convertToArray = (
-  obj: GraphQLFieldMap<unknown, unknown> | GraphQLInputFieldMap // ANY
+  obj: GraphQLFieldMap<unknown, unknown> | GraphQLInputFieldMap
 ): [string, IField][] => {
   const json = JSON.parse(JSON.stringify(obj));
   return Object.entries(json);
@@ -25,10 +29,6 @@ const convertToArray = (
 function createSchema(data: IntrospectionQuery): GraphQLSchema {
   return buildClientSchema(data);
 }
-
-type DocComponentProps = {
-  schemaJSON: IntrospectionQuery;
-};
 
 function DocExplorer({ schemaJSON }: DocComponentProps) {
   const schema = createSchema(schemaJSON);
@@ -66,9 +66,7 @@ function DocExplorer({ schemaJSON }: DocComponentProps) {
       case 'type': {
         let convertFields: [string, IField][] = [];
         if (schema.getType(replacedName) instanceof GraphQLScalarType) {
-          desc = schema.getType(replacedName)?.description
-            ? schema.getType(replacedName)?.description
-            : '';
+          desc = schema.getType(replacedName)?.description || '';
         } else {
           const t = schema.getType(replacedName);
           if (
@@ -108,7 +106,7 @@ function DocExplorer({ schemaJSON }: DocComponentProps) {
     history.pop();
     const { type } = component;
     const name = component.nameComponent;
-    const typeComp = component.typeComponent ? component.typeComponent : '';
+    const typeComp = component.typeComponent || '';
     const arg = component.arg ? component.arg : undefined;
     selectComponent(type, name, typeComp, arg, true);
   };
@@ -120,9 +118,8 @@ function DocExplorer({ schemaJSON }: DocComponentProps) {
           role="presentation"
           onClick={() => undo(history[history.length - 1])}
         >
-          {history.length > 1
-            ? `< ${history[history.length - 1].nameComponent}`
-            : ''}
+          {history.length > 1 &&
+            `< ${history[history.length - 1].nameComponent}`}
         </div>
       </Typography>
       <DocComponent component={elementDoc} callBack={selectComponent} />

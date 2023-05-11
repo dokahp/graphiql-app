@@ -53,7 +53,7 @@ function NameComponent({ name, typeComponent, arg, cb }: NameCompProps) {
             <span
               role="presentation"
               className="fieldType"
-              onClick={() => cb('type', arg?.typeArg ? arg?.typeArg : '')}
+              onClick={handleFieldTypeClick}
             >
               {arg?.typeArg}
             </span>
