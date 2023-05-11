@@ -1,0 +1,11 @@
+.docContainer {
+  position: absolute;
+}
+
+.fieldName {
+  color: blue;
+}
+
+.fieldType {
+  color: chocolate;
+}

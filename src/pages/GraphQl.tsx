@@ -1,6 +1,7 @@
 import { Box, CircularProgress } from '@mui/material';
 import React from 'react';
 import { Navigate } from 'react-router-dom';
+import DocContainer from '../components/DocContainer/DocContainer';
 
 interface GraphQlProps {
   isAuthorized: boolean | undefined;
@@ -27,8 +28,9 @@ function Graphql({ isAuthorized }: GraphQlProps) {
         alignItems="center"
         minHeight="100vh"
       >
-        Graphql Page
+      <DocContainer />
       </Box>
+
     </main>
   );
 }
