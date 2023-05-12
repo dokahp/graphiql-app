@@ -1,9 +1,12 @@
 import { Container } from '@mui/material';
 import React, { useState } from 'react';
+import dataAPIreq from '../../store/services/APIserviceReq';
 
 function GraphqlMainSection() {
   const [editor, setEditor] = useState<string>('');
   const [variable, setVariable] = useState<string>('');
+
+  const { data: str } = dataAPIreq.useGetCountriesByContinentQuery(editor);
 
   function handlerEditor(e: React.ChangeEvent<HTMLTextAreaElement>) {
     setEditor(e.target.value);
@@ -16,6 +19,7 @@ function GraphqlMainSection() {
   function handlerSend() {
     setEditor('');
     setVariable('');
+    console.log(str);
   }
 
   return (
