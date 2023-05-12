@@ -7,7 +7,7 @@ import CropIcon from '@mui/icons-material/Crop';
 type RootCompProps = {
   name: string;
   description: Maybe<string>;
-  fieldsType: Maybe<GraphQLObjectType<any, any>>;
+  fieldsType: Maybe<GraphQLObjectType<unknown, unknown>>;
   cb: (type: string, name: string) => void;
 };
 
