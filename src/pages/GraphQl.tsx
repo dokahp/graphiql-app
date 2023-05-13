@@ -38,8 +38,17 @@ function Graphql({ isAuthorized }: GraphQlProps) {
             height="100%"
             width="100%"
             boxSizing="border-box"
+            padding="8px"
           >
-            2
+            <Box
+              bgcolor="#fff"
+              borderRadius="12px"
+              width="55%"
+              height="100%"
+              padding="16px"
+            >
+              2
+            </Box>
           </Box>
         </Box>
       </Box>
