@@ -10,7 +10,7 @@ const fetchAPI = createApi({
         url: '',
         method: 'POST',
         body: {
-          operationName: 'test',
+          operationName: arg.operationName,
           query: arg.query,
           variables: arg.variable,
         },

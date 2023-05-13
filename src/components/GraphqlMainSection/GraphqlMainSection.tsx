@@ -7,7 +7,11 @@ function GraphqlMainSection() {
   const [editor, setEditor] = useState<string>('');
   const [variable, setVariable] = useState<string>('');
   const [skip, setSkip] = useState<boolean>(true);
-  const [req, setReq] = useState<IrequestType>({ query: '', variable: {} });
+  const [req, setReq] = useState<IrequestType>({
+    operationName: '',
+    query: '',
+    variable: {},
+  });
 
   const { data: fetchData } = dataAPIreq.useGetCountriesByContinentQuery(req, {
     skip,
@@ -22,13 +26,13 @@ function GraphqlMainSection() {
 
   function handlerSend() {
     setSkip(false);
+    let start = editor.indexOf(' ');
+    const finish = editor.indexOf('(');
     setReq({
+      operationName: editor.slice(++start, finish),
       query: editor,
       variable: JSON.parse(variable),
     });
-    // setEditor('');
-    // setVariable('');
-    console.log(fetchData);
   }
 
   return (
