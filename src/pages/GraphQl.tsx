@@ -1,7 +1,6 @@
 import { Box, CircularProgress } from '@mui/material';
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import DocContainer from '../components/DocContainer/DocContainer';
 import Aside from '../components/Aside/Aside';
 
 interface GraphQlProps {
@@ -31,7 +30,7 @@ function Graphql({ isAuthorized }: GraphQlProps) {
         bgcolor="#fff"
       >
         <Aside />
-        {/* <DocContainer /> */}
+
         <Box padding="16px" height="100vh" width="100%">
           <Box
             bgcolor="rgba(59, 76, 104, 0.07)"
