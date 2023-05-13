@@ -27,9 +27,10 @@ function GraphqlMainSection() {
   function handlerSend() {
     setSkip(false);
     let start = editor.indexOf(' ');
+    start += 1;
     const finish = editor.indexOf('(');
     setReq({
-      operationName: editor.slice(++start, finish),
+      operationName: editor.slice(start, finish),
       query: editor,
       variable: JSON.parse(variable),
     });

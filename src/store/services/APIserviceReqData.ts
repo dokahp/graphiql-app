@@ -5,7 +5,7 @@ const fetchAPI = createApi({
   reducerPath: 'fetchAPI',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://countries.trevorblades.com/' }),
   endpoints: (builder) => ({
-    getCountriesByContinent: builder.query<any, IrequestType>({
+    getCountriesByContinent: builder.query<unknown, IrequestType>({
       query: (arg) => ({
         url: '',
         method: 'POST',
