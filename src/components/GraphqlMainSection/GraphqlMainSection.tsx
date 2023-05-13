@@ -6,10 +6,12 @@ import IrequestType from '../../store/services/requsetType';
 function GraphqlMainSection() {
   const [editor, setEditor] = useState<string>('');
   const [variable, setVariable] = useState<string>('');
+  const [skip, setSkip] = useState<boolean>(true);
   const [req, setReq] = useState<IrequestType>({ query: '', variable: {} });
 
-  const { data: fetchData } = dataAPIreq.useGetCountriesByContinentQuery(req);
-
+  const { data: fetchData } = dataAPIreq.useGetCountriesByContinentQuery(req, {
+    skip,
+  });
   function handlerEditor(e: React.ChangeEvent<HTMLTextAreaElement>) {
     setEditor(e.target.value);
   }
@@ -19,6 +21,7 @@ function GraphqlMainSection() {
   }
 
   function handlerSend() {
+    setSkip(false);
     setReq({
       query: editor,
       variable: JSON.parse(variable),
@@ -30,6 +33,7 @@ function GraphqlMainSection() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <div>{JSON.stringify(fetchData)}</div>
       <Container
         className="mainSectionGraphqlContainer"
         maxWidth="sm"
@@ -70,14 +74,3 @@ function GraphqlMainSection() {
 }
 
 export default GraphqlMainSection;
-
-/*
-            getCountriesByContinent($x: ID!) {
-              continent(code: $x) {
-                countries {
-                  name
-                }
-              }
-            }
-          `,
-*/
