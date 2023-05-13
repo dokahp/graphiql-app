@@ -1,12 +1,14 @@
 import { Container } from '@mui/material';
 import React, { useState } from 'react';
-import dataAPIreq from '../../store/services/APIserviceReq';
+import dataAPIreq from '../../store/services/APIserviceReqData';
+import IrequestType from '../../store/services/requsetType';
 
 function GraphqlMainSection() {
   const [editor, setEditor] = useState<string>('');
   const [variable, setVariable] = useState<string>('');
+  const [req, setReq] = useState<IrequestType>({ query: '', variable: {} });
 
-  const { data: str } = dataAPIreq.useGetCountriesByContinentQuery(editor);
+  const { data: fetchData } = dataAPIreq.useGetCountriesByContinentQuery(req);
 
   function handlerEditor(e: React.ChangeEvent<HTMLTextAreaElement>) {
     setEditor(e.target.value);
@@ -17,9 +19,13 @@ function GraphqlMainSection() {
   }
 
   function handlerSend() {
-    setEditor('');
-    setVariable('');
-    console.log(str);
+    setReq({
+      query: editor,
+      variable: JSON.parse(variable),
+    });
+    // setEditor('');
+    // setVariable('');
+    console.log(fetchData);
   }
 
   return (
@@ -64,3 +70,14 @@ function GraphqlMainSection() {
 }
 
 export default GraphqlMainSection;
+
+/*
+            getCountriesByContinent($x: ID!) {
+              continent(code: $x) {
+                countries {
+                  name
+                }
+              }
+            }
+          `,
+*/

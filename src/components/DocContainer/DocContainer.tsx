@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { Container } from '@mui/material';
-import dataAPI from '../../store/services/APIservice';
+import dataAPI from '../../store/services/APIserviceFetchDoc';
 import DocExplorerAsinc from './DocExplorer.async';
 import './documentation.styles.css';
 
