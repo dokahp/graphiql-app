@@ -1,19 +1,31 @@
 import React, { useState } from 'react';
-
-import { Box, Drawer, IconButton, Tooltip } from '@mui/material';
+import { Box, Drawer, IconButton, Tooltip, Typography } from '@mui/material';
 import LocalLibraryOutlinedIcon from '@mui/icons-material/LocalLibraryOutlined';
+import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined';
 import RefreshOutlinedIcon from '@mui/icons-material/RefreshOutlined';
 import KeyboardCommandKeyOutlinedIcon from '@mui/icons-material/KeyboardCommandKeyOutlined';
 import useScrollPosition from '../../hooks/useScrollPosition';
-import './aside.css';
 import DocContainer from '../DocContainer/DocContainer';
+import './aside.css';
 
 function Aside() {
   const [docDrawer, setDocDrawer] = useState(false);
+  const [historyDrawer, setHistoryDrawer] = useState(false);
   const offset = useScrollPosition();
   const screenWidth = window.screen.width;
   const drawerPosition = screenWidth > 600 ? 64 - offset : 56 - offset;
+
+  const handleDocVisability = () => {
+    setHistoryDrawer(() => false);
+    setDocDrawer((prev: boolean) => !prev);
+  };
+
+  const handleHistoryVisability = () => {
+    setDocDrawer(() => false);
+    setHistoryDrawer((prev: boolean) => !prev);
+  };
+
   return (
     <div style={{ display: 'flex' }}>
       <aside className="aside-wrapper">
@@ -26,7 +38,7 @@ function Aside() {
             }
           >
             <IconButton
-              onClick={() => setDocDrawer((prev: boolean) => !prev)}
+              onClick={handleDocVisability}
               sx={{
                 borderRadius: '4px',
                 width: '44px',
@@ -34,16 +46,13 @@ function Aside() {
                 margin: '20px 0',
               }}
             >
-              <LocalLibraryOutlinedIcon
-                sx={{
-                  color: 'rgba(59, 76, 104, 0.76)',
-                  boxSizing: 'content-box',
-                }}
-              />
+              {docDrawer && <LocalLibraryIcon />}
+              {!docDrawer && <LocalLibraryOutlinedIcon />}
             </IconButton>
           </Tooltip>
-          <Tooltip title="Show History">
+          <Tooltip title={historyDrawer ? 'Hide History' : 'Show History'}>
             <IconButton
+              onClick={handleHistoryVisability}
               sx={{
                 borderRadius: '4px',
                 width: '44px',
@@ -100,6 +109,27 @@ function Aside() {
             position="relative"
           >
             <DocContainer />
+          </Box>
+        </Drawer>
+        <Drawer
+          open={historyDrawer}
+          anchor="left"
+          hideBackdrop
+          PaperProps={{
+            sx: {
+              height: `calc(100% - ${drawerPosition}px)`,
+              top: drawerPosition,
+            },
+          }}
+        >
+          <Box
+            marginLeft="61px"
+            paddingTop="20px"
+            width="300px"
+            position="relative"
+            paddingX="24px"
+          >
+            <Typography variant="h5">History</Typography>
           </Box>
         </Drawer>
       </aside>
