@@ -1,13 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { graphql } from 'cm6-graphql';
 import dataAPI from '../../store/services/APIservice';
 import { createSchema } from '../DocContainer/DocExplorer';
 
-function Request() {
-  const { data: ans, error, isLoading } = dataAPI.useFetchAllDataQuery();
-
-  const defaultRequest = `query GetCountry {
+const defaultRequest = `query GetCountry {
   country(code: "BY") {
     name
     native
@@ -21,6 +18,14 @@ function Request() {
   }
 }`;
 
+function Request() {
+  const { data: ans, error, isLoading } = dataAPI.useFetchAllDataQuery();
+  const [editorValue, setEditorValue] = useState(defaultRequest);
+
+  const handleEditorValueChanged = (value: string) => {
+    setEditorValue(() => value);
+  };
+
   if (isLoading) {
     return 'loading';
   }
@@ -31,6 +36,7 @@ function Request() {
     <section>
       {ans && (
         <CodeMirror
+          onChange={handleEditorValueChanged}
           value={defaultRequest}
           lang="graphql"
           extensions={graphql(createSchema(ans.data))}
