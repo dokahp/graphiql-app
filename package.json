@@ -20,6 +20,7 @@
     "@react-spring/web": "latest",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/react-redux": "^7.1.25",
+    "@uiw/codemirror-themes-all": "^4.19.16",
     "@uiw/react-codemirror": "^4.19.16",
     "cm6-graphql": "^0.0.7",
     "codemirror": "^6.0.1",

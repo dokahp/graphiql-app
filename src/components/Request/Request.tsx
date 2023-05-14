@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
+import { noctisLilac } from '@uiw/codemirror-themes-all';
 import { graphql } from 'cm6-graphql';
 import dataAPI from '../../store/services/APIservice';
 import { createSchema } from '../DocContainer/DocExplorer';
@@ -40,6 +41,7 @@ function Request() {
           value={defaultRequest}
           lang="graphql"
           extensions={graphql(createSchema(ans.data))}
+          theme={noctisLilac}
         />
       )}
     </section>
