@@ -26,7 +26,7 @@ const convertToArray = (
   return Object.entries(json);
 };
 
-function createSchema(data: IntrospectionQuery): GraphQLSchema {
+export function createSchema(data: IntrospectionQuery): GraphQLSchema {
   return buildClientSchema(data);
 }
 
