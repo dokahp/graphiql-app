@@ -96,7 +96,12 @@ function Request() {
             lang="graphql"
             extensions={graphql(createSchema(ans.data))}
             theme={noctisLilac}
-            style={{ flexGrow: 1, position: 'relative', overflowY: 'scroll' }}
+            style={{
+              flexGrow: 1,
+              position: 'relative',
+              overflowY: 'scroll',
+              fontSize: '16px',
+            }}
           />
         )}
         <Box
@@ -156,7 +161,11 @@ function Request() {
           <CodeMirror
             onChange={handleVariableEditorValueChanged}
             maxHeight="150px"
-            style={{ position: 'relative', overflow: 'scroll' }}
+            style={{
+              position: 'relative',
+              overflow: 'scroll',
+              fontSize: '16px',
+            }}
             theme={noctisLilac}
             value={variableValue}
           />

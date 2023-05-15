@@ -41,7 +41,12 @@ function Response() {
         minHeight="100%"
         theme={noctisLilac}
         editable={false}
-        style={{ flexGrow: 1, position: 'relative', overflowY: 'scroll' }}
+        style={{
+          flexGrow: 1,
+          position: 'relative',
+          overflowY: 'scroll',
+          fontSize: '16px',
+        }}
       />
     </section>
   );
