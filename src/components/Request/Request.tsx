@@ -99,7 +99,7 @@ function Request() {
         position="relative"
         overflow="scroll"
         maxHeight="70%"
-        padding="16px"
+        padding="16px 16px 0 16px"
       >
         {isLoading && <CircularProgress />}
         {ans && (
@@ -174,8 +174,9 @@ function Request() {
           expandIcon={<ExpandIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
+          sx={{ marginTop: '4px' }}
         >
-          <Typography>Variables</Typography>
+          <Typography variant="body1">Variables</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <CodeMirror
