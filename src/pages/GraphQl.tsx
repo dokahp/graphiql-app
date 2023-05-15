@@ -41,13 +41,7 @@ function Graphql({ isAuthorized }: GraphQlProps) {
             boxSizing="border-box"
             padding="8px"
           >
-            <Box
-              bgcolor="#fff"
-              borderRadius="12px"
-              width="55%"
-              height="100%"
-              padding="16px"
-            >
+            <Box bgcolor="#fff" borderRadius="12px" width="55%" height="100%">
               <Request />
             </Box>
           </Box>

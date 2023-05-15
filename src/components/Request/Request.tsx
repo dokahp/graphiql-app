@@ -78,6 +78,7 @@ function Request() {
         position="relative"
         overflow="scroll"
         maxHeight="70%"
+        padding="16px"
       >
         {isLoading && <CircularProgress />}
         {ans && (
@@ -131,7 +132,15 @@ function Request() {
           </Tooltip>
         </Box>
       </Stack>
-      <Accordion sx={{ position: 'relative' }}>
+      <Accordion
+        sx={{
+          position: 'relative',
+          boxShadow: 0,
+          borderBottomRightRadius: '12px',
+          borderBottomLeftRadius: '12px',
+          marginBottom: '6px',
+        }}
+      >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
