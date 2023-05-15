@@ -122,12 +122,15 @@ function Request() {
             </Button>
           </Tooltip>
           <Tooltip title="Prettify query">
-            <IconButton onClick={handlePrettifyQuery} sx={{ marginTop: '8px' }}>
+            <IconButton
+              onClick={handlePrettifyQuery}
+              sx={{ marginTop: '30px' }}
+            >
               <CleaningServicesRoundedIcon />
             </IconButton>
           </Tooltip>
           <Tooltip title="Copy query">
-            <IconButton onClick={handleCopyQuery} sx={{ marginTop: '8px' }}>
+            <IconButton onClick={handleCopyQuery} sx={{ marginTop: '30px' }}>
               <ContentCopyRoundedIcon />
             </IconButton>
           </Tooltip>
