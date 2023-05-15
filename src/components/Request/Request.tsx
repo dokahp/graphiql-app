@@ -52,7 +52,11 @@ function Request() {
   };
 
   const handlePrettifyQuery = () => {
-    handleEditorValueChanged('');
+    handleEditorValueChanged('PRETTIFIED VALUE');
+  };
+
+  const handleExecQuery = () => {
+    // Query execution code nessecary here
   };
 
   if (isLoading) {
@@ -88,7 +92,7 @@ function Request() {
               lintKeymap: true,
               bracketMatching: true,
             }}
-            value={defaultRequest}
+            value={editorValue}
             lang="graphql"
             extensions={graphql(createSchema(ans.data))}
             theme={noctisLilac}
@@ -105,6 +109,7 @@ function Request() {
             <Button
               variant="contained"
               color="success"
+              onClick={handleExecQuery}
               sx={{
                 minWidth: '40px',
                 maxWidth: '40px',
@@ -141,6 +146,7 @@ function Request() {
             onChange={handleVariableEditorValueChanged}
             maxHeight="150px"
             style={{ position: 'relative', overflow: 'scroll' }}
+            theme={noctisLilac}
           />
         </AccordionDetails>
       </Accordion>
