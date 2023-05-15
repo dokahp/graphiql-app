@@ -11,6 +11,7 @@ import {
   IconButton,
   Stack,
   Tooltip,
+  Typography,
 } from '@mui/material';
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
@@ -36,9 +37,14 @@ const defaultRequest = `query GetCountry {
 function Request() {
   const { data: ans, error, isLoading } = dataAPI.useFetchAllDataQuery();
   const [editorValue, setEditorValue] = useState(defaultRequest);
+  const [variableValue, setVariableValue] = useState('');
 
   const handleEditorValueChanged = (value: string) => {
     setEditorValue(() => value);
+  };
+
+  const handleVariableEditorValueChanged = (value: string) => {
+    setVariableValue(() => value);
   };
 
   const handleCopyQuery = () => {
@@ -128,10 +134,11 @@ function Request() {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          Variables
+          <Typography>Variables</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <CodeMirror
+            onChange={handleVariableEditorValueChanged}
             maxHeight="150px"
             style={{ position: 'relative', overflow: 'scroll' }}
           />
