@@ -18,7 +18,7 @@ import { format } from 'graphql-formatter';
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import CleaningServicesRoundedIcon from '@mui/icons-material/CleaningServicesRounded';
-
+import { toast } from 'react-toastify';
 import dataAPI from '../../store/services/APIservice';
 import { createSchema } from '../DocContainer/DocExplorer';
 import ExpandIcon from '../ExpandIcon/ExpandIcon';
@@ -52,6 +52,16 @@ function Request() {
 
   const handleCopyQuery = () => {
     navigator.clipboard.writeText(editorValue);
+    toast.success('Request successfully copied to clipboard', {
+      position: 'bottom-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
   };
 
   const handlePrettifyQuery = () => {
