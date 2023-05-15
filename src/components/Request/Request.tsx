@@ -8,6 +8,7 @@ import {
   AccordionSummary,
   Box,
   Button,
+  CircularProgress,
   IconButton,
   Stack,
   Tooltip,
@@ -36,7 +37,7 @@ const defaultRequest = `query GetCountry {
 }`;
 
 function Request() {
-  const { data: ans, error, isLoading } = dataAPI.useFetchAllDataQuery();
+  const { data: ans, isLoading } = dataAPI.useFetchAllDataQuery();
   const [editorValue, setEditorValue] = useState(defaultRequest);
   const [variableValue, setVariableValue] = useState('');
 
@@ -61,12 +62,6 @@ function Request() {
     // Query execution code nessecary here
   };
 
-  if (isLoading) {
-    return 'loading';
-  }
-  if (error) {
-    return 'error';
-  }
   return (
     <section
       style={{
@@ -84,6 +79,7 @@ function Request() {
         overflow="scroll"
         maxHeight="70%"
       >
+        {isLoading && <CircularProgress />}
         {ans && (
           <CodeMirror
             minHeight="200px"
@@ -149,6 +145,7 @@ function Request() {
             maxHeight="150px"
             style={{ position: 'relative', overflow: 'scroll' }}
             theme={noctisLilac}
+            value={variableValue}
           />
         </AccordionDetails>
       </Accordion>
