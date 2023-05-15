@@ -18,9 +18,10 @@ import { format } from 'graphql-formatter';
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import CleaningServicesRoundedIcon from '@mui/icons-material/CleaningServicesRounded';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 import dataAPI from '../../store/services/APIservice';
 import { createSchema } from '../DocContainer/DocExplorer';
+import ExpandIcon from '../ExpandIcon/ExpandIcon';
 
 const defaultRequest = `query GetCountry {
   country(code: "BY") {
@@ -142,7 +143,7 @@ function Request() {
         }}
       >
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={<ExpandIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
