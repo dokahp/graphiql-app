@@ -28,6 +28,7 @@
     "eslint-config-prettier": "^8.8.0",
     "firebase": "^9.21.0",
     "graphql": "^16.6.0",
+    "graphql-formatter": "^1.0.3",
     "graphql-request": "^6.0.0",
     "graphql-voyager": "^1.2.0",
     "i18next": "^22.4.15",

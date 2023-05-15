@@ -13,6 +13,7 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
+import { format } from 'graphql-formatter';
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import CleaningServicesRoundedIcon from '@mui/icons-material/CleaningServicesRounded';
@@ -52,7 +53,8 @@ function Request() {
   };
 
   const handlePrettifyQuery = () => {
-    handleEditorValueChanged('PRETTIFIED VALUE');
+    const codeFormatted = format(editorValue);
+    setEditorValue(() => codeFormatted);
   };
 
   const handleExecQuery = () => {
