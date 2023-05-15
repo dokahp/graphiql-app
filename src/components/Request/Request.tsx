@@ -67,6 +67,16 @@ function Request() {
   const handlePrettifyQuery = () => {
     const codeFormatted = format(editorValue);
     setEditorValue(() => codeFormatted);
+    toast.success('Query successfully prettified', {
+      position: 'bottom-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
   };
 
   const handleExecQuery = () => {
