@@ -3,8 +3,8 @@ import { getIntrospectionQuery } from 'graphql';
 import IDataAPI from './schemaType';
 
 const query = getIntrospectionQuery();
-const dataAPI = createApi({
-  reducerPath: 'dataAPI',
+const schemaAPI = createApi({
+  reducerPath: 'schemaAPI',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://countries.trevorblades.com/',
     method: 'POST',
@@ -20,4 +20,4 @@ const dataAPI = createApi({
   }),
 });
 
-export default dataAPI;
+export default schemaAPI;

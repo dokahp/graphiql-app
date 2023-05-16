@@ -1,11 +1,11 @@
 import React, { Suspense } from 'react';
 import { Container } from '@mui/material';
-import dataAPI from '../../store/services/APIservice';
+import schemaAPI from '../../store/services/APIserviceSchema';
 import DocExplorerAsinc from './DocExplorer.async';
 import './documentation.styles.css';
 
 function DocumentationContainer() {
-  const { data: ans, error, isLoading } = dataAPI.useFetchAllDataQuery();
+  const { data: ans, error, isLoading } = schemaAPI.useFetchAllDataQuery();
   return (
     <Container className="docContainer" maxWidth="sm">
       {error ? (

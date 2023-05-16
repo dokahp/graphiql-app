@@ -1,21 +1,24 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import authSlice from './reducers/authSlice';
-import dataAPI from './services/APIservice';
-import fetchAPI from './services/APIserviceReqData';
+import schemaAPI from './services/APIserviceSchema';
+import requestAPI from './services/APIserviceReqData';
 import historySliceReducer from './reducers/historySlice';
 
 const rootReducer = combineReducers({
   authSlice,
   historySliceReducer,
-  [dataAPI.reducerPath]: dataAPI.reducer,
-  [fetchAPI.reducerPath]: fetchAPI.reducer,
+  [schemaAPI.reducerPath]: schemaAPI.reducer,
+  [requestAPI.reducerPath]: requestAPI.reducer,
 });
 
 export const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(dataAPI.middleware, fetchAPI.middleware),
+      getDefaultMiddleware().concat(
+        schemaAPI.middleware,
+        requestAPI.middleware
+      ),
   });
 };
 

@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import IrequestType from './reqType';
 
-const reqAPI = createApi({
-  reducerPath: 'fetchAPI',
+const requestAPI = createApi({
+  reducerPath: 'requestAPI',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://countries.trevorblades.com/' }),
   endpoints: (builder) => ({
     getCountriesByContinent: builder.query<unknown, IrequestType>({
@@ -19,4 +19,4 @@ const reqAPI = createApi({
   }),
 });
 
-export default reqAPI;
+export default requestAPI;

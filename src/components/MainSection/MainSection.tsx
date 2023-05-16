@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import Response from '../Response/Response';
 import Request from '../Request/Request';
 import IrequestType from '../../store/services/reqType';
-import reqAPI from '../../store/services/APIserviceReqData';
+import requestAPI from '../../store/services/APIserviceReqData';
 import { historySlice } from '../../store/reducers/historySlice';
 import { useAppDispatch } from '../../hooks/redux';
 
@@ -17,7 +17,7 @@ function MainSection() {
     variable: {},
   });
 
-  const { data: fetchData } = reqAPI.useGetCountriesByContinentQuery(req, {
+  const { data: fetchData } = requestAPI.useGetCountriesByContinentQuery(req, {
     skip,
   });
 
