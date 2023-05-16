@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { noctisLilac } from '@uiw/codemirror-themes-all';
 import { graphql } from 'cm6-graphql';
+import { langs } from '@uiw/codemirror-extensions-langs';
 import {
   Accordion,
   AccordionDetails,
@@ -181,6 +182,8 @@ function Request() {
         <AccordionDetails>
           <CodeMirror
             onChange={handleVariableEditorValueChanged}
+            lang="application/json"
+            extensions={[langs.json()]}
             maxHeight="150px"
             style={{
               position: 'relative',

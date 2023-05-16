@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@codemirror/lang-json": "^6.0.1",
+    "@codemirror/lint": "^6.2.1",
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
     "@fontsource/roboto": "^4.5.8",
@@ -20,6 +22,7 @@
     "@react-spring/web": "latest",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/react-redux": "^7.1.25",
+    "@uiw/codemirror-extensions-langs": "^4.19.16",
     "@uiw/codemirror-themes-all": "^4.19.16",
     "@uiw/react-codemirror": "^4.19.16",
     "cm6-graphql": "^0.0.7",
