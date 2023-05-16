@@ -1,4 +1,5 @@
 import { createTheme } from '@mui/material/styles';
+import shadows from '@mui/material/styles/shadows';
 
 const theme = createTheme({
   palette: {
@@ -13,6 +14,20 @@ const theme = createTheme({
       main: '#b2ca2d',
       dark: '#79770a',
       contrastText: '#000',
+    },
+  },
+  components: {
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          backgroundColor: '#fff',
+          color: '#000',
+          fontSize: '15px',
+          fontWeight: 400,
+          padding: '7px',
+          boxShadow: shadows[5],
+        },
+      },
     },
   },
 });

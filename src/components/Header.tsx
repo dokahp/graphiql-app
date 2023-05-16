@@ -106,6 +106,7 @@ export default function Header({ isAuthorized }: HeaderProps) {
               backdropFilter: 'blur(5px)',
               color: color.primary.dark,
               animation: 'slideDown 0.35s ease-out',
+              zIndex: 2500,
             }
           : {}
       }
