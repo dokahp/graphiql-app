@@ -38,17 +38,31 @@ const defaultRequest = `query GetCountry {
   }
 }`;
 
-function Request() {
+type RequestProps = {
+  editorValue: string;
+  variableValue: string;
+  editorCB: (value: string) => void;
+  variableCB: (value: string) => void;
+  execQuery: () => void;
+};
+
+function Request({
+  editorCB,
+  variableCB,
+  execQuery,
+  editorValue,
+  variableValue,
+}: RequestProps) {
   const { data: ans, isLoading } = dataAPI.useFetchAllDataQuery();
-  const [editorValue, setEditorValue] = useState(defaultRequest);
-  const [variableValue, setVariableValue] = useState('');
+  // const [editorValue, setEditorValue] = useState(defaultRequest);
+  // const [variableValue, setVariableValue] = useState('');
 
   const handleEditorValueChanged = (value: string) => {
-    setEditorValue(() => value);
+    editorCB(value);
   };
 
   const handleVariableEditorValueChanged = (value: string) => {
-    setVariableValue(() => value);
+    variableCB(value);
   };
 
   const handleCopyQuery = () => {
@@ -67,7 +81,7 @@ function Request() {
 
   const handlePrettifyQuery = () => {
     const codeFormatted = format(editorValue);
-    setEditorValue(() => codeFormatted);
+    editorCB(codeFormatted);
     toast.success('Query successfully prettified', {
       position: 'bottom-right',
       autoClose: 3000,
@@ -81,7 +95,7 @@ function Request() {
   };
 
   const handleExecQuery = () => {
-    // Query execution code nessecary here
+    execQuery();
   };
 
   return (
