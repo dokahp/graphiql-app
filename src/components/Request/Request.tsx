@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { noctisLilac } from '@uiw/codemirror-themes-all';
 import { graphql } from 'cm6-graphql';
@@ -24,20 +24,6 @@ import dataAPI from '../../store/services/APIservice';
 import { createSchema } from '../DocContainer/DocExplorer';
 import ExpandIcon from '../ExpandIcon/ExpandIcon';
 
-const defaultRequest = `query GetCountry {
-  country(code: "BY") {
-    name
-    native
-    capital
-    emoji
-    currency
-    languages {
-      code
-      name
-    }
-  }
-}`;
-
 type RequestProps = {
   editorValue: string;
   variableValue: string;
@@ -54,8 +40,6 @@ function Request({
   variableValue,
 }: RequestProps) {
   const { data: ans, isLoading } = dataAPI.useFetchAllDataQuery();
-  // const [editorValue, setEditorValue] = useState(defaultRequest);
-  // const [variableValue, setVariableValue] = useState('');
 
   const handleEditorValueChanged = (value: string) => {
     editorCB(value);

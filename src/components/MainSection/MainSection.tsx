@@ -20,7 +20,6 @@ function MainSection() {
   });
 
   function handlerEditor(editorData: string) {
-    console.log(1);
     setEditorValue(editorData);
   }
 
@@ -29,8 +28,6 @@ function MainSection() {
   }
 
   function handlerSend() {
-    console.log(editorValue);
-    console.log(variableValue);
     setSkip(false);
     let start = editorValue.indexOf(' ');
     start += 1;
@@ -40,7 +37,6 @@ function MainSection() {
       query: editorValue,
       variable: JSON.parse(variableValue),
     });
-    console.log(fetchData);
   }
 
   return (
