@@ -2,8 +2,6 @@ import { Box, CircularProgress } from '@mui/material';
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import Aside from '../components/Aside/Aside';
-import Request from '../components/Request/Request';
-import Response from '../components/Response/Response';
 import MainSection from '../components/MainSection/MainSection';
 
 interface GraphQlProps {
@@ -46,10 +44,6 @@ function Graphql({ isAuthorized }: GraphQlProps) {
             padding="8px"
           >
             <MainSection />
-            {/* <Box bgcolor="#fff" borderRadius="12px" width="55%" height="100%">
-              <Request />
-            </Box>
-            <Response /> */}
           </Box>
         </Box>
       </Box>

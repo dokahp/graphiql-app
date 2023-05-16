@@ -4,6 +4,8 @@ import Response from '../Response/Response';
 import Request from '../Request/Request';
 import IrequestType from '../../store/services/reqType';
 import reqAPI from '../../store/services/APIserviceReqData';
+import { historySlice } from '../../store/reducers/historySlice';
+import { useAppDispatch } from '../../hooks/redux';
 
 function MainSection() {
   const [editorValue, setEditorValue] = useState<string>('');
@@ -19,6 +21,9 @@ function MainSection() {
     skip,
   });
 
+  const { setHistory } = historySlice.actions;
+  const dispatch = useAppDispatch();
+
   function handlerEditor(editorData: string) {
     setEditorValue(editorData);
   }
@@ -32,11 +37,14 @@ function MainSection() {
     let start = editorValue.indexOf(' ');
     start += 1;
     const finish = editorValue.indexOf('(');
-    setReq({
+    const newReq = {
       operationName: editorValue.slice(start, finish),
       query: editorValue,
       variable: JSON.parse(variableValue),
-    });
+    };
+    setReq(newReq);
+
+    dispatch(setHistory(newReq));
   }
 
   return (

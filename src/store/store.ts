@@ -2,11 +2,13 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import authSlice from './reducers/authSlice';
 import dataAPI from './services/APIservice';
 import fetchAPI from './services/APIserviceReqData';
+import historySliceReducer from './reducers/historySlice';
 
 const rootReducer = combineReducers({
+  authSlice,
+  historySliceReducer,
   [dataAPI.reducerPath]: dataAPI.reducer,
   [fetchAPI.reducerPath]: fetchAPI.reducer,
-  authSlice,
 });
 
 export const setupStore = () => {
