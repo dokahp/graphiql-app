@@ -78,10 +78,6 @@ function Request({
     });
   };
 
-  // const handleExecQuery = () => {
-  //   execQuery();
-  // };
-
   return (
     <section
       style={{
