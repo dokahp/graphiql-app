@@ -7,6 +7,19 @@ import requestAPI from '../../store/services/APIserviceReqData';
 import { historySlice } from '../../store/reducers/historySlice';
 import { useAppDispatch } from '../../hooks/redux';
 
+function findOperationName(value: string) {
+  let start = value.indexOf(' ');
+  start += 1;
+  let finish = 0;
+  for (let i = start; i < value.length - 1; i += 1) {
+    if (value[i] === '(' || value[i] === '{' || value[i] === ' ') {
+      finish = i;
+      break;
+    }
+  }
+  return value.slice(start, finish);
+}
+
 function MainSection() {
   const [editorValue, setEditorValue] = useState<string>('');
   const [variableValue, setVariableValue] = useState<string>('');
@@ -34,17 +47,24 @@ function MainSection() {
 
   function handlerSend() {
     setSkip(false);
-    let start = editorValue.indexOf(' ');
-    start += 1;
-    const finish = editorValue.indexOf('(');
-    const newReq = {
-      operationName: editorValue.slice(start, finish),
-      query: editorValue,
-      variable: JSON.parse(variableValue),
-    };
+    const name = findOperationName(editorValue);
+    let newReq: IrequestType;
+    if (variableValue) {
+      newReq = {
+        operationName: name,
+        query: editorValue,
+        variable: JSON.parse(variableValue),
+      };
+    } else {
+      newReq = {
+        operationName: name,
+        query: editorValue,
+      };
+    }
     setReq(newReq);
-
-    dispatch(setHistory(newReq));
+    if (fetchData) {
+      dispatch(setHistory(newReq));
+    }
   }
 
   return (
