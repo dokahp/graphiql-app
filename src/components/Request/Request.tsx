@@ -78,9 +78,9 @@ function Request({
     });
   };
 
-  const handleExecQuery = () => {
-    execQuery();
-  };
+  // const handleExecQuery = () => {
+  //   execQuery();
+  // };
 
   return (
     <section
@@ -133,7 +133,7 @@ function Request({
             <Button
               variant="contained"
               color="success"
-              onClick={handleExecQuery}
+              onClick={execQuery}
               sx={{
                 minWidth: '40px',
                 maxWidth: '40px',

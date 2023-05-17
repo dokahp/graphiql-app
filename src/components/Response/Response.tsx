@@ -4,7 +4,7 @@ import { noctisLilac } from '@uiw/codemirror-themes-all';
 import { langs } from '@uiw/codemirror-extensions-langs';
 
 type ResponseProps = {
-  response: unknown;
+  response: string | undefined;
 };
 
 function Response({ response }: ResponseProps) {

@@ -1,11 +1,26 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
+import { toast } from 'react-toastify';
 import Response from '../Response/Response';
 import Request from '../Request/Request';
 import IrequestType from '../../store/services/reqType';
 import requestAPI from '../../store/services/APIserviceReqData';
 import { historySlice } from '../../store/reducers/historySlice';
 import { useAppDispatch } from '../../hooks/redux';
+
+const defaultRequest = `query GetCountry {
+  country(code: "BY") {
+    name
+    native
+    capital
+    emoji
+    currency
+    languages {
+      code
+      name
+    }
+  }
+}`;
 
 function findOperationName(value: string) {
   let start = value.indexOf(' ');
@@ -21,7 +36,7 @@ function findOperationName(value: string) {
 }
 
 function MainSection() {
-  const [editorValue, setEditorValue] = useState<string>('');
+  const [editorValue, setEditorValue] = useState<string>(defaultRequest);
   const [variableValue, setVariableValue] = useState<string>('');
   const [skip, setSkip] = useState<boolean>(true);
   const [req, setReq] = useState<IrequestType>({
@@ -41,29 +56,42 @@ function MainSection() {
     setEditorValue(editorData);
   }
 
-  function handlerVariablese(variableData: string) {
+  function handlerVariable(variableData: string) {
     setVariableValue(variableData);
   }
 
-  function handlerSend() {
+  function handlerSendRequest() {
     setSkip(false);
     const name = findOperationName(editorValue);
-    let newReq: IrequestType;
-    if (variableValue) {
-      newReq = {
-        operationName: name,
-        query: editorValue,
-        variable: JSON.parse(variableValue),
-      };
-    } else {
-      newReq = {
-        operationName: name,
-        query: editorValue,
-      };
-    }
-    setReq(newReq);
-    if (fetchData) {
-      dispatch(setHistory(newReq));
+    try {
+      let newReq: IrequestType;
+      if (variableValue) {
+        newReq = {
+          operationName: name,
+          query: editorValue,
+          variable: JSON.parse(variableValue),
+        };
+      } else {
+        newReq = {
+          operationName: name,
+          query: editorValue,
+        };
+      }
+      setReq(newReq);
+      if (fetchData) {
+        dispatch(setHistory(newReq));
+      }
+    } catch (error) {
+      toast.error(String(error), {
+        position: 'bottom-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
     }
   }
 
@@ -74,8 +102,8 @@ function MainSection() {
           editorValue={editorValue}
           variableValue={variableValue}
           editorCB={(value: string) => handlerEditor(value)}
-          variableCB={(value: string) => handlerVariablese(value)}
-          execQuery={() => handlerSend()}
+          variableCB={(value: string) => handlerVariable(value)}
+          execQuery={() => handlerSendRequest()}
         />
       </Box>
       <Response response={fetchData} />
