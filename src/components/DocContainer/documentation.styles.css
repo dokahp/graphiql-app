@@ -1,17 +1,26 @@
 .docContainer {
   position: absolute;
   font-family: Roboto;
+  font-size: 16px;
   line-height: 1.5;
 }
 
 .fieldName {
-  color: blue;
+  color: rgb(244, 120, 16);
 }
 
 .fieldType {
-  color: chocolate;
+  color: rgb(242, 59, 128);
 }
 
 .docHistory {
   padding-bottom: 25px;
+}
+
+.mainName {
+  color: rgb(242, 59, 128);
+}
+
+.argName {
+  color: rgb(44, 167, 85);
 }

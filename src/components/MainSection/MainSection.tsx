@@ -65,16 +65,14 @@ function MainSection() {
     const name = findOperationName(editorValue);
     try {
       let newReq: IrequestType;
+      newReq = {
+        operationName: name,
+        query: editorValue,
+      };
       if (variableValue) {
         newReq = {
-          operationName: name,
-          query: editorValue,
+          ...newReq,
           variable: JSON.parse(variableValue),
-        };
-      } else {
-        newReq = {
-          operationName: name,
-          query: editorValue,
         };
       }
       setReq(newReq);
