@@ -76,14 +76,13 @@ function MainSection() {
         };
       }
       setReq(newReq);
-      if (fetchData) {
-        dispatch(
-          setHistory({
-            isSelect: false,
-            requestData: newReq,
-          })
-        );
-      }
+      dispatch(
+        setHistory({
+          id: Date.now(),
+          isSelect: false,
+          requestData: newReq,
+        })
+      );
     } catch (error) {
       toast.error(String(error), {
         position: 'bottom-right',
