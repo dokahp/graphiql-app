@@ -1,20 +1,25 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import IrequestType from '../services/reqType';
 
+type HistoryObject = {
+  isSelect: boolean;
+  requestData: IrequestType;
+};
+
 interface IhistoryState {
-  requests: IrequestType[];
+  historyObjArray: HistoryObject[];
 }
 
 const initialState: IhistoryState = {
-  requests: [],
+  historyObjArray: [],
 };
 
 export const historySlice = createSlice({
   name: 'history',
   initialState,
   reducers: {
-    setHistory(state, action: PayloadAction<IrequestType>) {
-      state.requests.push(action.payload);
+    setHistory(state, action: PayloadAction<HistoryObject>) {
+      state.historyObjArray.push(action.payload);
     },
   },
 });

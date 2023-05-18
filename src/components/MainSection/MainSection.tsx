@@ -77,7 +77,12 @@ function MainSection() {
       }
       setReq(newReq);
       if (fetchData) {
-        dispatch(setHistory(newReq));
+        dispatch(
+          setHistory({
+            isSelect: false,
+            requestData: newReq,
+          })
+        );
       }
     } catch (error) {
       toast.error(String(error), {

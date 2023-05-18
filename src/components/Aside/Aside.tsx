@@ -16,6 +16,7 @@ import KeyboardCommandKeyOutlinedIcon from '@mui/icons-material/KeyboardCommandK
 import useScrollPosition from '../../hooks/useScrollPosition';
 import DocContainerAsync from '../DocContainer/DocContainer.async';
 import schemaAPI from '../../store/services/APIserviceSchema';
+import HistoryList from '../HistoryList/HistoryList';
 import './aside.css';
 
 function Aside() {
@@ -159,6 +160,7 @@ function Aside() {
             paddingX="24px"
           >
             <Typography variant="h5">History</Typography>
+            <HistoryList />
           </Box>
         </Drawer>
       </aside>
