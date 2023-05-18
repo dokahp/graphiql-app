@@ -1,0 +1,49 @@
+.modal-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: none;
+  border-radius: 12px;
+}
+
+.main-table {
+  padding: 24px;
+}
+
+.hotkeys-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-sizing: border-box;
+  color: rgb(59, 76, 104);
+  display: table;
+  font-family: Roboto sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 22.5px;
+}
+
+.hotkeys-table th,
+td {
+  border: 1px solid hsla(218, 28%, 32%, 0.15);
+  border-collapse: collapse;
+  padding: 8px 12px;
+  color: rgb(59, 76, 104);
+}
+
+.hotkeys-table th {
+  color: rgb(59, 76, 104);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22.5px;
+}
+
+.key {
+  background-color: rgba(59, 76, 104, 0.1);
+  padding: 4px;
+  border-radius: 4px;
+  font-size: 16px;
+  line-height: 22.5px;
+  font-weight: 400;
+}

@@ -8,10 +8,12 @@ import KeyboardCommandKeyOutlinedIcon from '@mui/icons-material/KeyboardCommandK
 import useScrollPosition from '../../hooks/useScrollPosition';
 import DocContainer from '../DocContainer/DocContainer';
 import './aside.css';
+import HotkeysModal from '../HotkeysModal/HotkeysModal';
 
 function Aside() {
   const [docDrawer, setDocDrawer] = useState(false);
   const [historyDrawer, setHistoryDrawer] = useState(false);
+  const [hotkeysModal, setHotkeysModal] = useState<boolean>(false);
   const offset = useScrollPosition();
   const screenWidth = window.screen.width;
   const drawerPosition = screenWidth > 600 ? 64 - offset : 56 - offset;
@@ -24,6 +26,14 @@ function Aside() {
   const handleHistoryVisability = () => {
     setDocDrawer(() => false);
     setHistoryDrawer((prev: boolean) => !prev);
+  };
+
+  const handleHotkeysModalOpen = () => {
+    setHotkeysModal(true);
+  };
+
+  const handleHotkeysModalClose = () => {
+    setHotkeysModal(false);
   };
 
   return (
@@ -79,6 +89,7 @@ function Aside() {
           </Tooltip>
           <Tooltip title="Open Short Keys Dialog">
             <IconButton
+              onClick={handleHotkeysModalOpen}
               sx={{
                 borderRadius: '4px',
                 width: '44px',
@@ -133,6 +144,10 @@ function Aside() {
           </Box>
         </Drawer>
       </aside>
+      <HotkeysModal
+        hotkeysModalOpen={hotkeysModal}
+        handleHotkeysModalClose={handleHotkeysModalClose}
+      />
     </div>
   );
 }
