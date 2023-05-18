@@ -1,30 +1,13 @@
 import React from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { noctisLilac } from '@uiw/codemirror-themes-all';
+import { langs } from '@uiw/codemirror-extensions-langs';
 
-const response = `{
-  "data": {
-    "country": {
-      "name": "Belarus",
-      "native": "Белару́сь",
-      "capital": "Minsk",
-      "emoji": "🇧🇾",
-      "currency": "BYN",
-      "languages": [
-        {
-          "code": "be",
-          "name": "Belarusian"
-        },
-        {
-          "code": "ru",
-          "name": "Russian"
-        }
-      ]
-    }
-  }
-}`;
+type ResponseProps = {
+  response: string | undefined;
+};
 
-function Response() {
+function Response({ response }: ResponseProps) {
   return (
     <section
       style={{
@@ -37,7 +20,9 @@ function Response() {
       }}
     >
       <CodeMirror
-        value={response}
+        lang="application/json"
+        extensions={[langs.json()]}
+        value={JSON.stringify(response, null, 2)}
         minHeight="100%"
         theme={noctisLilac}
         editable={false}

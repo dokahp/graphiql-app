@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { noctisLilac } from '@uiw/codemirror-themes-all';
 import { graphql } from 'cm6-graphql';
@@ -20,35 +20,33 @@ import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import CleaningServicesRoundedIcon from '@mui/icons-material/CleaningServicesRounded';
 import { toast } from 'react-toastify';
-import dataAPI from '../../store/services/APIservice';
+import dataAPI from '../../store/services/APIserviceSchema';
 import { createSchema } from '../DocContainer/DocExplorer';
 import ExpandIcon from '../ExpandIcon/ExpandIcon';
 
-const defaultRequest = `query GetCountry {
-  country(code: "BY") {
-    name
-    native
-    capital
-    emoji
-    currency
-    languages {
-      code
-      name
-    }
-  }
-}`;
+type RequestProps = {
+  editorValue: string;
+  variableValue: string;
+  editorCB: (value: string) => void;
+  variableCB: (value: string) => void;
+  execQuery: () => void;
+};
 
-function Request() {
+function Request({
+  editorCB,
+  variableCB,
+  execQuery,
+  editorValue,
+  variableValue,
+}: RequestProps) {
   const { data: ans, isLoading } = dataAPI.useFetchAllDataQuery();
-  const [editorValue, setEditorValue] = useState(defaultRequest);
-  const [variableValue, setVariableValue] = useState('');
 
   const handleEditorValueChanged = (value: string) => {
-    setEditorValue(() => value);
+    editorCB(value);
   };
 
   const handleVariableEditorValueChanged = (value: string) => {
-    setVariableValue(() => value);
+    variableCB(value);
   };
 
   const handleCopyQuery = () => {
@@ -67,7 +65,7 @@ function Request() {
 
   const handlePrettifyQuery = () => {
     const codeFormatted = format(editorValue);
-    setEditorValue(() => codeFormatted);
+    editorCB(codeFormatted);
     toast.success('Query successfully prettified', {
       position: 'bottom-right',
       autoClose: 3000,
@@ -78,10 +76,6 @@ function Request() {
       progress: undefined,
       theme: 'colored',
     });
-  };
-
-  const handleExecQuery = () => {
-    // Query execution code nessecary here
   };
 
   return (
@@ -135,7 +129,7 @@ function Request() {
             <Button
               variant="contained"
               color="success"
-              onClick={handleExecQuery}
+              onClick={execQuery}
               sx={{
                 minWidth: '40px',
                 maxWidth: '40px',
