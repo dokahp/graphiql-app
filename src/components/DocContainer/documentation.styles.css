@@ -1,5 +1,7 @@
 .docContainer {
   position: absolute;
+  font-family: Roboto;
+  line-height: 1.5;
 }
 
 .fieldName {
@@ -8,4 +10,8 @@
 
 .fieldType {
   color: chocolate;
+}
+
+.docHistory {
+  padding-bottom: 25px;
 }

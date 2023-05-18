@@ -1,8 +1,8 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 
 import DocExplorer from './DocExplorer';
-import './documentation.styles.css';
 import IDataAPI from '../../store/services/schemaType';
+import './documentation.styles.css';
 
 type DocumentationContainerProps = {
   schemaRaw: IDataAPI | undefined;
