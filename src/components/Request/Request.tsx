@@ -16,6 +16,7 @@ import {
   Typography,
 } from '@mui/material';
 import { format } from 'graphql-formatter';
+import { useHotkeys } from 'react-hotkeys-hook';
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import CleaningServicesRoundedIcon from '@mui/icons-material/CleaningServicesRounded';
@@ -77,6 +78,18 @@ function Request({
       theme: 'colored',
     });
   };
+
+  useHotkeys('ctrl+shift+enter', () => execQuery(), {
+    enableOnContentEditable: true,
+  });
+
+  useHotkeys('ctrl+shift+p', () => handlePrettifyQuery(), {
+    enableOnContentEditable: true,
+  });
+
+  useHotkeys('ctrl+shift+c', () => handleCopyQuery(), {
+    enableOnContentEditable: true,
+  });
 
   return (
     <section
