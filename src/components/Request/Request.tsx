@@ -79,15 +79,15 @@ function Request({
     });
   };
 
-  useHotkeys('ctrl+shift+enter', () => execQuery(), {
+  useHotkeys('ctrl+alt+enter', () => execQuery(), {
     enableOnContentEditable: true,
   });
 
-  useHotkeys('ctrl+shift+p', () => handlePrettifyQuery(), {
+  useHotkeys('ctrl+alt+p', () => handlePrettifyQuery(), {
     enableOnContentEditable: true,
   });
 
-  useHotkeys('ctrl+shift+c', () => handleCopyQuery(), {
+  useHotkeys('ctrl+alt+c', () => handleCopyQuery(), {
     enableOnContentEditable: true,
   });
 

@@ -10,19 +10,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import React from 'react';
 import './hotkeysModal.css';
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -55%)',
-  minWidth: '300px',
-  maxWidth: '720px',
-  bgcolor: '#fff',
-  border: 'none',
-  borderRadius: '12px',
-  boxShadow: 5,
-};
-
 interface HotkeysModalProps {
   hotkeysModalOpen: boolean;
   handleHotkeysModalClose: () => void;
@@ -40,7 +27,20 @@ function HotkeysModal({
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box sx={style}>
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -55%)',
+          minWidth: '300px',
+          maxWidth: '720px',
+          bgcolor: '#fff',
+          border: 'none',
+          borderRadius: '12px',
+          boxShadow: 5,
+        }}
+      >
         <Stack
           display="flex"
           flexDirection="row"
@@ -78,7 +78,7 @@ function HotkeysModal({
               <tr>
                 <td>
                   <span className="key">CTRL</span> +{' '}
-                  <span className="key">SHIFT</span> +{' '}
+                  <span className="key">ALT</span> +{' '}
                   <span className="key">ENTER</span>
                 </td>
                 <td>Execute Query</td>
@@ -86,7 +86,7 @@ function HotkeysModal({
               <tr>
                 <td>
                   <span className="key">CTRL</span> +{' '}
-                  <span className="key">SHIFT</span> +{' '}
+                  <span className="key">ALT</span> +{' '}
                   <span className="key">P</span>
                 </td>
                 <td>Prettify Request Editor</td>
@@ -94,7 +94,7 @@ function HotkeysModal({
               <tr>
                 <td>
                   <span className="key">CTRL</span> +{' '}
-                  <span className="key">SHIFT</span> +{' '}
+                  <span className="key">ALT</span> +{' '}
                   <span className="key">C</span>
                 </td>
                 <td>Copy Query</td>
