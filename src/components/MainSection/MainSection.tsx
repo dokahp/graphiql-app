@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import { toast } from 'react-toastify';
 import Response from '../Response/Response';
 import Request from '../Request/Request';
 import IrequestType from '../../store/services/reqType';
 import requestAPI from '../../store/services/APIserviceReqData';
-import { historySlice } from '../../store/reducers/historySlice';
+import { historySlice, HistoryObject } from '../../store/reducers/historySlice';
 import { useAppDispatch } from '../../hooks/redux';
+
+type MainSectionProps = {
+  history: HistoryObject[];
+};
 
 const defaultRequest = `query GetCountry {
   country(code: "BY") {
@@ -35,19 +39,34 @@ function findOperationName(value: string) {
   return value.slice(start, finish);
 }
 
-function MainSection() {
-  const [editorValue, setEditorValue] = useState<string>(defaultRequest);
-  const [variableValue, setVariableValue] = useState<string>('');
+function MainSection({ history }: MainSectionProps) {
+  const currentRequest = history.length
+    ? history[history.length - 1].requestData?.query
+    : defaultRequest;
+
+  const currentVariable = history.length
+    ? history[history.length - 1].requestData?.variable
+    : '';
+
+  const [editorValue, setEditorValue] = useState<string>(currentRequest || '');
+  const [variableValue, setVariableValue] = useState<string>(
+    currentVariable || ''
+  );
   const [skip, setSkip] = useState<boolean>(true);
   const [req, setReq] = useState<IrequestType>({
     operationName: '',
     query: '',
-    variable: {},
+    variable: '',
   });
 
   const { data: fetchData } = requestAPI.useGetCountriesByContinentQuery(req, {
     skip,
   });
+
+  useEffect(() => {
+    setEditorValue(currentRequest || '');
+    setVariableValue(currentVariable || '');
+  }, [currentRequest, currentVariable]);
 
   const { setHistory } = historySlice.actions;
   const dispatch = useAppDispatch();
@@ -96,7 +115,6 @@ function MainSection() {
       });
     }
   }
-
   return (
     <>
       <Box bgcolor="#fff" borderRadius="12px" width="55%" height="100%">

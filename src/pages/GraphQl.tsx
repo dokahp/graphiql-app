@@ -3,12 +3,17 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import Aside from '../components/Aside/Aside';
 import MainSection from '../components/MainSection/MainSection';
+import { useAppSelector } from '../hooks/redux';
 
 interface GraphQlProps {
   isAuthorized: boolean | undefined;
 }
 
 function Graphql({ isAuthorized }: GraphQlProps) {
+  const { historyObjArray } = useAppSelector(
+    (state) => state.historySliceReducer
+  );
+
   if (isAuthorized === undefined)
     return (
       <Box
@@ -43,7 +48,7 @@ function Graphql({ isAuthorized }: GraphQlProps) {
             boxSizing="border-box"
             padding="8px"
           >
-            <MainSection />
+            <MainSection history={historyObjArray} />
           </Box>
         </Box>
       </Box>
