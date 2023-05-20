@@ -10,7 +10,7 @@ interface GraphQlProps {
 }
 
 function Graphql({ isAuthorized }: GraphQlProps) {
-  const { historyObjArray } = useAppSelector(
+  const { currentRequest } = useAppSelector(
     (state) => state.historySliceReducer
   );
 
@@ -48,7 +48,7 @@ function Graphql({ isAuthorized }: GraphQlProps) {
             boxSizing="border-box"
             padding="8px"
           >
-            <MainSection history={historyObjArray} />
+            <MainSection currentRequest={currentRequest} />
           </Box>
         </Box>
       </Box>

@@ -1,6 +1,23 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import IrequestType from '../services/reqType';
 
+const defaultRequest: IrequestType = {
+  operationName: 'GetCountry',
+  query: `query GetCountry {
+    country(code: "BY") {
+    name
+    native
+    capital
+    emoji
+    currency
+    languages {
+      code
+      name
+    }
+  }
+}`,
+};
+
 export type HistoryObject = {
   id: number;
   isSelect: boolean;
@@ -9,10 +26,12 @@ export type HistoryObject = {
 
 interface IhistoryState {
   historyObjArray: HistoryObject[];
+  currentRequest: IrequestType;
 }
 
 const initialState: IhistoryState = {
   historyObjArray: [],
+  currentRequest: defaultRequest,
 };
 
 export const historySlice = createSlice({
@@ -35,17 +54,13 @@ export const historySlice = createSlice({
       state.historyObjArray = newHistory;
     },
     setCurrentHistoryObject(state, action: PayloadAction<number>) {
-      // console.log(state.historyObjArray);
-      const newHistory = state.historyObjArray.filter(
-        (item) => item.id !== action.payload
-      );
       const currentObj = state.historyObjArray.find(
         (item) => item.id === action.payload
       );
-      // console.log('currentObj', currentObj);
-      if (currentObj) newHistory.push(currentObj);
-      state.historyObjArray = newHistory;
-      // console.log(state.historyObjArray);
+      if (currentObj) state.currentRequest = currentObj?.requestData;
+    },
+    setCurrentRequset(state, action: PayloadAction<IrequestType>) {
+      state.currentRequest = action.payload;
     },
   },
 });

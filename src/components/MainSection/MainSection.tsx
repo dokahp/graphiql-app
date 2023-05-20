@@ -5,26 +5,12 @@ import Response from '../Response/Response';
 import Request from '../Request/Request';
 import IrequestType from '../../store/services/reqType';
 import requestAPI from '../../store/services/APIserviceReqData';
-import { historySlice, HistoryObject } from '../../store/reducers/historySlice';
+import { historySlice } from '../../store/reducers/historySlice';
 import { useAppDispatch } from '../../hooks/redux';
 
 type MainSectionProps = {
-  history: HistoryObject[];
+  currentRequest: IrequestType;
 };
-
-const defaultRequest = `query GetCountry {
-  country(code: "BY") {
-    name
-    native
-    capital
-    emoji
-    currency
-    languages {
-      code
-      name
-    }
-  }
-}`;
 
 function findOperationName(value: string) {
   let start = value.indexOf(' ');
@@ -39,18 +25,12 @@ function findOperationName(value: string) {
   return value.slice(start, finish);
 }
 
-function MainSection({ history }: MainSectionProps) {
-  const currentRequest = history.length
-    ? history[history.length - 1].requestData?.query
-    : defaultRequest;
-
-  const currentVariable = history.length
-    ? history[history.length - 1].requestData?.variable
-    : '';
-
-  const [editorValue, setEditorValue] = useState<string>(currentRequest || '');
+function MainSection({ currentRequest }: MainSectionProps) {
+  const [editorValue, setEditorValue] = useState<string>(
+    currentRequest.query || ''
+  );
   const [variableValue, setVariableValue] = useState<string>(
-    currentVariable || ''
+    currentRequest.variable || ''
   );
   const [skip, setSkip] = useState<boolean>(true);
   const [req, setReq] = useState<IrequestType>({
@@ -64,11 +44,11 @@ function MainSection({ history }: MainSectionProps) {
   });
 
   useEffect(() => {
-    setEditorValue(currentRequest || '');
-    setVariableValue(currentVariable || '');
-  }, [currentRequest, currentVariable]);
+    setEditorValue(currentRequest.query || '');
+    setVariableValue(currentRequest.variable || '');
+  }, [currentRequest]);
 
-  const { setHistory } = historySlice.actions;
+  const { setHistory, setCurrentRequset } = historySlice.actions;
   const dispatch = useAppDispatch();
 
   function handlerEditor(editorData: string) {
@@ -102,6 +82,7 @@ function MainSection({ history }: MainSectionProps) {
           requestData: newReq,
         })
       );
+      dispatch(setCurrentRequset(newReq));
     } catch (error) {
       toast.error(String(error), {
         position: 'bottom-right',
