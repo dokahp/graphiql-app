@@ -34,15 +34,30 @@ export default function Footer() {
           order: { xs: 1, sm: 1 },
         }}
       >
-        <Link sx={linkStyles} href="https://github.com/dokahp">
+        <Link
+          sx={linkStyles}
+          href="https://github.com/dokahp"
+          target="_blank"
+          rel="noopener"
+        >
           <GitHubIcon sx={{ margin: '5px' }} />
           <Typography sx={{ marginTop: '3px' }}>Vitaliy</Typography>
         </Link>
-        <Link sx={linkStyles} href="https://github.com/galinavikst">
+        <Link
+          sx={linkStyles}
+          href="https://github.com/galinavikst"
+          target="_blank"
+          rel="noopener"
+        >
           <GitHubIcon sx={{ margin: '5px' }} />
           <Typography sx={{ marginTop: '3px' }}>Halyna</Typography>
         </Link>
-        <Link sx={linkStyles} href="https://github.com/ermakovev">
+        <Link
+          sx={linkStyles}
+          href="https://github.com/ermakovev"
+          target="_blank"
+          rel="noopener"
+        >
           <GitHubIcon sx={{ margin: '5px' }} />
           <Typography sx={{ marginTop: '3px' }}>Eugene</Typography>
         </Link>

@@ -113,16 +113,18 @@ function DocExplorer({ schemaJSON }: DocComponentProps) {
 
   return (
     <div>
-      <Typography variant="h5" component="span">
-        <div
-          role="presentation"
-          onClick={() => undo(history[history.length - 1])}
-          className="docHistory"
-        >
-          {history.length > 1 &&
-            `< ${history[history.length - 1].nameComponent}`}
-        </div>
-      </Typography>
+      {history.length > 1 && (
+        <Typography variant="h5" component="span">
+          <div
+            role="presentation"
+            onClick={() => undo(history[history.length - 1])}
+            className="docHistory"
+          >
+            {history.length > 1 &&
+              `< ${history[history.length - 1].nameComponent}`}
+          </div>
+        </Typography>
+      )}
       <DocComponent component={elementDoc} callBack={selectComponent} />
     </div>
   );
