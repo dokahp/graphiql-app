@@ -30,13 +30,14 @@ function MainSection({ currentRequest }: MainSectionProps) {
     currentRequest.query || ''
   );
   const [variableValue, setVariableValue] = useState<string>(
-    currentRequest.variable || ''
+    JSON.stringify(currentRequest.variable) || ''
   );
+
   const [skip, setSkip] = useState<boolean>(true);
   const [req, setReq] = useState<IrequestType>({
     operationName: '',
     query: '',
-    variable: '',
+    variable: null,
   });
 
   const { data: fetchData } = requestAPI.useGetCountriesByContinentQuery(req, {
@@ -45,7 +46,7 @@ function MainSection({ currentRequest }: MainSectionProps) {
 
   useEffect(() => {
     setEditorValue(currentRequest.query || '');
-    setVariableValue(currentRequest.variable || '');
+    setVariableValue(JSON.stringify(currentRequest.variable) || '');
   }, [currentRequest]);
 
   const { setHistory, setCurrentRequset } = historySlice.actions;
@@ -96,6 +97,8 @@ function MainSection({ currentRequest }: MainSectionProps) {
       });
     }
   }
+
+  console.log('fetch', fetchData);
   return (
     <>
       <Box bgcolor="#fff" borderRadius="12px" width="55%" height="100%">
