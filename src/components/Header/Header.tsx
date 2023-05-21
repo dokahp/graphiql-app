@@ -15,9 +15,10 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import { useTranslation } from 'react-i18next';
-import SwitchLang from './SwitchLang';
-import theme from '../theme';
-import { useAppSelector } from '../hooks/redux';
+import SwitchLang from '../SwitchLang/SwitchLang';
+import theme from '../../theme';
+import { useAppSelector } from '../../hooks/redux';
+import './header.css';
 
 const pages = ['Project', 'Course', 'Developers'];
 

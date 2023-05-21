@@ -1,0 +1,56 @@
+import React from 'react';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import Link from '@mui/material/Link';
+import { Stack, Typography } from '@mui/material';
+import './footer.css';
+
+const linkStyles = {
+  display: 'flex',
+  width: '90px',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  variant: 'body1',
+  target: 'a_blank',
+  underline: 'hover',
+  margin: '5px 10px',
+};
+
+export default function Footer() {
+  return (
+    <footer className="footer">
+      <Link
+        sx={{ order: { xs: 2, sm: 1 }, marginY: { xs: '20px' } }}
+        variant="body1"
+        target="a_blank"
+        href="https://rs.school/react/"
+      >
+        <img src="..\src\assets\rss-logo.svg" width={80} alt="school logo" />
+      </Link>
+      <Stack
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
+          flexWrap: 'wrap',
+          order: { xs: 1, sm: 1 },
+        }}
+      >
+        <Link sx={linkStyles} href="https://github.com/dokahp">
+          <GitHubIcon sx={{ margin: '5px' }} />
+          <Typography sx={{ marginTop: '3px' }}>Vitaliy</Typography>
+        </Link>
+        <Link sx={linkStyles} href="https://github.com/galinavikst">
+          <GitHubIcon sx={{ margin: '5px' }} />
+          <Typography sx={{ marginTop: '3px' }}>Halyna</Typography>
+        </Link>
+        <Link sx={linkStyles} href="https://github.com/ermakovev">
+          <GitHubIcon sx={{ margin: '5px' }} />
+          <Typography sx={{ marginTop: '3px' }}>Eugene</Typography>
+        </Link>
+      </Stack>
+
+      <Typography sx={{ order: { xs: 3, sm: 2 } }} variant="body1">
+        © 2023 React
+      </Typography>
+    </footer>
+  );
+}
