@@ -182,7 +182,10 @@ export default function Header({ isAuthorized }: HeaderProps) {
             {isAuthorized && (
               <>
                 <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <IconButton
+                    onClick={handleOpenUserMenu}
+                    sx={{ p: 0, '&:hover': { backgroundColor: 'inherit' } }}
+                  >
                     <Avatar />
                   </IconButton>
                 </Tooltip>
