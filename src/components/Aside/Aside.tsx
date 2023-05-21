@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
-import { Box, Drawer, IconButton, Tooltip, Typography } from '@mui/material';
+import React, { useState, Suspense } from 'react';
+import {
+  Box,
+  Drawer,
+  IconButton,
+  Tooltip,
+  Typography,
+  Container,
+  LinearProgress,
+} from '@mui/material';
 import LocalLibraryOutlinedIcon from '@mui/icons-material/LocalLibraryOutlined';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined';
 import RefreshOutlinedIcon from '@mui/icons-material/RefreshOutlined';
 import KeyboardCommandKeyOutlinedIcon from '@mui/icons-material/KeyboardCommandKeyOutlined';
 import useScrollPosition from '../../hooks/useScrollPosition';
-import DocContainer from '../DocContainer/DocContainer';
+import DocContainerAsync from '../DocContainer/DocContainer.async';
+import schemaAPI from '../../store/services/APIserviceSchema';
+import HistoryList from '../HistoryList/HistoryList';
 import './aside.css';
 import HotkeysModal from '../HotkeysModal/HotkeysModal';
 
@@ -17,6 +27,7 @@ function Aside() {
   const offset = useScrollPosition();
   const screenWidth = window.screen.width;
   const drawerPosition = screenWidth > 600 ? 64 - offset : 56 - offset;
+  const { data: ans, error, isLoading } = schemaAPI.useFetchAllDataQuery();
 
   const handleDocVisability = () => {
     setHistoryDrawer(() => false);
@@ -119,7 +130,26 @@ function Aside() {
             width="300px"
             position="relative"
           >
-            <DocContainer />
+            <Container className="docContainer" maxWidth="sm">
+              {error ? (
+                <>there was an error</>
+              ) : (
+                <Suspense
+                  fallback={
+                    <div>
+                      <LinearProgress />
+                      <Typography variant="subtitle1" fontSize="14px">
+                        Lazy loading Documentation...
+                      </Typography>
+                    </div>
+                  }
+                >
+                  {!isLoading && ans ? (
+                    <DocContainerAsync schemaRaw={ans} />
+                  ) : null}
+                </Suspense>
+              )}
+            </Container>
           </Box>
         </Drawer>
         <Drawer
@@ -141,6 +171,7 @@ function Aside() {
             paddingX="24px"
           >
             <Typography variant="h5">History</Typography>
+            <HistoryList cb={handleHistoryVisability} />
           </Box>
         </Drawer>
       </aside>

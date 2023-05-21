@@ -16,13 +16,6 @@ type NameCompProps = {
 };
 
 function NameComponent({ name, typeComponent, arg, cb }: NameCompProps) {
-  const handleFieldTypeClick = () => {
-    if (typeComponent) {
-      return cb('type', typeComponent);
-    }
-    return cb('type', '');
-  };
-
   return (
     <div>
       <Typography variant="h5">{name}</Typography>
@@ -36,7 +29,7 @@ function NameComponent({ name, typeComponent, arg, cb }: NameCompProps) {
       <div
         className="fieldType"
         role="presentation"
-        onClick={handleFieldTypeClick}
+        onClick={() => cb('type', typeComponent || '')}
       >
         {typeComponent}
       </div>
@@ -53,7 +46,7 @@ function NameComponent({ name, typeComponent, arg, cb }: NameCompProps) {
             <span
               role="presentation"
               className="fieldType"
-              onClick={handleFieldTypeClick}
+              onClick={() => cb('type', arg?.typeArg)}
             >
               {arg?.typeArg}
             </span>

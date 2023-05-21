@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import { toast } from 'react-toastify';
 import Response from '../Response/Response';
@@ -8,19 +8,9 @@ import requestAPI from '../../store/services/APIserviceReqData';
 import { historySlice } from '../../store/reducers/historySlice';
 import { useAppDispatch } from '../../hooks/redux';
 
-const defaultRequest = `query GetCountry {
-  country(code: "BY") {
-    name
-    native
-    capital
-    emoji
-    currency
-    languages {
-      code
-      name
-    }
-  }
-}`;
+type MainSectionProps = {
+  currentRequest: IrequestType;
+};
 
 function findOperationName(value: string) {
   let start = value.indexOf(' ');
@@ -35,21 +25,31 @@ function findOperationName(value: string) {
   return value.slice(start, finish);
 }
 
-function MainSection() {
-  const [editorValue, setEditorValue] = useState<string>(defaultRequest);
-  const [variableValue, setVariableValue] = useState<string>('');
+function MainSection({ currentRequest }: MainSectionProps) {
+  const [editorValue, setEditorValue] = useState<string>(
+    currentRequest.query || ''
+  );
+  const [variableValue, setVariableValue] = useState<string>(
+    JSON.stringify(currentRequest.variable) || ''
+  );
+
   const [skip, setSkip] = useState<boolean>(true);
   const [req, setReq] = useState<IrequestType>({
     operationName: '',
     query: '',
-    variable: {},
+    variable: null,
   });
 
   const { data: fetchData } = requestAPI.useGetCountriesByContinentQuery(req, {
     skip,
   });
 
-  const { setHistory } = historySlice.actions;
+  useEffect(() => {
+    setEditorValue(currentRequest.query || '');
+    setVariableValue(JSON.stringify(currentRequest.variable) || '');
+  }, [currentRequest]);
+
+  const { setHistory, setCurrentRequset } = historySlice.actions;
   const dispatch = useAppDispatch();
 
   function handlerEditor(editorData: string) {
@@ -65,22 +65,25 @@ function MainSection() {
     const name = findOperationName(editorValue);
     try {
       let newReq: IrequestType;
+      newReq = {
+        operationName: name,
+        query: editorValue,
+      };
       if (variableValue) {
         newReq = {
-          operationName: name,
-          query: editorValue,
+          ...newReq,
           variable: JSON.parse(variableValue),
-        };
-      } else {
-        newReq = {
-          operationName: name,
-          query: editorValue,
         };
       }
       setReq(newReq);
-      if (fetchData) {
-        dispatch(setHistory(newReq));
-      }
+      dispatch(
+        setHistory({
+          id: Date.now(),
+          isSelect: false,
+          requestData: newReq,
+        })
+      );
+      dispatch(setCurrentRequset(newReq));
     } catch (error) {
       toast.error(String(error), {
         position: 'bottom-right',

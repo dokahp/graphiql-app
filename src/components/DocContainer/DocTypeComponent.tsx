@@ -25,7 +25,9 @@ function TypeComponent({ name, description, fields, cb }: TypeCompProps) {
           Fields
         </Typography>
       </div>
-      <Typography variant="h5">{name}</Typography>
+      <Typography className="mainName" variant="h5">
+        {name}
+      </Typography>
       <Typography variant="subtitle2">{description}</Typography>
       <div>
         {fields?.map((field, index) => {
@@ -55,7 +57,7 @@ function TypeComponent({ name, description, fields, cb }: TypeCompProps) {
                   role="presentation"
                   onClick={() => cb('type', field[1].args[0].type)}
                 >
-                  ({field[1].args[0].name}:{' '}
+                  (<span className="argName">{field[1].args[0].name}</span>:{' '}
                   <span className="fieldType">{field[1].args[0].type}</span>)
                 </span>
               ) : null}
