@@ -160,7 +160,7 @@ function Aside() {
             paddingX="24px"
           >
             <Typography variant="h5">History</Typography>
-            <HistoryList />
+            <HistoryList cb={handleHistoryVisability} />
           </Box>
         </Drawer>
       </aside>

@@ -98,7 +98,6 @@ function MainSection({ currentRequest }: MainSectionProps) {
     }
   }
 
-  console.log('fetch', fetchData);
   return (
     <>
       <Box bgcolor="#fff" borderRadius="12px" width="55%" height="100%">

@@ -10,7 +10,18 @@ import ListItemText from '@mui/material/ListItemText';
 import { useAppSelector, useAppDispatch } from '../../hooks/redux';
 import { historySlice } from '../../store/reducers/historySlice';
 
-function HistoryList() {
+function shortNameHandler(name: string) {
+  if (name.length > 15) {
+    return `${name.slice(0, 12)}...`;
+  }
+  return name;
+}
+
+type HistoryListProps = {
+  cb: () => void;
+};
+
+function HistoryList({ cb }: HistoryListProps) {
   const { historyObjArray } = useAppSelector(
     (state) => state.historySliceReducer
   );
@@ -26,6 +37,7 @@ function HistoryList() {
 
   function historyRequestHandler(e: React.MouseEvent<HTMLElement>) {
     dispatch(setCurrentHistoryObject(+e.currentTarget.id));
+    cb();
   }
 
   return (
@@ -47,7 +59,9 @@ function HistoryList() {
               <ListItemText
                 id={item.id.toString()}
                 onClick={(e) => historyRequestHandler(e)}
-                primary={item.requestData.operationName}
+                primary={shortNameHandler(
+                  item.requestData.operationName || '[noname]'
+                )}
               />
               <ListItemIcon
                 id={item.id.toString()}
@@ -77,7 +91,9 @@ function HistoryList() {
               <ListItemText
                 id={item.id.toString()}
                 onClick={(e) => historyRequestHandler(e)}
-                primary={item.requestData.operationName}
+                primary={shortNameHandler(
+                  item.requestData.operationName || '[noname]'
+                )}
               />
               <ListItemIcon
                 id={item.id.toString()}

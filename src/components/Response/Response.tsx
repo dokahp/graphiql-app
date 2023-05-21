@@ -8,7 +8,6 @@ type ResponseProps = {
 };
 
 function Response({ response }: ResponseProps) {
-  console.log('res', response);
   return (
     <section
       style={{
