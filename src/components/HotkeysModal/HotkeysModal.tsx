@@ -23,7 +23,9 @@ function HotkeysModal({
     <Modal
       open={hotkeysModalOpen}
       onClose={handleHotkeysModalClose}
-      hideBackdrop
+      slotProps={{
+        backdrop: { sx: { background: 'transparent' } },
+      }}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >

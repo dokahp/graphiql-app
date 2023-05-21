@@ -11,7 +11,6 @@ import {
 import LocalLibraryOutlinedIcon from '@mui/icons-material/LocalLibraryOutlined';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined';
-import RefreshOutlinedIcon from '@mui/icons-material/RefreshOutlined';
 import KeyboardCommandKeyOutlinedIcon from '@mui/icons-material/KeyboardCommandKeyOutlined';
 import useScrollPosition from '../../hooks/useScrollPosition';
 import DocContainerAsync from '../DocContainer/DocContainer.async';
@@ -86,18 +85,6 @@ function Aside() {
           </Tooltip>
         </div>
         <div className="bottom-block">
-          <Tooltip title="Re-fetch GraphQL schema">
-            <IconButton
-              sx={{
-                borderRadius: '4px',
-                width: '44px',
-                height: '44px',
-                margin: '10px 0',
-              }}
-            >
-              <RefreshOutlinedIcon />
-            </IconButton>
-          </Tooltip>
           <Tooltip title="Open Short Keys Dialog">
             <IconButton
               onClick={handleHotkeysModalOpen}
@@ -115,8 +102,11 @@ function Aside() {
 
         <Drawer
           open={docDrawer}
+          onClose={handleDocVisability}
           anchor="left"
-          hideBackdrop
+          slotProps={{
+            backdrop: { sx: { background: 'transparent' } },
+          }}
           PaperProps={{
             sx: {
               height: `calc(100% - ${drawerPosition}px)`,
@@ -152,10 +142,14 @@ function Aside() {
             </Container>
           </Box>
         </Drawer>
+
         <Drawer
           open={historyDrawer}
+          onClose={handleHistoryVisability}
           anchor="left"
-          hideBackdrop
+          slotProps={{
+            backdrop: { sx: { background: 'transparent' } },
+          }}
           PaperProps={{
             sx: {
               height: `calc(100% - ${drawerPosition}px)`,
