@@ -67,7 +67,7 @@ function HistoryList({ cb }: HistoryListProps) {
                 id={item.id.toString()}
                 onClick={(e) => selectToggle(e)}
               >
-                <StarIcon />
+                <StarIcon sx={{ marginLeft: 'auto' }} />
               </ListItemIcon>
             </ListItemButton>
           </ListItem>
@@ -87,7 +87,9 @@ function HistoryList({ cb }: HistoryListProps) {
       >
         {NoSelectArr.map((item) => (
           <ListItem key={item.id} disablePadding>
-            <ListItemButton sx={{ paddingLeft: 0 }}>
+            <ListItemButton
+              sx={{ paddingLeft: 0, justifyContent: 'space-between' }}
+            >
               <ListItemText
                 id={item.id.toString()}
                 onClick={(e) => historyRequestHandler(e)}
@@ -99,7 +101,7 @@ function HistoryList({ cb }: HistoryListProps) {
                 id={item.id.toString()}
                 onClick={(e) => selectToggle(e)}
               >
-                <StarBorderIcon />
+                <StarBorderIcon sx={{ marginLeft: 'auto' }} />
               </ListItemIcon>
             </ListItemButton>
           </ListItem>

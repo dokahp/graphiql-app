@@ -27,17 +27,28 @@ function Graphql({ isAuthorized }: GraphQlProps) {
     );
   if (isAuthorized === false) return <Navigate to="/" />;
   return (
-    <main>
+    <main style={{ flex: '1 0 auto' }}>
       <Box
         display="flex"
-        justifyContent="center"
-        alignItems="center"
-        minHeight="100vh"
         bgcolor="#fff"
+        flex="1 0 auto"
+        sx={{
+          height: { xs: '100%', md: '100vh' },
+          flexDirection: { xs: 'column', md: 'row' },
+        }}
       >
         <Aside />
 
-        <Box display="flex" padding="16px" height="100vh" width="100%">
+        <Box
+          display="flex"
+          height="100vh"
+          position="relative"
+          width="100%"
+          sx={{
+            padding: { xs: '4px', md: '16px' },
+            height: { xs: '100%', md: '100vh' },
+          }}
+        >
           <Box
             display="flex"
             justifyContent="space-between"
@@ -47,6 +58,7 @@ function Graphql({ isAuthorized }: GraphQlProps) {
             width="100%"
             boxSizing="border-box"
             padding="8px"
+            sx={{ flexDirection: { xs: 'column', md: 'row' } }}
           >
             <MainSection currentRequest={currentRequest} />
           </Box>

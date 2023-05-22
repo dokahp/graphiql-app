@@ -2,6 +2,7 @@ import React from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { noctisLilac } from '@uiw/codemirror-themes-all';
 import { langs } from '@uiw/codemirror-extensions-langs';
+import './response.css';
 
 type ResponseProps = {
   response: string | undefined;
@@ -9,16 +10,7 @@ type ResponseProps = {
 
 function Response({ response }: ResponseProps) {
   return (
-    <section
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        height: '100%',
-        position: 'relative',
-        width: '44%',
-      }}
-    >
+    <section className="response-section">
       <CodeMirror
         lang="application/json"
         extensions={[langs.json()]}

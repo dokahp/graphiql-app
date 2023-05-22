@@ -1,26 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { getAuth, signOut } from 'firebase/auth';
+import { Link } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
-import { Button } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
-import { useTranslation } from 'react-i18next';
+import graphql_logo from '../../assets/GraphQL_Logo.png';
 import SwitchLang from '../SwitchLang/SwitchLang';
 import theme from '../../theme';
 import { useAppSelector } from '../../hooks/redux';
 import './header.css';
-
-const pages = ['Project', 'Course', 'Developers'];
 
 interface HeaderProps {
   isAuthorized: boolean | undefined;
@@ -28,14 +24,10 @@ interface HeaderProps {
 
 export default function Header({ isAuthorized }: HeaderProps) {
   const color = theme.palette;
-  const { t } = useTranslation();
   const { email } = useAppSelector((state) => state.authSlice);
 
   const [position, setPosition] = useState<'static' | undefined | 'sticky'>(
     'static'
-  );
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
   );
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
@@ -51,15 +43,8 @@ export default function Header({ isAuthorized }: HeaderProps) {
     };
   }, []);
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
   };
 
   const handleSignOut = () => {
@@ -113,65 +98,17 @@ export default function Header({ isAuthorized }: HeaderProps) {
       }
     >
       <Container maxWidth="lg" sx={{ padding: { xs: '0 12px', md: '0 40px' } }}>
-        <Toolbar disableGutters sx={{ alignItems: 'stretch' }}>
-          <CodeRoundedIcon
-            sx={{
-              display: { xs: 'none', md: 'flex' },
-              mr: 1,
-              alignSelf: 'center',
-            }}
-          />
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: { xs: 'flex', md: 'none' },
-            }}
-          >
-            <IconButton onClick={handleOpenNavMenu} color="inherit">
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: { xs: 'none', md: 'flex', alignItems: 'stretch' },
-            }}
-          >
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ color: 'inherit', display: 'block' }}
-              >
-                {t(page)}
-              </Button>
-            ))}
-          </Box>
-
+        <Toolbar
+          disableGutters
+          sx={{ alignItems: 'center', justifyContent: 'space-between' }}
+        >
+          <Link to="/">
+            <img
+              className="logo-go-home"
+              src={graphql_logo}
+              alt="go-to-main-apge"
+            />
+          </Link>
           <Box
             sx={{
               gap: { xs: '5px', md: '20px' },
@@ -190,7 +127,7 @@ export default function Header({ isAuthorized }: HeaderProps) {
                   </IconButton>
                 </Tooltip>
                 <Menu
-                  sx={{ mt: '45px' }}
+                  sx={{ mt: '45px', zIndex: 1450 }}
                   id="menu-appbar"
                   anchorEl={anchorElUser}
                   anchorOrigin={{

@@ -7,17 +7,28 @@ import {
   Typography,
   Container,
   LinearProgress,
+  Stack,
 } from '@mui/material';
 import LocalLibraryOutlinedIcon from '@mui/icons-material/LocalLibraryOutlined';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined';
 import KeyboardCommandKeyOutlinedIcon from '@mui/icons-material/KeyboardCommandKeyOutlined';
-import useScrollPosition from '../../hooks/useScrollPosition';
+import CloseIcon from '@mui/icons-material/Close';
+import useScrollPosition, {
+  calculateDrawerPostion,
+} from '../../hooks/useScrollPosition';
 import DocContainerAsync from '../DocContainer/DocContainer.async';
 import schemaAPI from '../../store/services/APIserviceSchema';
 import HistoryList from '../HistoryList/HistoryList';
 import './aside.css';
 import HotkeysModal from '../HotkeysModal/HotkeysModal';
+
+const asideBtnStyles = {
+  borderRadius: '4px',
+  width: '44px',
+  height: '44px',
+  margin: { xs: '0 20px', md: '20px 0' },
+};
 
 function Aside() {
   const [docDrawer, setDocDrawer] = useState(false);
@@ -25,7 +36,7 @@ function Aside() {
   const [hotkeysModal, setHotkeysModal] = useState<boolean>(false);
   const offset = useScrollPosition();
   const screenWidth = window.screen.width;
-  const drawerPosition = screenWidth > 600 ? 64 - offset : 56 - offset;
+  const drawerPosition = calculateDrawerPostion(screenWidth, offset);
   const { data: ans, error, isLoading } = schemaAPI.useFetchAllDataQuery();
 
   const handleDocVisability = () => {
@@ -57,44 +68,20 @@ function Aside() {
                 : 'Show Documentation Explorer'
             }
           >
-            <IconButton
-              onClick={handleDocVisability}
-              sx={{
-                borderRadius: '4px',
-                width: '44px',
-                height: '44px',
-                margin: '20px 0',
-              }}
-            >
+            <IconButton onClick={handleDocVisability} sx={asideBtnStyles}>
               {docDrawer && <LocalLibraryIcon />}
               {!docDrawer && <LocalLibraryOutlinedIcon />}
             </IconButton>
           </Tooltip>
           <Tooltip title={historyDrawer ? 'Hide History' : 'Show History'}>
-            <IconButton
-              onClick={handleHistoryVisability}
-              sx={{
-                borderRadius: '4px',
-                width: '44px',
-                height: '44px',
-                margin: '20px 0',
-              }}
-            >
+            <IconButton onClick={handleHistoryVisability} sx={asideBtnStyles}>
               <RestoreOutlinedIcon />
             </IconButton>
           </Tooltip>
         </div>
         <div className="bottom-block">
           <Tooltip title="Open Short Keys Dialog">
-            <IconButton
-              onClick={handleHotkeysModalOpen}
-              sx={{
-                borderRadius: '4px',
-                width: '44px',
-                height: '44px',
-                margin: '10px 0',
-              }}
-            >
+            <IconButton onClick={handleHotkeysModalOpen} sx={asideBtnStyles}>
               <KeyboardCommandKeyOutlinedIcon />
             </IconButton>
           </Tooltip>
@@ -115,10 +102,10 @@ function Aside() {
           }}
         >
           <Box
-            marginLeft="61px"
             paddingTop="20px"
             width="300px"
             position="relative"
+            sx={{ marginLeft: { xs: '10px', md: '61px' } }}
           >
             <Container className="docContainer" maxWidth="sm">
               {error ? (
@@ -158,13 +145,28 @@ function Aside() {
           }}
         >
           <Box
-            marginLeft="61px"
             paddingTop="20px"
             width="300px"
             position="relative"
             paddingX="24px"
+            sx={{ marginLeft: { xs: '10px', md: '61px' } }}
           >
-            <Typography variant="h5">History</Typography>
+            <Stack
+              display="flex"
+              flexDirection="row"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Typography variant="h5">History</Typography>
+              <IconButton
+                sx={{ borderRadius: '4px' }}
+                onClick={handleHistoryVisability}
+                size="large"
+              >
+                <CloseIcon />
+              </IconButton>
+            </Stack>
+
             <HistoryList cb={handleHistoryVisability} />
           </Box>
         </Drawer>

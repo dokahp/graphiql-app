@@ -107,9 +107,21 @@ function Request({
         position="relative"
         overflow="scroll"
         maxHeight="70%"
-        padding="16px 16px 0 16px"
+        sx={{ padding: { xs: '4px 4px 0 4px', md: '16px 16px 0 16px' } }}
       >
-        {isLoading && <CircularProgress />}
+        {isLoading && (
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              minHeight: '200px',
+              width: '100%',
+            }}
+          >
+            <CircularProgress />
+          </Box>
+        )}
         {ans && (
           <CodeMirror
             minHeight="200px"
@@ -134,9 +146,9 @@ function Request({
         )}
         <Box
           width="40px"
-          marginLeft="16px"
           display="flex"
           flexDirection="column"
+          sx={{ marginLeft: { xs: '4px', md: '16px' } }}
         >
           <Tooltip title="Execute query">
             <Button

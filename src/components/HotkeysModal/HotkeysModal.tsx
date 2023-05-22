@@ -34,7 +34,10 @@ function HotkeysModal({
           position: 'absolute',
           top: '50%',
           left: '50%',
-          transform: 'translate(-50%, -55%)',
+          transform: {
+            xs: 'translate(-50%, -45%)',
+            md: 'translate(-50%, -55%)',
+          },
           minWidth: '300px',
           maxWidth: '720px',
           bgcolor: '#fff',

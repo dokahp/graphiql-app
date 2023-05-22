@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  background-color: var(--bg-footer);
+  /* background-color: var(--bg-footer); */
 }
 
 .footer p {

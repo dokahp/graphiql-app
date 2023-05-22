@@ -1,6 +1,6 @@
-.sing_out_btn:hover {
-  scale: 1.1;
-  transition: all 150ms ease-in;
+.logo-go-home {
+  width: 45px;
+  margin-top: auto;
 }
 
 @keyframes slideDown {
