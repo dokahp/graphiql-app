@@ -1,0 +1,16 @@
+.response-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  position: relative;
+  width: 44%;
+}
+
+
+@media (max-width: 900px) {
+  .response-section {
+    width: 100%;
+    min-height: 300px;
+  }
+}

@@ -100,7 +100,13 @@ function MainSection({ currentRequest }: MainSectionProps) {
 
   return (
     <>
-      <Box bgcolor="#fff" borderRadius="12px" width="55%" height="100%">
+      <Box
+        bgcolor="#fff"
+        borderRadius="12px"
+        height="100%"
+        flex="1 0 auto"
+        sx={{ width: { xs: '100%', md: '55%' } }}
+      >
         <Request
           editorValue={editorValue}
           variableValue={variableValue}
