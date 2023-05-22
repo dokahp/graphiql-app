@@ -1,8 +1,9 @@
-import { Box, Button, CircularProgress } from '@mui/material';
+import { Box, Button, CircularProgress, Container } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
+import Banner from '../components/Banner/Banner';
 
 interface WelcomeProps {
   isAuthorized: boolean | undefined;
@@ -33,12 +34,10 @@ function Welcome({ isAuthorized }: WelcomeProps) {
         justifyContent="center"
         alignItems="center"
         minHeight="100vh"
+        sx={{ background: 'rgb(245, 247, 248)' }}
       >
-        <h1>Welcome Page</h1>
         {isAuthorized ? (
-          <Button sx={{ m: 2 }} variant="contained" href="/graphql">
-            Main Page
-          </Button>
+          <Banner />
         ) : (
           <>
             <Button sx={{ m: 2 }} variant="contained" href="/signup">
