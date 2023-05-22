@@ -67,7 +67,7 @@ function HistoryList({ cb }: HistoryListProps) {
                 id={item.id.toString()}
                 onClick={(e) => selectToggle(e)}
               >
-                <StarIcon />
+                <StarIcon sx={{ marginLeft: 'auto' }} />
               </ListItemIcon>
             </ListItemButton>
           </ListItem>
@@ -101,7 +101,7 @@ function HistoryList({ cb }: HistoryListProps) {
                 id={item.id.toString()}
                 onClick={(e) => selectToggle(e)}
               >
-                <StarBorderIcon />
+                <StarBorderIcon sx={{ marginLeft: 'auto' }} />
               </ListItemIcon>
             </ListItemButton>
           </ListItem>
