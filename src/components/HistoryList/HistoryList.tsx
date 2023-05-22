@@ -87,7 +87,9 @@ function HistoryList({ cb }: HistoryListProps) {
       >
         {NoSelectArr.map((item) => (
           <ListItem key={item.id} disablePadding>
-            <ListItemButton sx={{ paddingLeft: 0 }}>
+            <ListItemButton
+              sx={{ paddingLeft: 0, justifyContent: 'space-between' }}
+            >
               <ListItemText
                 id={item.id.toString()}
                 onClick={(e) => historyRequestHandler(e)}

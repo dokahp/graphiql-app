@@ -190,7 +190,7 @@ export default function Header({ isAuthorized }: HeaderProps) {
                   </IconButton>
                 </Tooltip>
                 <Menu
-                  sx={{ mt: '45px' }}
+                  sx={{ mt: '45px', zIndex: 1450 }}
                   id="menu-appbar"
                   anchorEl={anchorElUser}
                   anchorOrigin={{
