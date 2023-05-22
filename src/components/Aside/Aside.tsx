@@ -12,7 +12,9 @@ import LocalLibraryOutlinedIcon from '@mui/icons-material/LocalLibraryOutlined';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined';
 import KeyboardCommandKeyOutlinedIcon from '@mui/icons-material/KeyboardCommandKeyOutlined';
-import useScrollPosition from '../../hooks/useScrollPosition';
+import useScrollPosition, {
+  calculateDrawerPostion,
+} from '../../hooks/useScrollPosition';
 import DocContainerAsync from '../DocContainer/DocContainer.async';
 import schemaAPI from '../../store/services/APIserviceSchema';
 import HistoryList from '../HistoryList/HistoryList';
@@ -33,7 +35,7 @@ function Aside() {
   const offset = useScrollPosition();
   const screenWidth = window.screen.width;
   // const drawerPosition = screenWidth > 900 ? 64 - offset : 56 - offset;
-  const drawerPosition = screenWidth > 900 ? 64 - offset : 56 - offset;
+  const drawerPosition = calculateDrawerPostion(screenWidth, offset);
   const { data: ans, error, isLoading } = schemaAPI.useFetchAllDataQuery();
 
   const handleDocVisability = () => {
