@@ -7,11 +7,13 @@ import {
   Typography,
   Container,
   LinearProgress,
+  Stack,
 } from '@mui/material';
 import LocalLibraryOutlinedIcon from '@mui/icons-material/LocalLibraryOutlined';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined';
 import KeyboardCommandKeyOutlinedIcon from '@mui/icons-material/KeyboardCommandKeyOutlined';
+import CloseIcon from '@mui/icons-material/Close';
 import useScrollPosition, {
   calculateDrawerPostion,
 } from '../../hooks/useScrollPosition';
@@ -34,7 +36,6 @@ function Aside() {
   const [hotkeysModal, setHotkeysModal] = useState<boolean>(false);
   const offset = useScrollPosition();
   const screenWidth = window.screen.width;
-  // const drawerPosition = screenWidth > 900 ? 64 - offset : 56 - offset;
   const drawerPosition = calculateDrawerPostion(screenWidth, offset);
   const { data: ans, error, isLoading } = schemaAPI.useFetchAllDataQuery();
 
@@ -101,10 +102,10 @@ function Aside() {
           }}
         >
           <Box
-            marginLeft="61px"
             paddingTop="20px"
             width="300px"
             position="relative"
+            sx={{ marginLeft: { xs: '10px', md: '61px' } }}
           >
             <Container className="docContainer" maxWidth="sm">
               {error ? (
@@ -144,13 +145,28 @@ function Aside() {
           }}
         >
           <Box
-            marginLeft="61px"
             paddingTop="20px"
             width="300px"
             position="relative"
             paddingX="24px"
+            sx={{ marginLeft: { xs: '10px', md: '61px' } }}
           >
-            <Typography variant="h5">History</Typography>
+            <Stack
+              display="flex"
+              flexDirection="row"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Typography variant="h5">History</Typography>
+              <IconButton
+                sx={{ borderRadius: '4px' }}
+                onClick={handleHistoryVisability}
+                size="large"
+              >
+                <CloseIcon />
+              </IconButton>
+            </Stack>
+
             <HistoryList cb={handleHistoryVisability} />
           </Box>
         </Drawer>
