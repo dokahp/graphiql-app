@@ -34,9 +34,10 @@ function Graphql({ isAuthorized }: GraphQlProps) {
         flex="1 0 auto"
         sx={{
           height: { xs: '100%', md: '100vh' },
+          flexDirection: { xs: 'column', md: 'row' },
         }}
       >
-        {/* <Aside /> */}
+        <Aside />
 
         <Box
           display="flex"

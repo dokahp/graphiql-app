@@ -19,13 +19,21 @@ import HistoryList from '../HistoryList/HistoryList';
 import './aside.css';
 import HotkeysModal from '../HotkeysModal/HotkeysModal';
 
+const asideBtnStyles = {
+  borderRadius: '4px',
+  width: '44px',
+  height: '44px',
+  margin: { xs: '0 20px', md: '20px 0' },
+};
+
 function Aside() {
   const [docDrawer, setDocDrawer] = useState(false);
   const [historyDrawer, setHistoryDrawer] = useState(false);
   const [hotkeysModal, setHotkeysModal] = useState<boolean>(false);
   const offset = useScrollPosition();
   const screenWidth = window.screen.width;
-  const drawerPosition = screenWidth > 600 ? 64 - offset : 56 - offset;
+  // const drawerPosition = screenWidth > 900 ? 64 - offset : 56 - offset;
+  const drawerPosition = screenWidth > 900 ? 64 - offset : 56 - offset;
   const { data: ans, error, isLoading } = schemaAPI.useFetchAllDataQuery();
 
   const handleDocVisability = () => {
@@ -57,44 +65,20 @@ function Aside() {
                 : 'Show Documentation Explorer'
             }
           >
-            <IconButton
-              onClick={handleDocVisability}
-              sx={{
-                borderRadius: '4px',
-                width: '44px',
-                height: '44px',
-                margin: '20px 0',
-              }}
-            >
+            <IconButton onClick={handleDocVisability} sx={asideBtnStyles}>
               {docDrawer && <LocalLibraryIcon />}
               {!docDrawer && <LocalLibraryOutlinedIcon />}
             </IconButton>
           </Tooltip>
           <Tooltip title={historyDrawer ? 'Hide History' : 'Show History'}>
-            <IconButton
-              onClick={handleHistoryVisability}
-              sx={{
-                borderRadius: '4px',
-                width: '44px',
-                height: '44px',
-                margin: '20px 0',
-              }}
-            >
+            <IconButton onClick={handleHistoryVisability} sx={asideBtnStyles}>
               <RestoreOutlinedIcon />
             </IconButton>
           </Tooltip>
         </div>
         <div className="bottom-block">
           <Tooltip title="Open Short Keys Dialog">
-            <IconButton
-              onClick={handleHotkeysModalOpen}
-              sx={{
-                borderRadius: '4px',
-                width: '44px',
-                height: '44px',
-                margin: '10px 0',
-              }}
-            >
+            <IconButton onClick={handleHotkeysModalOpen} sx={asideBtnStyles}>
               <KeyboardCommandKeyOutlinedIcon />
             </IconButton>
           </Tooltip>
