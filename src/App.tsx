@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { useAuthState } from 'react-firebase-hooks/auth';
+
 import Welcome from './pages/Welcome';
 import Layout from './components/Layout/Layout';
 import NotFound from './pages/NotFound';
@@ -34,7 +34,6 @@ function App() {
   const [userEmail, setAuthUserEmail] = useState<string>('');
   const dispatch = useAppDispatch();
   const { setUserEmail } = authSlice.actions;
-  const auth = getAuth();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChange(setIsAuthirized, setAuthUserEmail);
@@ -47,11 +46,7 @@ function App() {
     dispatch(setUserEmail(userEmail));
   });
 
-  const [user, isLoading] = useAuthState(auth);
-
-  return isLoading ? (
-    <h1>loading...</h1>
-  ) : (
+  return (
     <Routes>
       <Route element={<Layout isAuthorized={isAuthorized} />}>
         <Route path="/" element={<Welcome isAuthorized={isAuthorized} />} />
