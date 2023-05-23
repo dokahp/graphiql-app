@@ -1,7 +1,41 @@
+.main {
+  display: flex;
+  justify-content: center;
+  background: rgb(245, 247, 248);
+}
+
+.wrapper {
+  width: 70%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  padding: 2%;
+}
+
+.wrapper {
+  padding: 1%;
+}
+
 .banner {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
   margin-top: 0;
-  padding: 260px 0 100px 0;
-  min-width: 500px;
+  padding-top: 100px;
+  width: 100%;
+}
+
+.banner-info {
+  max-width: 50%;
+  padding-left: 80px;
+}
+
+.banner-img {
+  width: 50%;
 }
 
 .wrap {
@@ -14,7 +48,7 @@
 .banner .tagline {
   font-weight: 700;
   letter-spacing: 0.8px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgb(242, 59, 128);
   font-size: 20px;
   margin-bottom: 16px;
   display: inline-block;
@@ -37,6 +71,13 @@
   display: block;
   min-height: 50px;
   font-family: Roboto;
+  /* min-width: 300px; */
+}
+
+.earth {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .banner p {
@@ -49,6 +90,43 @@
   font-size: 18px;
   letter-spacing: 0.8px;
   line-height: 1.5em;
-  width: 96%;
+  width: 90%;
   color: rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 1020px) {
+  .banner {
+    padding: 0;
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
+
+  .banner-img {
+    width: 100%;
+  }
+
+  .banner-info {
+    padding: 0;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .banner .tagline {
+    display: flex;
+  }
+  .banner h1 {
+    font-size: 35px;
+    text-align: center;
+  }
+
+  .earth {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+  }
+  .banner p {
+    display: inline-block;
+    text-align: center;
+    width: 70%;
+  }
 }
