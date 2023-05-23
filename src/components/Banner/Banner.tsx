@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Container } from '@mui/material/';
+import { Button, Container, Typography } from '@mui/material/';
 import gif from '../../assets/earth.gif';
 import './banner.style.css';
+import DevelopersInfo from '../DevelopersInfo/DevelopersInfo';
 
 interface WelcomeProps {
   isAuthorized: boolean | undefined;
@@ -78,18 +79,20 @@ export default function SimpleContainer({ isAuthorized }: WelcomeProps) {
             {`Hello, we are\n`}
             <span className="wrap">{text}</span>
           </h1>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore
-            perferendis hic incidunt omnis eius. Porro eveniet dolores, quos,
-            voluptatum minima fuga molestias obcaecati id enim pariatur error
-            tempore quasi corporis!
-          </p>
+          <Typography textAlign="justify" variant="body1">
+            The project was developed as part of the best{' '}
+            <span className="spanColor">React </span>
+            course offered by <span className="spanColor">RS School</span>. It
+            showcases the practical application of React concepts and skills
+            learned during the course.
+          </Typography>
         </div>
 
         <div className="banner-img">
           <img className="earth" src={gif} alt="Earth" />
         </div>
       </div>
+      <DevelopersInfo />
     </Container>
   );
 }
