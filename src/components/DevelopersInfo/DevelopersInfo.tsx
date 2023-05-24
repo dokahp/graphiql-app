@@ -12,7 +12,7 @@ const projectInfo = {
   name: 'GRAPHQL GEO API ',
   description1: `
   Task Description:
-  The task involved creating a playground for making GraphQL query requests to the countries API provided by https://github.com/trevorblades/countries. The application allows users to explore and retrieve country data using GraphQL queries. Authentication and registration functionalities were implemented using Firebase for secure access to the playground.
+  The task involved creating a playground for making GraphQL query requests to the countries API provided by github.com/trevorblades/countries. The application allows users to explore and retrieve country data using GraphQL queries. Authentication and registration functionalities were implemented using Firebase for secure access to the playground.
   `,
   description2: `
   The application consists of authentication and registration pages, a welcome page, and a query editor page. Seamless navigation between pages, localization support, and the utilization of the latest React technologies and external libraries enhance usability and ensure a modern user experience.

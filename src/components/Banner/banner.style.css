@@ -42,7 +42,7 @@
   margin: 0;
   padding: 0;
   display: block;
-  min-height: 70px;
+  min-height: 100px;
 }
 
 .banner .tagline {
@@ -50,7 +50,7 @@
   letter-spacing: 0.8px;
   border: 1px solid rgb(242, 59, 128);
   font-size: 20px;
-  margin-bottom: 16px;
+  margin: 0 auto;
   display: inline-block;
   color: rgb(242, 59, 128);
   transition: background-color 0.6s ease-in-out;
@@ -67,6 +67,7 @@
   font-weight: 700;
   letter-spacing: 0.8px;
   line-height: 1;
+  margin-top: 20px;
   margin-bottom: 20px;
   display: block;
   min-height: 50px;
@@ -102,6 +103,7 @@
   }
 
   .banner-img {
+    margin-top: 30%;
     width: 100%;
   }
 
@@ -113,6 +115,8 @@
 
   .banner .tagline {
     display: flex;
+    margin-bottom: 30px;
+    width: 50%;
   }
   .banner h1 {
     font-size: 35px;
@@ -128,6 +132,10 @@
     display: inline-block;
     text-align: center;
     width: 70%;
+  }
+
+  .wrap {
+    min-height: 50px;
   }
 }
 
