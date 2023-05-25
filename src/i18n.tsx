@@ -21,6 +21,10 @@ const resources = {
         'Minimum eight characters, at least one letter, one number, one special character',
       'Password confirmation is required': 'Password confirmation is required',
       'Your passwords do no match': 'Your passwords do no match',
+      'You have successfully logged in': 'You have successfully logged in',
+      "Don't have an account?": `Don't have an account?`,
+      'Email or password incorrect': 'Email or password incorrect',
+      Login: 'Login',
     },
   },
   ru: {
@@ -42,6 +46,10 @@ const resources = {
         'Минимум 8 символов, по крайней мере, одна буква, одна цифра, один специальный символ',
       'Password confirmation is required': 'Требуется подтверждение пароля',
       'Your passwords do no match': 'Ваши пароли не совпадают',
+      'You have successfully logged in': 'Вы успешно вошли в систему',
+      "Don't have an account?": 'У вас нет учетной записи?',
+      'Email or password incorrect': 'Электронная почта или пароль неверны',
+      Login: 'Войти',
     },
   },
 };
