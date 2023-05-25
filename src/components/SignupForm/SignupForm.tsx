@@ -14,6 +14,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import graphql_logo from '../../assets/GraphQL_Logo.png';
 
 interface FormValues {
@@ -28,6 +29,7 @@ function SignupForm() {
   const { errors } = formState;
   const [showPassword, setShowPassword] = useState(false);
   const [registerError, setRegisterError] = useState(false);
+  const { t } = useTranslation();
 
   const handleClickShowPassword = () => {
     setShowPassword((prev: boolean) => !prev);
@@ -47,7 +49,7 @@ function SignupForm() {
         if (user) {
           setRegisterError(() => true);
           reset();
-          toast.success('You have successfully registered', {
+          toast.success(t('You have successfully registered'), {
             position: 'bottom-center',
             autoClose: 3000,
             hideProgressBar: false,
@@ -76,7 +78,7 @@ function SignupForm() {
         sx={{ mb: { xs: 2, sm: 3 } }}
       >
         <Typography variant="h5" marginRight="30px">
-          Sign Up
+          {t('Sign Up')}
         </Typography>
 
         <Typography
@@ -85,11 +87,13 @@ function SignupForm() {
           variant="body1"
           color="#2196f3"
         >
-          Already have an account?
+          {t('Already have an account?')}
         </Typography>
       </Stack>
       {registerError && (
-        <Alert severity="error">User with such email already registered</Alert>
+        <Alert severity="error">
+          {t('User with such email already registered')}
+        </Alert>
       )}
       <TextField
         type="email"
@@ -101,10 +105,10 @@ function SignupForm() {
         error={!!errors.email}
         helperText={errors.email?.message}
         {...register('email', {
-          required: 'Email is required',
+          required: t('Email is required') || 'Email is required',
           pattern: {
             value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-            message: 'Email not valid',
+            message: t('Email not valid') || 'Email not valid',
           },
         })}
       />
@@ -118,12 +122,15 @@ function SignupForm() {
         error={!!errors.password}
         helperText={errors.password?.message}
         {...register('password', {
-          required: 'Password is required',
+          required: t('Password is required') || 'Password is required',
           pattern: {
             value:
               /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$%!%*#?&^.\-+=])[A-Za-z0-9$@$!%*#^?&.\-+=]{8,}$/,
             message:
-              'Minimum eight characters, at least one letter, one number, one special character',
+              t(
+                'Minimum 8 characters, at least one letter, one number, one special character'
+              ) ||
+              'Minimum 8 characters, at least one letter, one number, one special character',
           },
         })}
         InputProps={{
@@ -151,10 +158,14 @@ function SignupForm() {
         error={!!errors.passwordConfirmation}
         helperText={errors.passwordConfirmation?.message}
         {...register('passwordConfirmation', {
-          required: 'Password confirmation is required',
+          required:
+            t('Password confirmation is required') ||
+            'Password confirmation is required',
           validate: (val: string) => {
             if (watch('password') !== val) {
-              return 'Your passwords do no match';
+              return (
+                t('Your passwords do no match') || 'Your passwords do no match'
+              );
             }
             return true;
           },
@@ -182,7 +193,7 @@ function SignupForm() {
         type="submit"
         color="primary"
       >
-        Sign Up
+        {t('Sign Up')}
       </Button>
     </form>
   );
