@@ -1,7 +1,9 @@
 import { Box, Button, Typography } from '@mui/material';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 function NotFound() {
+  const { t } = useTranslation();
   return (
     <main>
       <Box
@@ -12,16 +14,16 @@ function NotFound() {
         minHeight="100vh"
       >
         <Typography variant="h1" sx={{ color: '#ff5792', fontWeight: 'bold' }}>
-          Oops!
+          {t('Oops!')}
         </Typography>
         <Typography
           variant="h3"
           sx={{ color: '#fa8900', textAlign: 'center', m: 2 }}
         >
-          Page not found!
+          {t('Page not found!')}
         </Typography>
         <Button variant="contained" href="/" sx={{ m: 3 }}>
-          Return to Home
+          {t('Return to Home')}
         </Button>
       </Box>
     </main>

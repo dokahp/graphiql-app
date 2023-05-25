@@ -39,6 +39,9 @@ const resources = {
       'Lazy loading Documentation...': 'Lazy loading Documentation...',
       History: 'History',
       'Open Short Keys Dialog': 'Open Short Keys Dialog',
+      'Oops!': 'Oops!',
+      'Page not found!': 'Page not found!',
+      'Return to Home': 'Return to Home',
     },
   },
   ru: {
@@ -78,6 +81,9 @@ const resources = {
       'Lazy loading Documentation...': 'Ленивая загрузка документации...',
       History: 'История',
       'Open Short Keys Dialog': 'Открыть окно горячих клавиш',
+      'Oops!': 'Упс',
+      'Page not found!': 'Страница не найдена!',
+      'Return to Home': 'Вернуться на главную',
     },
   },
 };
