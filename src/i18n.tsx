@@ -28,6 +28,9 @@ const resources = {
       'You have successfully logout': 'You have successfully logout',
       'Something went wrong': 'Something went wrong',
       'Open settings': 'Open settings',
+      Vitaliy: 'Vitaliy',
+      Halyna: 'Halyna',
+      Eugene: 'Eugene',
     },
   },
   ru: {
@@ -56,6 +59,9 @@ const resources = {
       'You have successfully logout': 'Вы успешно вышли из системы',
       'Something went wrong': 'Что-то пошло не так',
       'Open settings': 'Открыть настройки',
+      Vitaliy: 'Виталий',
+      Halyna: 'Галина',
+      Eugene: 'Евгений',
     },
   },
 };
