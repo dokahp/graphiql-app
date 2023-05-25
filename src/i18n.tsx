@@ -4,7 +4,7 @@ import { initReactI18next } from 'react-i18next';
 const resources = {
   en: {
     translation: {
-      'Sign Out': 'Sign Out',
+      'Log Out': 'Log Out',
       'Sign Up': 'Sign Up',
       'Sign In': 'Sign In',
       Email: 'Email',
@@ -25,11 +25,14 @@ const resources = {
       "Don't have an account?": `Don't have an account?`,
       'Email or password incorrect': 'Email or password incorrect',
       Login: 'Login',
+      'You have successfully logout': 'You have successfully logout',
+      'Something went wrong': 'Something went wrong',
+      'Open settings': 'Open settings',
     },
   },
   ru: {
     translation: {
-      'Sign Out': 'Выйти',
+      'Log Out': 'Выйти',
       'Sign Up': 'Регистрация',
       'Sign In': 'Авторизация',
       Email: 'Электронная почта',
@@ -50,6 +53,9 @@ const resources = {
       "Don't have an account?": 'У вас нет учетной записи?',
       'Email or password incorrect': 'Электронная почта или пароль неверны',
       Login: 'Войти',
+      'You have successfully logout': 'Вы успешно вышли из системы',
+      'Something went wrong': 'Что-то пошло не так',
+      'Open settings': 'Открыть настройки',
     },
   },
 };
