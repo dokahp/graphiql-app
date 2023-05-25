@@ -42,6 +42,14 @@ const resources = {
       'Oops!': 'Oops!',
       'Page not found!': 'Page not found!',
       'Return to Home': 'Return to Home',
+      'Request successfully copied to clipboard':
+        'Request successfully copied to clipboard',
+      'Query successfully prettified': 'Query successfully prettified',
+      'Execute query': 'Execute query',
+      'Prettify query': 'Prettify query',
+      'Copy query': 'Copy query',
+      Variables: 'Variables',
+      'Show/Hide Variable Editor': 'Show/Hide Variable Editor',
     },
   },
   ru: {
@@ -84,6 +92,14 @@ const resources = {
       'Oops!': 'Упс',
       'Page not found!': 'Страница не найдена!',
       'Return to Home': 'Вернуться на главную',
+      'Request successfully copied to clipboard':
+        'Запрос успешно скопирован в буфер обмена',
+      'Query successfully prettified': 'Запрос успешно отформатирован',
+      'Execute query': 'Выполнить запрос',
+      'Prettify query': 'Отформатировать запрос',
+      'Copy query': 'Копировать запрос',
+      Variables: 'Переменные',
+      'Show/Hide Variable Editor': 'Показать/скрыть редактор переменных',
     },
   },
 };
