@@ -99,7 +99,7 @@ function SignupForm() {
         type="email"
         margin="normal"
         id="outlined-basic-emal"
-        label="Email"
+        label={t('Email')}
         variant="outlined"
         fullWidth
         error={!!errors.email}
@@ -115,7 +115,7 @@ function SignupForm() {
       <TextField
         type={showPassword ? 'text' : 'password'}
         id="outlined-basic-password"
-        label="Password"
+        label={t('Password')}
         variant="outlined"
         fullWidth
         margin="normal"
@@ -151,7 +151,7 @@ function SignupForm() {
       <TextField
         type={showPassword ? 'text' : 'password'}
         id="outlined-basic-password-confirmation"
-        label="Password Confirmation"
+        label={t('Password Confirmation')}
         variant="outlined"
         fullWidth
         margin="normal"

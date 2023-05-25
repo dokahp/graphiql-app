@@ -7,6 +7,9 @@ const resources = {
       'Sign Out': 'Sign Out',
       'Sign Up': 'Sign Up',
       'Sign In': 'Sign In',
+      Email: 'Email',
+      Password: 'Password',
+      'Password Confirmation': 'Password Confirmation',
       'You have successfully registered': 'You have successfully registered',
       'Already have an account?': 'Already have an account?',
       'User with such email already registered':
@@ -25,6 +28,9 @@ const resources = {
       'Sign Out': 'Выйти',
       'Sign Up': 'Регистрация',
       'Sign In': 'Авторизация',
+      Email: 'Электронная почта',
+      Password: 'Пароль',
+      'Password Confirmation': 'Подтверждение пароля',
       'You have successfully registered': 'Вы успешно зарегистрированы',
       'Already have an account?': 'У вас уже есть аккаунт?',
       'User with such email already registered':
