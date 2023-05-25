@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-import { styled } from '@mui/material/styles';
-import Switch from '@mui/material/Switch';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 export default function SwitchLang() {
@@ -18,6 +16,9 @@ export default function SwitchLang() {
   };
 
   const newSwitchLang = () => {
+    const langBeforeChange = i18n.language;
+    const langAfterChange = langBeforeChange === 'en' ? 'ru' : 'en';
+    localStorage.setItem('graphql_lang', langAfterChange);
     i18n.changeLanguage(i18n.language === 'en' ? 'ru' : 'en');
   };
 
