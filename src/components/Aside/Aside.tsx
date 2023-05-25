@@ -122,7 +122,22 @@ function Aside() {
                   }
                 >
                   {!isLoading && ans ? (
-                    <DocContainerAsync schemaRaw={ans} />
+                    <>
+                      <IconButton
+                        sx={{
+                          position: 'absolute',
+                          top: -7,
+                          right: 0,
+                          width: 'auto',
+                          borderRadius: '4px',
+                        }}
+                        onClick={handleDocVisability}
+                        size="large"
+                      >
+                        <CloseIcon />
+                      </IconButton>
+                      <DocContainerAsync schemaRaw={ans} />
+                    </>
                   ) : null}
                 </Suspense>
               )}
