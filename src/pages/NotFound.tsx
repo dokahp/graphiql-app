@@ -1,6 +1,7 @@
 import { Box, Button, Typography } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { NavLink } from 'react-router-dom';
 
 function NotFound() {
   const { t } = useTranslation();
@@ -22,9 +23,11 @@ function NotFound() {
         >
           {t('Page not found!')}
         </Typography>
-        <Button variant="contained" href="/" sx={{ m: 3 }}>
-          {t('Return to Home')}
-        </Button>
+        <NavLink to="/">
+          <Button variant="contained" sx={{ m: 3 }}>
+            {t('Return to Home')}
+          </Button>
+        </NavLink>
       </Box>
     </main>
   );
