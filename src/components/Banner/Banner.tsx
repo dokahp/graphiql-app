@@ -13,7 +13,11 @@ export default function SimpleContainer({ isAuthorized }: WelcomeProps) {
   const { t } = useTranslation();
   const [loopNum, setLoopNum] = useState<number>(0);
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
-  const toRotate = ['Students of RSS', 'Web Developers', 'Web Disigners'];
+  const toRotate = [
+    t('Students of RSS'),
+    t('Web Developers'),
+    t('Web Disigners'),
+  ];
   const [text, setText] = useState<string>('');
   const [delta, setDelta] = useState(300 - Math.random() * 100);
   const period = 2000;
@@ -63,7 +67,7 @@ export default function SimpleContainer({ isAuthorized }: WelcomeProps) {
               className="tagline"
               size="small"
             >
-              GraphQL playground
+              {t('GraphQL playground')}
             </Button>
           ) : (
             <>
@@ -76,15 +80,18 @@ export default function SimpleContainer({ isAuthorized }: WelcomeProps) {
             </>
           )}
           <h1>
-            {`Hello, we are\n`}
+            {t(`Hello, we are\n`)}
             <span className="wrap">{text}</span>
           </h1>
           <Typography textAlign="justify" variant="body1">
-            The project was developed as part of the best{' '}
+            {t('The project was developed as part of the best')}{' '}
             <span className="spanColor">React </span>
-            course offered by <span className="spanColor">RS School</span>. It
-            showcases the practical application of React concepts and skills
-            learned during the course.
+            {t('course offered by')}{' '}
+            <span className="spanColor">RS School</span>.{' '}
+            {t(
+              'It showcases the practical application of React concepts and skills'
+            )}{' '}
+            {t('learned during the course.')}
           </Typography>
         </div>
 

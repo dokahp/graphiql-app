@@ -53,6 +53,29 @@ const resources = {
       Docs: 'Docs',
       'A GraphQL schema provides a root type for each kind of operation.':
         'A GraphQL schema provides a root type for each kind of operation.',
+      'The project was developed as part of the best':
+        'The project was developed as part of the best',
+      'course offered by': 'course offered by',
+      'It showcases the practical application of React concepts and skills':
+        'It showcases the practical application of React concepts and skills',
+      'learned during the course.': 'learned during the course.',
+      'GraphQL playground': 'GraphQL playground',
+      'Vitaliy Dreko': 'Vitaliy Dreko',
+      'Halyna Stepanenko': 'Halyna Stepanenko',
+      'Evgeny Ermakov': 'Evgeny Ermakov',
+      'Task Description:': 'Task Description:',
+      'The task involved creating a playground for making GraphQL query requests to the countries API provided by github.com/trevorblades/countries. The application allows users to explore and retrieve country data using GraphQL queries. Authentication and registration functionalities were implemented using Firebase for secure access to the playground.':
+        'The task involved creating a playground for making GraphQL query requests to the countries API provided by github.com/trevorblades/countries. The application allows users to explore and retrieve country data using GraphQL queries. Authentication and registration functionalities were implemented using Firebase for secure access to the playground.',
+      'The application consists of authentication and registration pages, a welcome page, and a query editor page. Seamless navigation between pages, localization support, and the utilization of the latest React technologies and external libraries enhance usability and ensure a modern user experience.':
+        'The application consists of authentication and registration pages, a welcome page, and a query editor page. Seamless navigation between pages, localization support, and the utilization of the latest React technologies and external libraries enhance usability and ensure a modern user experience.',
+      'The development team prioritized delivering a high-quality application, focusing on user-friendliness, adherence to best practices, and meeting project requirements. Their work demonstrates their dedication and proficiency in React application development.':
+        'The development team prioritized delivering a high-quality application, focusing on user-friendliness, adherence to best practices, and meeting project requirements. Their work demonstrates their dedication and proficiency in React application development.',
+      'Sincerely,': 'Sincerely,',
+      'The Development Team': 'The Development Team',
+      'Hello, we are\n': 'Hello, we are\n',
+      'Students of RSS': 'Students of RSS',
+      'Web Developers': 'Web Developers',
+      'Web Disigners': 'Web Disigners',
     },
   },
   ru: {
@@ -106,6 +129,29 @@ const resources = {
       Docs: 'Документация',
       'A GraphQL schema provides a root type for each kind of operation.':
         'Схема GraphQL предоставляет корневой тип для каждого вида операций',
+      'The project was developed as part of the best':
+        'Проект был разработан в рамках лучшего',
+      'course offered by': 'курса предлагаемого',
+      'It showcases the practical application of React concepts and skills':
+        'Он демонстрирует практическое применение концепций и навыков React',
+      'learned during the course.': 'полученных в ходе курса.',
+      'GraphQL playground': 'GraphQL песочница',
+      'Vitaliy Dreko': 'Виталий Дреко',
+      'Halyna Stepanenko': 'Галина Степаненко',
+      'Evgeny Ermakov': 'Евгений Ермаков',
+      'Task Description:': 'Описание задания:',
+      'The task involved creating a playground for making GraphQL query requests to the countries API provided by github.com/trevorblades/countries. The application allows users to explore and retrieve country data using GraphQL queries. Authentication and registration functionalities were implemented using Firebase for secure access to the playground.':
+        'Задача заключалась в создании игровой площадки для выполнения запросов запросов GraphQL к API стран, предоставленному github.com/trevorblades/countries. Приложение позволяет пользователям исследовать и извлекать данные о стране с помощью запросов GraphQL. Функции аутентификации и регистрации были реализованы с использованием Firebase для безопасного доступа к песочнице',
+      'The application consists of authentication and registration pages, a welcome page, and a query editor page. Seamless navigation between pages, localization support, and the utilization of the latest React technologies and external libraries enhance usability and ensure a modern user experience.':
+        'Приложение состоит из страниц аутентификации и регистрации, страницы приветствия и страницы редактора запросов. Бесшовная навигация между страницами, поддержка локализации и использование новейших технологий React и внешних библиотек повышают удобство использования и обеспечивают современный пользовательский опыт',
+      'The development team prioritized delivering a high-quality application, focusing on user-friendliness, adherence to best practices, and meeting project requirements. Their work demonstrates their dedication and proficiency in React application development.':
+        'Команда разработчиков уделяла первостепенное внимание созданию высококачественного приложения, уделяя особое внимание удобству использования, следованию передовым методам и требованиям проекта. Их работа демонстрирует их самоотверженность и мастерство в разработке приложений React',
+      'Sincerely,': 'С уважением,',
+      'The Development Team': 'Команда разработки',
+      'Hello, we are\n': 'Привет, мы\n',
+      'Students of RSS': 'Студенты RSS',
+      'Web Developers': 'Веб Разработчики',
+      'Web Disigners': 'Веб Дизайнеры',
     },
   },
 };
