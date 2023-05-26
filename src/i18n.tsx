@@ -50,6 +50,9 @@ const resources = {
       'Copy query': 'Copy query',
       Variables: 'Variables',
       'Show/Hide Variable Editor': 'Show/Hide Variable Editor',
+      Docs: 'Docs',
+      'A GraphQL schema provides a root type for each kind of operation.':
+        'A GraphQL schema provides a root type for each kind of operation.',
     },
   },
   ru: {
@@ -100,6 +103,9 @@ const resources = {
       'Copy query': 'Копировать запрос',
       Variables: 'Переменные',
       'Show/Hide Variable Editor': 'Показать/скрыть редактор переменных',
+      Docs: 'Документация',
+      'A GraphQL schema provides a root type for each kind of operation.':
+        'Схема GraphQL предоставляет корневой тип для каждого вида операций',
     },
   },
 };

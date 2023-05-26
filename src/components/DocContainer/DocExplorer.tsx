@@ -9,6 +9,7 @@ import {
   GraphQLInputObjectType,
   GraphQLInputFieldMap,
 } from 'graphql';
+import { useTranslation } from 'react-i18next';
 import { Typography } from '@mui/material';
 import { Maybe } from 'graphql/jsutils/Maybe';
 import IDocCompoment from './DocComponent.type';
@@ -32,11 +33,13 @@ export function createSchema(data: IntrospectionQuery): GraphQLSchema {
 
 function DocExplorer({ schemaJSON }: DocComponentProps) {
   const schema = createSchema(schemaJSON);
+  const { t } = useTranslation();
   const rootComponent: IDocCompoment = {
-    nameComponent: 'Docs',
+    nameComponent: t('Docs'),
     fieldsType: schema.getQueryType(),
-    description:
-      'A GraphQL schema provides a root type for each kind of operation.',
+    description: t(
+      'A GraphQL schema provides a root type for each kind of operation.'
+    ),
     type: 'root',
   };
 
@@ -68,12 +71,12 @@ function DocExplorer({ schemaJSON }: DocComponentProps) {
         if (schema.getType(replacedName) instanceof GraphQLScalarType) {
           desc = schema.getType(replacedName)?.description || '';
         } else {
-          const t = schema.getType(replacedName);
+          const schemaType = schema.getType(replacedName);
           if (
-            t instanceof GraphQLObjectType ||
-            t instanceof GraphQLInputObjectType
+            schemaType instanceof GraphQLObjectType ||
+            schemaType instanceof GraphQLInputObjectType
           ) {
-            convertFields = convertToArray(t.getFields());
+            convertFields = convertToArray(schemaType.getFields());
           } else {
             convertFields = [];
           }
