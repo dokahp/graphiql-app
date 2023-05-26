@@ -21,6 +21,7 @@ import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import CleaningServicesRoundedIcon from '@mui/icons-material/CleaningServicesRounded';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import dataAPI from '../../store/services/APIserviceSchema';
 import { createSchema } from '../DocContainer/DocExplorer';
 import ExpandIcon from '../ExpandIcon/ExpandIcon';
@@ -41,7 +42,7 @@ function Request({
   variableValue,
 }: RequestProps) {
   const { data: ans, isLoading } = dataAPI.useFetchAllDataQuery();
-
+  const { t } = useTranslation();
   const handleEditorValueChanged = (value: string) => {
     editorCB(value);
   };
@@ -52,7 +53,7 @@ function Request({
 
   const handleCopyQuery = () => {
     navigator.clipboard.writeText(editorValue);
-    toast.success('Request successfully copied to clipboard', {
+    toast.success(t('Request successfully copied to clipboard'), {
       position: 'bottom-right',
       autoClose: 3000,
       hideProgressBar: false,
@@ -67,7 +68,7 @@ function Request({
   const handlePrettifyQuery = () => {
     const codeFormatted = format(editorValue);
     editorCB(codeFormatted);
-    toast.success('Query successfully prettified', {
+    toast.success(t('Query successfully prettified'), {
       position: 'bottom-right',
       autoClose: 3000,
       hideProgressBar: false,
@@ -150,7 +151,7 @@ function Request({
           flexDirection="column"
           sx={{ marginLeft: { xs: '4px', md: '16px' } }}
         >
-          <Tooltip title="Execute query">
+          <Tooltip title={t('Execute query')}>
             <Button
               variant="contained"
               color="success"
@@ -166,7 +167,7 @@ function Request({
               <PlayArrowRoundedIcon />
             </Button>
           </Tooltip>
-          <Tooltip title="Prettify query">
+          <Tooltip title={t('Prettify query')}>
             <IconButton
               onClick={handlePrettifyQuery}
               sx={{ marginTop: '30px' }}
@@ -174,7 +175,7 @@ function Request({
               <CleaningServicesRoundedIcon />
             </IconButton>
           </Tooltip>
-          <Tooltip title="Copy query">
+          <Tooltip title={t('Copy query')}>
             <IconButton onClick={handleCopyQuery} sx={{ marginTop: '30px' }}>
               <ContentCopyRoundedIcon />
             </IconButton>
@@ -196,7 +197,7 @@ function Request({
           id="panel1a-header"
           sx={{ marginTop: '4px' }}
         >
-          <Typography variant="body1">Variables</Typography>
+          <Typography variant="body1">{t('Variables')}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <CodeMirror

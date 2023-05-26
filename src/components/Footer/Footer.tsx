@@ -3,6 +3,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import Link from '@mui/material/Link';
 import { Stack, Typography } from '@mui/material';
 import './footer.css';
+import { useTranslation } from 'react-i18next';
 
 const linkStyles = {
   display: 'flex',
@@ -16,6 +17,7 @@ const linkStyles = {
 };
 
 export default function Footer() {
+  const { t } = useTranslation();
   return (
     <footer className="footer">
       <Link
@@ -41,7 +43,7 @@ export default function Footer() {
           rel="noopener"
         >
           <GitHubIcon sx={{ margin: '5px' }} />
-          <Typography sx={{ marginTop: '3px' }}>Vitaliy</Typography>
+          <Typography sx={{ marginTop: '3px' }}>{t('Vitaliy')}</Typography>
         </Link>
         <Link
           sx={linkStyles}
@@ -50,7 +52,7 @@ export default function Footer() {
           rel="noopener"
         >
           <GitHubIcon sx={{ margin: '5px' }} />
-          <Typography sx={{ marginTop: '3px' }}>Halyna</Typography>
+          <Typography sx={{ marginTop: '3px' }}>{t('Halyna')}</Typography>
         </Link>
         <Link
           sx={linkStyles}
@@ -59,7 +61,7 @@ export default function Footer() {
           rel="noopener"
         >
           <GitHubIcon sx={{ margin: '5px' }} />
-          <Typography sx={{ marginTop: '3px' }}>Eugene</Typography>
+          <Typography sx={{ marginTop: '3px' }}>{t('Eugene')}</Typography>
         </Link>
       </Stack>
 

@@ -14,6 +14,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import graphql_logo from '../../assets/GraphQL_Logo.png';
 import './loginForm.css';
 
@@ -28,6 +29,7 @@ function LoginForm() {
   const { errors } = formState;
   const [showPassword, setShowPassword] = useState(false);
   const [authError, setAuthError] = useState(false);
+  const { t } = useTranslation();
 
   const handleClickShowPassword = () => {
     setShowPassword((prev: boolean) => !prev);
@@ -47,7 +49,7 @@ function LoginForm() {
         if (user) {
           setAuthError(() => false);
           reset();
-          toast.success('You have successfully logged in', {
+          toast.success(t('You have successfully logged in'), {
             position: 'bottom-center',
             autoClose: 3000,
             hideProgressBar: false,
@@ -77,7 +79,7 @@ function LoginForm() {
         sx={{ mb: { xs: 2, sm: 3 } }}
       >
         <Typography variant="h5" marginRight="30px">
-          Login
+          {t('Sign In')}
         </Typography>
 
         <Typography
@@ -86,38 +88,40 @@ function LoginForm() {
           variant="body1"
           color="#2196f3"
         >
-          Don&apos;t have an account?
+          {t(`Don't have an account?`)}
         </Typography>
       </Stack>
-      {authError && <Alert severity="error">Email or password incorrect</Alert>}
+      {authError && (
+        <Alert severity="error">{t('Email or password incorrect')}</Alert>
+      )}
       <TextField
         type="email"
         margin="normal"
         id="outlined-basic-emal"
-        label="Email"
+        label={t('Email')}
         variant="outlined"
         fullWidth
         error={!!errors.email}
         helperText={errors.email?.message}
         {...register('email', {
-          required: 'Email is required',
+          required: t('Email is required') || 'Email is required',
           pattern: {
             value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-            message: 'Email not valid',
+            message: t('Email not valid') || 'Email not valid',
           },
         })}
       />
       <TextField
         type={showPassword ? 'text' : 'password'}
         id="outlined-basic-password"
-        label="Password"
+        label={t('Password')}
         variant="outlined"
         fullWidth
         margin="normal"
         error={!!errors.password}
         helperText={errors.password?.message}
         {...register('password', {
-          required: 'Password is required',
+          required: t('Password is required') || 'Password is required',
         })}
         InputProps={{
           endAdornment: (
@@ -142,7 +146,7 @@ function LoginForm() {
         type="submit"
         color="primary"
       >
-        Login
+        {t('Login')}
       </Button>
     </form>
   );

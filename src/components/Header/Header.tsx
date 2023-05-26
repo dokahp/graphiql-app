@@ -12,6 +12,7 @@ import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { useTranslation } from 'react-i18next';
 import graphql_logo from '../../assets/GraphQL_Logo.png';
 import SwitchLang from '../SwitchLang/SwitchLang';
 import theme from '../../theme';
@@ -25,7 +26,7 @@ interface HeaderProps {
 export default function Header({ isAuthorized }: HeaderProps) {
   const color = theme.palette;
   const { email } = useAppSelector((state) => state.authSlice);
-
+  const { t } = useTranslation();
   const [position, setPosition] = useState<'static' | undefined | 'sticky'>(
     'static'
   );
@@ -51,7 +52,7 @@ export default function Header({ isAuthorized }: HeaderProps) {
     const auth = getAuth();
     signOut(auth)
       .then(() => {
-        toast.success('You have successfully logout', {
+        toast.success(t('You have successfully logout'), {
           position: 'bottom-center',
           autoClose: 3000,
           hideProgressBar: false,
@@ -64,7 +65,7 @@ export default function Header({ isAuthorized }: HeaderProps) {
       })
       .catch((error) => {
         if (error) {
-          toast.error('Something wen wrong', {
+          toast.error(t('Something went wrong'), {
             position: 'bottom-center',
             autoClose: 3000,
             hideProgressBar: false,
@@ -118,7 +119,7 @@ export default function Header({ isAuthorized }: HeaderProps) {
           >
             {isAuthorized && (
               <>
-                <Tooltip title="Open settings">
+                <Tooltip title={t('Open settings')}>
                   <IconButton
                     onClick={handleOpenUserMenu}
                     sx={{ p: 0, '&:hover': { backgroundColor: 'inherit' } }}
@@ -150,7 +151,7 @@ export default function Header({ isAuthorized }: HeaderProps) {
                     onClick={handleSignOut}
                     sx={{ justifyContent: 'flex-end' }}
                   >
-                    <Typography>Log out</Typography>
+                    <Typography>{t('Log Out')}</Typography>
                   </MenuItem>
                 </Menu>
               </>

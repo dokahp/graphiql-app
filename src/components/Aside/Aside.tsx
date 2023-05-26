@@ -14,6 +14,7 @@ import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined';
 import KeyboardCommandKeyOutlinedIcon from '@mui/icons-material/KeyboardCommandKeyOutlined';
 import CloseIcon from '@mui/icons-material/Close';
+import { useTranslation } from 'react-i18next';
 import useScrollPosition, {
   calculateDrawerPostion,
 } from '../../hooks/useScrollPosition';
@@ -38,6 +39,7 @@ function Aside() {
   const screenWidth = window.screen.width;
   const drawerPosition = calculateDrawerPostion(screenWidth, offset);
   const { data: ans, error, isLoading } = schemaAPI.useFetchAllDataQuery();
+  const { t } = useTranslation();
 
   const handleDocVisability = () => {
     setHistoryDrawer(() => false);
@@ -64,8 +66,8 @@ function Aside() {
           <Tooltip
             title={
               docDrawer
-                ? 'Hide Documentation Explorer'
-                : 'Show Documentation Explorer'
+                ? t('Hide Documentation Explorer')
+                : t('Show Documentation Explorer')
             }
           >
             <IconButton onClick={handleDocVisability} sx={asideBtnStyles}>
@@ -73,14 +75,16 @@ function Aside() {
               {!docDrawer && <LocalLibraryOutlinedIcon />}
             </IconButton>
           </Tooltip>
-          <Tooltip title={historyDrawer ? 'Hide History' : 'Show History'}>
+          <Tooltip
+            title={historyDrawer ? t('Hide History') : t('Show History')}
+          >
             <IconButton onClick={handleHistoryVisability} sx={asideBtnStyles}>
               <RestoreOutlinedIcon />
             </IconButton>
           </Tooltip>
         </div>
         <div className="bottom-block">
-          <Tooltip title="Open Short Keys Dialog">
+          <Tooltip title={t('Open Short Keys Dialog')}>
             <IconButton onClick={handleHotkeysModalOpen} sx={asideBtnStyles}>
               <KeyboardCommandKeyOutlinedIcon />
             </IconButton>
@@ -109,14 +113,14 @@ function Aside() {
           >
             <Container className="docContainer" maxWidth="sm">
               {error ? (
-                <>there was an error</>
+                <>{t('there was an error')}</>
               ) : (
                 <Suspense
                   fallback={
                     <div>
                       <LinearProgress />
                       <Typography variant="subtitle1" fontSize="14px">
-                        Lazy loading Documentation...
+                        {t('Lazy loading Documentation...')}
                       </Typography>
                     </div>
                   }
@@ -172,7 +176,7 @@ function Aside() {
               justifyContent="space-between"
               alignItems="center"
             >
-              <Typography variant="h5">History</Typography>
+              <Typography variant="h5">{t('History')}</Typography>
               <IconButton
                 sx={{ borderRadius: '4px' }}
                 onClick={handleHistoryVisability}
