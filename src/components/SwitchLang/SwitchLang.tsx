@@ -2,6 +2,8 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
 import { useTranslation } from 'react-i18next';
+import RuLangIcon from '../LangSwitchIcons/RuLangIcon';
+import EnLangIcon from '../LangSwitchIcons/EnLangIcon';
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -14,9 +16,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     '&.Mui-checked': {
       color: '#fff',
       transform: 'translateX(22px)',
-      '& .MuiSwitch-thumb:before': {
-        content: '"EN"',
-      },
+      '& .MuiSwitch-thumb:before': {},
       '& + .MuiSwitch-track': {
         opacity: 1,
         backgroundColor:
@@ -27,12 +27,9 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     },
   },
   '& .MuiSwitch-thumb': {
-    backgroundColor:
-      theme.palette.mode === 'dark' ? '#003892' : theme.palette.primary.dark,
     width: 32,
     height: 32,
     '&:before': {
-      content: '"RU"',
       position: 'absolute',
       right: '50%',
       top: '-10%',
@@ -60,6 +57,8 @@ export default function SwitchLang() {
 
   return (
     <MaterialUISwitch
+      icon={<RuLangIcon />}
+      checkedIcon={<EnLangIcon />}
       sx={{ m: 1, alignSelf: 'center' }}
       checked={lang === 'en'}
       onClick={newSwitchLang}
