@@ -44,7 +44,6 @@ function SignupForm() {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
         const { user } = userCredential;
         if (user) {
           setRegisterError(() => true);
