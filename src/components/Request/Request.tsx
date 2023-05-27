@@ -103,12 +103,14 @@ function Request({
     >
       <Stack
         display="flex"
-        flexDirection="row"
         width="100%"
         position="relative"
         overflow="scroll"
         maxHeight="70%"
-        sx={{ padding: { xs: '4px 4px 0 4px', md: '16px 16px 0 16px' } }}
+        sx={{
+          padding: { xs: '4px 4px 0 4px', md: '16px 16px 0 16px' },
+          flexDirection: { xs: 'column-reverse', sm: 'row' },
+        }}
       >
         {isLoading && (
           <Box
@@ -148,8 +150,11 @@ function Request({
         <Box
           width="40px"
           display="flex"
-          flexDirection="column"
-          sx={{ marginLeft: { xs: '4px', md: '16px' } }}
+          sx={{
+            marginLeft: { xs: '4px', md: '16px' },
+            flexDirection: { xs: 'row', sm: 'column' },
+            padding: { xs: '10px', sm: 0 },
+          }}
         >
           <Tooltip title={t('Execute query')}>
             <Button
@@ -162,6 +167,7 @@ function Request({
                 height: '40px',
                 boxSizing: 'border-box',
                 padding: '0px',
+                marginRight: { xs: '20px', sm: 0 },
               }}
             >
               <PlayArrowRoundedIcon />
@@ -170,13 +176,22 @@ function Request({
           <Tooltip title={t('Prettify query')}>
             <IconButton
               onClick={handlePrettifyQuery}
-              sx={{ marginTop: '30px' }}
+              sx={{
+                marginTop: { xs: 0, sm: '30px' },
+                marginRight: { xs: '20px', sm: 0 },
+              }}
             >
               <CleaningServicesRoundedIcon />
             </IconButton>
           </Tooltip>
           <Tooltip title={t('Copy query')}>
-            <IconButton onClick={handleCopyQuery} sx={{ marginTop: '30px' }}>
+            <IconButton
+              onClick={handleCopyQuery}
+              sx={{
+                marginTop: { xs: 0, sm: '30px' },
+                marginRight: { xs: '20px', sm: 0 },
+              }}
+            >
               <ContentCopyRoundedIcon />
             </IconButton>
           </Tooltip>

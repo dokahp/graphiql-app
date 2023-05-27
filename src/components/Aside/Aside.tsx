@@ -107,7 +107,7 @@ function Aside() {
         >
           <Box
             paddingTop="20px"
-            width="300px"
+            width="320px"
             position="relative"
             sx={{ marginLeft: { xs: '10px', md: '61px' } }}
           >
@@ -131,7 +131,7 @@ function Aside() {
                         sx={{
                           position: 'absolute',
                           top: -7,
-                          right: 0,
+                          right: '20px',
                           width: 'auto',
                           borderRadius: '4px',
                         }}
@@ -165,7 +165,7 @@ function Aside() {
         >
           <Box
             paddingTop="20px"
-            width="300px"
+            width="320px"
             position="relative"
             paddingX="24px"
             sx={{ marginLeft: { xs: '10px', md: '61px' } }}

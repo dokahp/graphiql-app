@@ -9,6 +9,7 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import React from 'react';
 import './hotkeysModal.css';
+import { useTranslation } from 'react-i18next';
 
 interface HotkeysModalProps {
   hotkeysModalOpen: boolean;
@@ -19,6 +20,7 @@ function HotkeysModal({
   hotkeysModalOpen,
   handleHotkeysModalClose,
 }: HotkeysModalProps) {
+  const { t } = useTranslation();
   return (
     <Modal
       open={hotkeysModalOpen}
@@ -60,7 +62,7 @@ function HotkeysModal({
               fontWeight: '500',
             }}
           >
-            Short Keys
+            {t('Short Keys')}
           </Typography>
           <IconButton
             sx={{ borderRadius: '4px' }}
@@ -75,8 +77,8 @@ function HotkeysModal({
           <table className="hotkeys-table">
             <thead>
               <tr>
-                <th>Short Key</th>
-                <th>Function</th>
+                <th>{t('Short Key')}</th>
+                <th>{t('Function')}</th>
               </tr>
             </thead>
             <tbody>
@@ -86,7 +88,7 @@ function HotkeysModal({
                   <span className="key">ALT</span> +{' '}
                   <span className="key">ENTER</span>
                 </td>
-                <td>Execute Query</td>
+                <td>{t('Execute Query')}</td>
               </tr>
               <tr>
                 <td>
@@ -94,7 +96,7 @@ function HotkeysModal({
                   <span className="key">ALT</span> +{' '}
                   <span className="key">P</span>
                 </td>
-                <td>Prettify Request Editor</td>
+                <td>{t('Prettify Request Editor')}</td>
               </tr>
               <tr>
                 <td>
@@ -102,7 +104,7 @@ function HotkeysModal({
                   <span className="key">ALT</span> +{' '}
                   <span className="key">C</span>
                 </td>
-                <td>Copy Query</td>
+                <td>{t('Copy Query')}</td>
               </tr>
             </tbody>
           </table>
