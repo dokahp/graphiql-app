@@ -62,11 +62,7 @@ function DevelopersInfo() {
 
   return (
     <>
-      <Grid
-        container
-        spacing={2}
-        sx={{ paddingTop: '35%', paddingBottom: '10%' }}
-      >
+      <Grid container spacing={2} sx={{ marginTop: '35%', marginBottom: '5%' }}>
         {developers.map((developer, index) => (
           <Grid item xs={12} sm={4} key={index}>
             <Box
@@ -100,7 +96,7 @@ function DevelopersInfo() {
           </Grid>
         ))}
       </Grid>
-      <Box mt={4} sx={{ paddingBottom: '20%', width: '70%', margin: '0 auto' }}>
+      <Box mt={4} sx={{ paddingBottom: '15%', width: '70%', margin: '0 auto' }}>
         <Typography sx={{ color: 'rgb(242, 59, 128)' }} variant="h5">
           {projectInfo.name}
         </Typography>

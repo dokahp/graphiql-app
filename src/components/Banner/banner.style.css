@@ -25,17 +25,18 @@
   flex-direction: row;
   flex-wrap: wrap;
   margin-top: 0;
-  padding-top: 25%;
+  padding-top: 32%;
   width: 100%;
 }
 
 .banner-info {
-  max-width: 50%;
+  max-width: 60%;
   padding-left: 80px;
 }
 
 .banner-img {
-  width: 50%;
+  max-width: 40%;
+  margin: 0 auto;
 }
 
 .wrap {
@@ -63,30 +64,23 @@
 }
 
 .banner h1 {
-  font-size: 65px;
+  font-size: 60px;
   font-weight: 700;
   letter-spacing: 0.8px;
   line-height: 1;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 10%;
+  margin-bottom: 10%;
   display: block;
   min-height: 50px;
   font-family: Roboto;
-  /* min-width: 300px; */
 }
 
 .earth {
   display: block;
   width: 100%;
-  margin: 0 auto;
 }
 
 .banner p {
-  /* background: linear-gradient(
-    90.21deg,
-    rgba(170, 54, 124, 0.5) -5.91%,
-    rgba(74, 47, 189, 0.5) 111.58%
-  ); */
   font-weight: 700;
   font-size: 18px;
   letter-spacing: 0.8px;
@@ -95,7 +89,7 @@
   color: rgba(0, 0, 0, 0.6);
 }
 
-@media (max-width: 1020px) {
+@media (max-width: 1180px) {
   .banner {
     padding: 0;
     flex-direction: column-reverse;
@@ -103,7 +97,7 @@
   }
 
   .banner-img {
-    margin-top: 15%;
+    padding-top: 10%;
     width: 100%;
   }
 
@@ -115,7 +109,7 @@
 
   .banner .tagline {
     display: flex;
-    margin-bottom: 30px;
+    margin-bottom: 10%;
     width: 50%;
   }
   .banner h1 {

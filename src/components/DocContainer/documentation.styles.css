@@ -28,3 +28,7 @@
 .cursor {
   cursor: pointer;
 }
+
+.cursor:hover {
+  text-decoration: underline;
+}

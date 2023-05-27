@@ -57,13 +57,15 @@ function TypeComponent({ name, description, fields, cb }: TypeCompProps) {
                   role="presentation"
                   onClick={() => cb('type', field[1].args[0].type)}
                 >
-                  (<span className="argName">{field[1].args[0].name}</span>:{' '}
+                  (<span className="argName">{field[1].args[0].name}</span>:
                   <span className="fieldType cursor">
                     {field[1].args[0].type}
                   </span>
-                  )
+                  ):
                 </span>
-              ) : null}
+              ) : (
+                ': '
+              )}
               <span
                 role="presentation"
                 className="fieldType cursor"
@@ -71,7 +73,7 @@ function TypeComponent({ name, description, fields, cb }: TypeCompProps) {
                   cb('type', field[1].type);
                 }}
               >
-                : {field[1].type}
+                {field[1].type}
               </span>
             </div>
           );
