@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Container, Typography } from '@mui/material/';
+import { NavLink } from 'react-router-dom';
 import gif from '../../assets/earth.gif';
 import './banner.style.css';
 import DevelopersInfo from '../DevelopersInfo/DevelopersInfo';
@@ -60,23 +61,28 @@ export default function SimpleContainer({ isAuthorized }: WelcomeProps) {
       <div className="banner">
         <div className="banner-info">
           {isAuthorized ? (
-            <Button
-              color="secondary"
-              variant="outlined"
-              href="/graphql"
-              className="tagline"
-              size="small"
-            >
-              {t('GraphQL playground')}
-            </Button>
+            <NavLink to="/graphql">
+              <Button
+                color="secondary"
+                variant="outlined"
+                className="tagline"
+                size="small"
+              >
+                {t('GraphQL playground')}
+              </Button>
+            </NavLink>
           ) : (
             <>
-              <Button sx={{ m: 2 }} variant="contained" href="/signup">
-                {t('Sign Up')}
-              </Button>
-              <Button sx={{ m: 2 }} variant="contained" href="signin">
-                {t('Sign In')}
-              </Button>{' '}
+              <NavLink to="/signup">
+                <Button sx={{ m: 2 }} variant="contained">
+                  {t('Sign Up')}
+                </Button>
+              </NavLink>
+              <NavLink to="/signin">
+                <Button sx={{ m: 2 }} variant="contained">
+                  {t('Sign In')}
+                </Button>{' '}
+              </NavLink>
             </>
           )}
           <h1>

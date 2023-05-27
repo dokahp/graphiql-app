@@ -9,7 +9,6 @@ import ava4 from '../../assets/13405257.jpeg';
 import ava5 from '../../assets/105945642.jpeg';
 import ava6 from '../../assets/1234.jpeg';
 
-
 function DevelopersInfo() {
   const { t } = useTranslation();
   const developers = [

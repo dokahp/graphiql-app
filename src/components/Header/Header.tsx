@@ -2,21 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { getAuth, signOut } from 'firebase/auth';
 import { Link } from 'react-router-dom';
-import Avatar from '@mui/material/Avatar';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
 import { useTranslation } from 'react-i18next';
+import AvatarWrapper from '../AvatarWrapper/AvatarWrapper';
 import graphql_logo from '../../assets/GraphQL_Logo.png';
 import SwitchLang from '../SwitchLang/SwitchLang';
 import theme from '../../theme';
-import { useAppSelector } from '../../hooks/redux';
 import './header.css';
 
 interface HeaderProps {
@@ -25,13 +19,9 @@ interface HeaderProps {
 
 export default function Header({ isAuthorized }: HeaderProps) {
   const color = theme.palette;
-  const { email } = useAppSelector((state) => state.authSlice);
   const { t } = useTranslation();
   const [position, setPosition] = useState<'static' | undefined | 'sticky'>(
     'static'
-  );
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
   );
 
   useEffect(() => {
@@ -43,10 +33,6 @@ export default function Header({ isAuthorized }: HeaderProps) {
       window.removeEventListener('scroll', getPosition);
     };
   }, []);
-
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
 
   const handleSignOut = () => {
     const auth = getAuth();
@@ -77,10 +63,6 @@ export default function Header({ isAuthorized }: HeaderProps) {
           });
         }
       });
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   return (
@@ -117,46 +99,7 @@ export default function Header({ isAuthorized }: HeaderProps) {
               display: 'flex',
             }}
           >
-            {isAuthorized && (
-              <>
-                <Tooltip title={t('Open settings')}>
-                  <IconButton
-                    onClick={handleOpenUserMenu}
-                    sx={{ p: 0, '&:hover': { backgroundColor: 'inherit' } }}
-                  >
-                    <Avatar />
-                  </IconButton>
-                </Tooltip>
-                <Menu
-                  sx={{ mt: '45px', zIndex: 1450 }}
-                  id="menu-appbar"
-                  anchorEl={anchorElUser}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  open={Boolean(anchorElUser)}
-                  onClose={handleCloseUserMenu}
-                >
-                  <MenuItem disabled key="email">
-                    <Typography>{email}</Typography>
-                  </MenuItem>
-                  <MenuItem
-                    key="logout"
-                    onClick={handleSignOut}
-                    sx={{ justifyContent: 'flex-end' }}
-                  >
-                    <Typography>{t('Log Out')}</Typography>
-                  </MenuItem>
-                </Menu>
-              </>
-            )}
-
+            {isAuthorized && <AvatarWrapper handleSignOut={handleSignOut} />}
             <SwitchLang />
           </Box>
         </Toolbar>
