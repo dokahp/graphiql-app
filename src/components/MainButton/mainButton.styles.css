@@ -1,0 +1,79 @@
+.banner-info-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainButton {
+  position: relative;
+  text-align: center;
+  font-family: 'Roboto';
+  background: black;
+  color: black;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  padding: 10px 30px;
+  transition: 0.5s;
+}
+
+.mainButton:hover {
+  letter-spacing: 0.25em;
+  background: rgb(242, 59, 128);
+  color: rgb(242, 59, 128);
+  box-shadow: 0 0 35px rgb(242, 59, 128);
+}
+
+.mainButton::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  background: rgb(245, 247, 248);
+}
+
+.mainButton span {
+  position: relative;
+  z-index: 1;
+}
+
+.mainButton i {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.mainButton i::before {
+  content: '';
+  position: absolute;
+  top: -22%;
+  left: 100%;
+  width: 15px;
+  height: 4px;
+  background: rgb(245, 247, 248);
+  transform: translateX(-50%) skewX(325deg);
+  transition: 0.5s;
+}
+
+.mainButton:hover i::before {
+  width: 20px;
+  left: 10%;
+}
+
+.mainButton i::after {
+  content: '';
+  position: absolute;
+  bottom: -25%;
+  right: 95%;
+  width: 15px;
+  height: 4px;
+  background: rgb(245, 247, 248);
+  transform: translateX(-50%) skewX(325deg);
+  transition: 0.5s;
+}
+
+.mainButton:hover i::after {
+  width: 20px;
+  right: 5%;
+}

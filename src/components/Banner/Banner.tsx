@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import gif from '../../assets/-earth.gif';
 import './banner.style.css';
 import DevelopersInfo from '../DevelopersInfo/DevelopersInfo';
+import MainButton from '../MainButton/MainButton';
 
 interface WelcomeProps {
   isAuthorized: boolean | undefined;
@@ -62,14 +63,9 @@ export default function SimpleContainer({ isAuthorized }: WelcomeProps) {
         <div className="banner-info">
           {isAuthorized ? (
             <NavLink to="/graphql">
-              <Button
-                color="secondary"
-                variant="outlined"
-                className="tagline"
-                size="small"
-              >
-                {t('GraphQL playground')}
-              </Button>
+              <Typography>
+                <MainButton />
+              </Typography>
             </NavLink>
           ) : (
             <>
