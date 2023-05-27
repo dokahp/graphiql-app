@@ -121,7 +121,7 @@ function DocExplorer({ schemaJSON }: DocComponentProps) {
           <div
             role="presentation"
             onClick={() => undo(history[history.length - 1])}
-            className="docHistory"
+            className="docHistory cursor"
           >
             {history.length > 1 &&
               `< ${history[history.length - 1].nameComponent}`}

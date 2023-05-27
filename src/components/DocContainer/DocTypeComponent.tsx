@@ -35,7 +35,7 @@ function TypeComponent({ name, description, fields, cb }: TypeCompProps) {
             <div key={index}>
               <span
                 role="presentation"
-                className="fieldName"
+                className="fieldName cursor"
                 onClick={() => {
                   let nameArg = '';
                   let typeArg = '';
@@ -58,12 +58,15 @@ function TypeComponent({ name, description, fields, cb }: TypeCompProps) {
                   onClick={() => cb('type', field[1].args[0].type)}
                 >
                   (<span className="argName">{field[1].args[0].name}</span>:{' '}
-                  <span className="fieldType">{field[1].args[0].type}</span>)
+                  <span className="fieldType cursor">
+                    {field[1].args[0].type}
+                  </span>
+                  )
                 </span>
               ) : null}
               <span
                 role="presentation"
-                className="fieldType"
+                className="fieldType cursor"
                 onClick={() => {
                   cb('type', field[1].type);
                 }}
