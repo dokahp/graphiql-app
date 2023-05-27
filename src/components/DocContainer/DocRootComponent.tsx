@@ -26,8 +26,8 @@ function RootComponent({ name, description, fieldsType, cb }: RootCompProps) {
         role="presentation"
         onClick={() => cb('type', fieldsType?.name ? fieldsType?.name : '')}
       >
-        <span className="fieldName">query:</span>{' '}
-        <span className="fieldType">{fieldsType?.name}</span>
+        <span className="fieldName cursor">query:</span>{' '}
+        <span className="fieldType cursor">{fieldsType?.name}</span>
       </div>
     </div>
   );

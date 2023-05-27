@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Container, Typography } from '@mui/material/';
 import { NavLink } from 'react-router-dom';
-import gif from '../../assets/earth.gif';
+import gif from '../../assets/-earth.gif';
 import './banner.style.css';
 import DevelopersInfo from '../DevelopersInfo/DevelopersInfo';
 

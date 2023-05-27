@@ -27,7 +27,7 @@ function NameComponent({ name, typeComponent, arg, cb }: NameCompProps) {
       </div>
 
       <div
-        className="fieldType"
+        className="fieldType cursor"
         role="presentation"
         onClick={() => cb('type', typeComponent || '')}
       >
@@ -45,7 +45,7 @@ function NameComponent({ name, typeComponent, arg, cb }: NameCompProps) {
             {arg?.nameArg}:
             <span
               role="presentation"
-              className="fieldType"
+              className="fieldType cursor"
               onClick={() => cb('type', arg?.typeArg)}
             >
               {arg?.typeArg}

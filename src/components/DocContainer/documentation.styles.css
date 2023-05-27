@@ -24,3 +24,11 @@
 .argName {
   color: rgb(44, 167, 85);
 }
+
+.cursor {
+  cursor: pointer;
+}
+
+.cursor:hover {
+  text-decoration: underline;
+}
