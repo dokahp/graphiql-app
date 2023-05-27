@@ -4,6 +4,7 @@ import Link from '@mui/material/Link';
 import { Stack, Typography } from '@mui/material';
 import './footer.css';
 import { useTranslation } from 'react-i18next';
+import rsslogo from '../../assets/rss-logo.svg';
 
 const linkStyles = {
   display: 'flex',
@@ -26,7 +27,7 @@ export default function Footer() {
         target="a_blank"
         href="https://rs.school/react/"
       >
-        <img src="../../src/assets/rss-logo.svg" width={80} alt="school logo" />
+        <img src={rsslogo} width={80} alt="school logo" />
       </Link>
       <Stack
         sx={{
