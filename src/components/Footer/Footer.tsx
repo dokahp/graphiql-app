@@ -26,7 +26,7 @@ export default function Footer() {
         target="a_blank"
         href="https://rs.school/react/"
       >
-        <img src="..\src\assets\rss-logo.svg" width={80} alt="school logo" />
+        <img src="../src/assets/rss-logo.svg" width={80} alt="school logo" />
       </Link>
       <Stack
         sx={{
