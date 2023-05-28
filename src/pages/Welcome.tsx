@@ -1,4 +1,4 @@
-import { Box, CircularProgress } from '@mui/material';
+import { Box } from '@mui/material';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
@@ -21,11 +21,7 @@ function Welcome({ isAuthorized }: WelcomeProps) {
         minHeight="100vh"
         sx={{ background: 'rgb(245, 247, 248)' }}
       >
-        {isLoading ? (
-          <CircularProgress />
-        ) : (
-          <Banner isAuthorized={isAuthorized} />
-        )}
+        {!isLoading && <Banner isAuthorized={isAuthorized} />}
       </Box>
     </main>
   );

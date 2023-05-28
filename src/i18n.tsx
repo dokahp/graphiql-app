@@ -64,8 +64,10 @@ const resources = {
       'Halyna Stepanenko': 'Halyna Stepanenko',
       'Evgeny Ermakov': 'Evgeny Ermakov',
       'Task Description:': 'Task Description:',
-      'The task involved creating a playground for making GraphQL query requests to the countries API provided by github.com/trevorblades/countries. The application allows users to explore and retrieve country data using GraphQL queries. Authentication and registration functionalities were implemented using Firebase for secure access to the playground.':
-        'The task involved creating a playground for making GraphQL query requests to the countries API provided by github.com/trevorblades/countries. The application allows users to explore and retrieve country data using GraphQL queries. Authentication and registration functionalities were implemented using Firebase for secure access to the playground.',
+      'The task involved creating a playground for making GraphQL query requests to the countries API provided by':
+        'The task involved creating a playground for making GraphQL query requests to the countries API provided by',
+      'The application allows users to explore and retrieve country data using GraphQL queries. Authentication and registration functionalities were implemented using Firebase for secure access to the playground.':
+        'The application allows users to explore and retrieve country data using GraphQL queries. Authentication and registration functionalities were implemented using Firebase for secure access to the playground.',
       'The application consists of authentication and registration pages, a welcome page, and a query editor page. Seamless navigation between pages, localization support, and the utilization of the latest React technologies and external libraries enhance usability and ensure a modern user experience.':
         'The application consists of authentication and registration pages, a welcome page, and a query editor page. Seamless navigation between pages, localization support, and the utilization of the latest React technologies and external libraries enhance usability and ensure a modern user experience.',
       'The development team prioritized delivering a high-quality application, focusing on user-friendliness, adherence to best practices, and meeting project requirements. Their work demonstrates their dedication and proficiency in React application development.':
@@ -146,8 +148,10 @@ const resources = {
       'Halyna Stepanenko': 'Галина Степаненко',
       'Evgeny Ermakov': 'Евгений Ермаков',
       'Task Description:': 'Описание задания:',
-      'The task involved creating a playground for making GraphQL query requests to the countries API provided by github.com/trevorblades/countries. The application allows users to explore and retrieve country data using GraphQL queries. Authentication and registration functionalities were implemented using Firebase for secure access to the playground.':
-        'Задача заключалась в создании игровой площадки для выполнения запросов запросов GraphQL к API стран, предоставленному github.com/trevorblades/countries. Приложение позволяет пользователям исследовать и извлекать данные о стране с помощью запросов GraphQL. Функции аутентификации и регистрации были реализованы с использованием Firebase для безопасного доступа к песочнице',
+      'The task involved creating a playground for making GraphQL query requests to the countries API provided by':
+        'Задача заключалась в создании игровой площадки для выполнения запросов запросов GraphQL к API стран, предоставленному',
+      'The application allows users to explore and retrieve country data using GraphQL queries. Authentication and registration functionalities were implemented using Firebase for secure access to the playground.':
+        'Приложение позволяет пользователям исследовать и извлекать данные о стране с помощью запросов GraphQL. Функции аутентификации и регистрации были реализованы с использованием Firebase для безопасного доступа к игровой площадке',
       'The application consists of authentication and registration pages, a welcome page, and a query editor page. Seamless navigation between pages, localization support, and the utilization of the latest React technologies and external libraries enhance usability and ensure a modern user experience.':
         'Приложение состоит из страниц аутентификации и регистрации, страницы приветствия и страницы редактора запросов. Бесшовная навигация между страницами, поддержка локализации и использование новейших технологий React и внешних библиотек повышают удобство использования и обеспечивают современный пользовательский опыт',
       'The development team prioritized delivering a high-quality application, focusing on user-friendliness, adherence to best practices, and meeting project requirements. Their work demonstrates their dedication and proficiency in React application development.':
