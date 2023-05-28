@@ -36,7 +36,7 @@ function Aside() {
   const [historyDrawer, setHistoryDrawer] = useState(false);
   const [hotkeysModal, setHotkeysModal] = useState<boolean>(false);
   const offset = useScrollPosition();
-  const screenWidth = window.screen.width;
+  const screenWidth = window.innerWidth;
   const drawerPosition = calculateDrawerPostion(screenWidth, offset);
   const { data: ans, error, isLoading } = schemaAPI.useFetchAllDataQuery();
   const { t } = useTranslation();
