@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Avatar, Typography, Box, Grid } from '@mui/material';
 import { deepPurple } from '@mui/material/colors';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import ava1 from '../../assets/25996430.jpg';
 import ava2 from '../../assets/25996483.jpg';
 import ava3 from '../../assets/25996729.jpg';
@@ -37,10 +38,13 @@ function DevelopersInfo() {
     description1: `
   ${t('Task Description:')}
   ${t(
-    'The task involved creating a playground for making GraphQL query requests to the countries API provided by github.com/trevorblades/countries. The application allows users to explore and retrieve country data using GraphQL queries. Authentication and registration functionalities were implemented using Firebase for secure access to the playground.'
+    'The task involved creating a playground for making GraphQL query requests to the countries API provided by'
   )}
   `,
-    description2: `
+    description2: `${t(
+      'The application allows users to explore and retrieve country data using GraphQL queries. Authentication and registration functionalities were implemented using Firebase for secure access to the playground.'
+    )}`,
+    description3: `
   ${t(
     'The application consists of authentication and registration pages, a welcome page, and a query editor page. Seamless navigation between pages, localization support, and the utilization of the latest React technologies and external libraries enhance usability and ensure a modern user experience.'
   )}
@@ -49,7 +53,7 @@ function DevelopersInfo() {
     'The development team prioritized delivering a high-quality application, focusing on user-friendliness, adherence to best practices, and meeting project requirements. Their work demonstrates their dedication and proficiency in React application development.'
   )}
   `,
-    description3: `
+    description4: `
   ${t('Sincerely,')}
   ${t('The Development Team')}`,
   };
@@ -102,12 +106,16 @@ function DevelopersInfo() {
         </Typography>
         <Typography textAlign="justify" variant="body1">
           {projectInfo.description1}
-        </Typography>
-        <Typography textAlign="justify" variant="body1">
+          <Link to="https://github.com/trevorblades/countries" target="a_blank">
+            <span style={{ color: 'rgb(242, 59, 128)' }}>Countries API</span>.{' '}
+          </Link>
           {projectInfo.description2}
         </Typography>
-        <Typography textAlign="end" variant="body1">
+        <Typography textAlign="justify" variant="body1">
           {projectInfo.description3}
+        </Typography>
+        <Typography textAlign="end" variant="body1">
+          {projectInfo.description4}
         </Typography>
       </Box>
     </>
