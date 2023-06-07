@@ -1,0 +1,9 @@
+.selectElemList {
+  padding: 10px 0px;
+}
+
+.selectElemItem,
+.noSelectElemItem {
+  display: flex;
+  justify-content: space-between;
+}

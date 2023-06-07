@@ -1,0 +1,14 @@
+.logo-go-home {
+  width: 45px;
+  margin-top: auto;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}

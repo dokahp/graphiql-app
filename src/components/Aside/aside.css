@@ -1,0 +1,23 @@
+.aside-wrapper {
+  position: relative;
+  box-sizing: border-box;
+  width: 60px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+  height: 100vh;
+  border-right: 1px solid rgba(59, 76, 104, 0.15);
+  z-index: 1400;
+}
+
+@media (max-width: 899px) {
+  .aside-wrapper {
+    flex-direction: row;
+    height: 60px;
+    width: 100%;
+    border-right: 0;
+    border-bottom: 1px solid rgba(59, 76, 104, 0.15);
+  }
+}
